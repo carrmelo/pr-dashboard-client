@@ -4,30 +4,51 @@ import axios from 'axios'
 
 import PullRequestItem from './pullrequest_item'
 
-
 class PullRequestsList extends Component {
+
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			repositories: []
+		}
+	}
 
 	componentDidMount() {
 		console.log('PR LIST')
+
+		axios.get('https://api.github.com/users/reactjs/repos')
+			.then(res => {
+
+				this.setState({
+					repositories: res.data
+				})
+			})
 	}
 
 	renderPullRequestItem () {
-		console.log('RENDER ITEM')
+		return this.state.repositories.map(repo => {
+			return (
+				<div>REPO</div>
+			)
+		})
 	}
 
 	render() {
-		this.renderPullRequestItem()
+		
 		return (
-			
 			<div>
-				PULL REQUEST LIST:
-				<PullRequestItem />
+				
+				{this.renderPullRequestItem()}	
+
 			</div>
 		)
 	}
 }
 
 export default PullRequestsList
+
+	//<PullRequestItem />
 
 
 
