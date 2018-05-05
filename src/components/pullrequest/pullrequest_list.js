@@ -8,18 +8,14 @@ class PullRequestsList extends Component {
 
 	constructor(props) {
 		super(props)
-
 		this.state = {
 			repositories: []
 		}
 	}
 
 	componentDidMount() {
-		console.log('PR LIST')
-
 		axios.get('https://api.github.com/users/reactjs/repos')
 			.then(res => {
-
 				this.setState({
 					repositories: res.data
 				})
@@ -29,18 +25,18 @@ class PullRequestsList extends Component {
 	renderPullRequestItem () {
 		return this.state.repositories.map(repo => {
 			return (
-				<div>REPO</div>
+				<PullRequestItem 
+					key={repo.id}
+					repo={repo}
+				/>
 			)
 		})
 	}
 
 	render() {
-		
 		return (
 			<div>
-				
-				{this.renderPullRequestItem()}	
-
+				{this.renderPullRequestItem()}
 			</div>
 		)
 	}
