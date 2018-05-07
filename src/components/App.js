@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+
+import PullRequestList from './pullrequest/pullrequest_list'
 
 class App extends Component {
   render() {
@@ -8,6 +9,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Pull Requests Dashboard</h1>
         </header>
+        <PullRequestList />
       </div>
     );
   }

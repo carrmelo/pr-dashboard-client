@@ -1,0 +1,8 @@
+.links-container {
+  display: flex;
+  flex-direction: column;
+}
+
+Collapsible {
+  font-family: 'Courier New', Courier, monospace
+}
