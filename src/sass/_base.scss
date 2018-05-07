@@ -1,6 +1,4 @@
 
-
-
 ////////////////////////////////////
 // COLOR PALETTE
 
@@ -20,12 +18,19 @@ $color-primary-yellow-dark: #9a8426;
 
 $color-primary-pink: #f62c8a; 
 
+$color-primary-orange-lighter: #fd8557; 
+$color-primary-orange-light: #fa884e; 
+
 * {
 	margin: 0; 
 	padding: 0; 
-	box-sizing: border-box; 
-	background-color: $color-primary;
+	box-sizing: border-box;
+	background-color: $color-primary-pink;
 }
+
+
+
+
 
 
 
