@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import './repository_item.css'
 
 import { connect } from 'react-redux';
-import { togglePR } from '../actions'
+import { toggleRepository } from '../actions'
 
 class RepositoryItem extends Component {
 
 
 	handleActivation = (id) => {
-		this.props.togglePR(id)
+		this.props.toggleRepository(id)
 	}
 
 	render() {
@@ -26,7 +26,7 @@ const mapStateToProps = ({ repos }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	togglePR: (id) => dispatch(togglePR(id))
+	toggleRepository: (id) => dispatch(toggleRepository(id))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(RepositoryItem)

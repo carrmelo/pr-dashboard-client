@@ -3,7 +3,7 @@ export const allRepositories = (repos) => ({
   repos
 })
 
-export const togglePR = (id) => ({
+export const toggleRepository = (id) => ({
   type: 'TOGGLE_ACTIVE',
   id
 })

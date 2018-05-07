@@ -12,14 +12,16 @@ const user = 'reactjs'
 class RepositoriesList extends Component {
 
 	componentDidMount() {
-		axios.get(`${config.baseServerUrl}/users/${user}/repos`)
+		axios.get(`${config.baseServerUrl}/users/${user}/repos`, {auth: {username: config.username, password: config.password}})
 			.then(res => {
 				const repos = res.data.map(repo => {
 					repo.active = false;
+					repo.pulls = axios.get(`${config.baseServerUrl}/repos/${user}/${repo.name}/pulls`, {auth: {username: config.username, password: config.password}})
+					      .then(res => res.data)
 					return repo
-				})
-				this.props.allRepositories(repos)
-			})
+				});
+			this.props.allRepositories(repos)
+		})
 	}
 
 	renderPullRequestItem () {
@@ -35,6 +37,8 @@ class RepositoriesList extends Component {
 	}
 
 	render() {
+		console.log('repos', this.props.repos);
+		
 		return (
 			<div>
 				{this.renderPullRequestItem()}
@@ -43,7 +47,7 @@ class RepositoriesList extends Component {
 	}
 }
 
-const mapStateToProps = ({ repos }) => ({
+const mapStateToProps = ({ repos, pulls }) => ({
 	repos
 })
 

@@ -1,6 +1,5 @@
 const prd = {
-  repos: [],
-  pulls: []
+  repos: []
 }
 
 const reducer = (state = prd, action) => {
@@ -15,6 +14,7 @@ const reducer = (state = prd, action) => {
           ...action.repos
         ]
       }
+
     case 'TOGGLE_ACTIVE':
       return {
         ...state,
