@@ -13,7 +13,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "compile-sass": "node-sass src/sass/main.scss src/css/style.css"
+    "compile-sass": "node-sass src/sass/main.scss src/css/style.css -w"
   },
   "devDependencies": {
     "node-sass": "^4.9.0",
