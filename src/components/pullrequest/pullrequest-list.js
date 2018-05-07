@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
+import config from '../../config';
 import PullRequestItem from './pullrequest-item'
 
 const user = 'reactjs'
 const repo = 'redux'
-const url = `https://api.github.com/repos/${user}/${repo}`
 
 class PullRequestList extends Component {
   constructor (props) {
@@ -16,7 +16,7 @@ class PullRequestList extends Component {
   }
 
   componentDidMount () {
-    fetch(`${url}/pulls`)
+    fetch(`${config.baseServerUrl}/repos/${user}/${repo}/pulls`)
     .then(response => {
       console.log(response);
       return response.json()
