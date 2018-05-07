@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import config from '../../config';
-import PullRequestItem from './pullrequest-item'
+import PullRequestItem from './pullrequest_item'
 
 const user = 'reactjs'
 const repo = 'redux'

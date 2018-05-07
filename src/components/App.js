@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import PullRequestList from './pullrequest/pullrequest-list'
+import PullRequestList from './pullrequest/pullrequest_list'
 
 class App extends Component {
   render() {
