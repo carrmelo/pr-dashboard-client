@@ -9,7 +9,7 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "npm-run-all start-js compile-sass",
+    "start": "npm-run-all compile-sass start-js",
     "start-js": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

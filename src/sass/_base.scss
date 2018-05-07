@@ -4,16 +4,27 @@
 ////////////////////////////////////
 // COLOR PALETTE
 
-:root {
-	--color-primary: #fff;
-}
+$color-primary-grey-lighter: #736b8a; 
+$color-primary-grey-light: #59576b; 
+$color-primary-grey-dark: #23222c; 
+$color-text-grey: #6a687c; 
 
+$color-purple-dark: #7c3afd; 
+$color-purple-light: #a76cff; 
+
+$color-green-light-primary: #0bd8be; 
+$color-green-light-darker: #23a987; 
+
+$color-primary-yellow-light: #f3d821; 
+$color-primary-yellow-dark: #9a8426; 
+
+$color-primary-pink: #f62c8a; 
 
 * {
 	margin: 0; 
 	padding: 0; 
 	box-sizing: border-box; 
-	background-color: var(--color-primary);
+	background-color: $color-primary;
 }
 
 

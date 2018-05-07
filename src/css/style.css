@@ -1,11 +1,33 @@
-:root {
-  --color-primary: #fff; }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: var(--color-primary); }
+  background-color: #EEE; }
 
-h1 a {
-  color: purple; }
+
+
+
+$color-primary-lighter: #736b8a
+
+$color-primary-light: #59576b
+
+$color-primary-dark: #23222c
+
+$color-green-light-primary: #0bd8be
+
+$color-green-light-darker: #23a987
+
+$color-purple-dark: #7c3afd
+
+$color-purple-light: #a76cff
+
+$color-primary-pink: #f62c8a
+
+
+$color-text-grey: #6a687c
+
+$color-primary-yellow-light: #f3d821
+
+$color-primary-yellow-dark: #9a8426
+
+
