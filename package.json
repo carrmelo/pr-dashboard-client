@@ -16,6 +16,7 @@
     "compile-sass": "node-sass src/sass/main.scss src/css/style.css"
   },
   "devDependencies": {
-    "node-sass": "^4.9.0"
+    "node-sass": "^4.9.0",
+    "nodemon": "^1.17.4"
   }
 }
