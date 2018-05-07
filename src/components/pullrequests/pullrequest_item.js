@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 
-class PullRequestItem extends Component {
+class RepoItem extends Component {
 
 	//WHY NOT NEEDED TO RENDER LIST 
 	constructor(props) {
@@ -17,7 +17,7 @@ class PullRequestItem extends Component {
 	}
 }
 
-export default PullRequestItem
+export default RepoItem
 
 
 

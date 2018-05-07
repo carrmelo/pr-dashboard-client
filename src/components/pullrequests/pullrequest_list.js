@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import PullRequestItem from './pullrequest_item'
+import RepoItem from './pullrequest_item'
 
 class PullRequestsList extends Component {
 
@@ -25,7 +25,7 @@ class PullRequestsList extends Component {
 	renderPullRequestItem () {
 		return this.state.repositories.map(repo => {
 			return (
-				<PullRequestItem 
+				<RepoItem 
 					key={repo.id}
 					repo={repo}
 				/>
