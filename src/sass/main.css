@@ -1,5 +1,16 @@
-body {
+* {
   margin: 0;
-  padding: 0;
+  padding: 0; }
+
+html {
   box-sizing: border-box;
-  background-color: #f62c8a; }
+  font-size: 62.5%; }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; }
+
+body {
+  min-height: 100vh;
+  background-image: linear-gradient(to right bottom, #59576b, #23222c); }
