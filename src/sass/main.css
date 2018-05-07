@@ -18,3 +18,7 @@ body {
   min-height: 100vh;
   font-size: 1.9rem;
   line-height: 1.6; }
+
+.header {
+  height: 6.4rem;
+  border-bottom: 1px solid #fff; }
