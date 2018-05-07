@@ -21,11 +21,11 @@ $color-primary-pink: #f62c8a;
 $color-primary-orange-lighter: #fd8557; 
 $color-primary-orange-light: #fa884e; 
 
-* {
+body {
 	margin: 0; 
 	padding: 0; 
 	box-sizing: border-box;
-	background-color: $color-primary-pink;
+	background-color: $color-primary-pink; 
 }
 
 
