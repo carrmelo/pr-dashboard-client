@@ -38,8 +38,14 @@ html {
 }
 
 body {
+	background-image: linear-gradient(to right bottom, $color-primary-grey-light, $color-primary-grey-dark); 
+	background-size: cover; 
+	background-repeat: no-repeat;
+
 	min-height: 100vh; 
-	background-image: linear-gradient(to right bottom, $color-primary-grey-light, $color-primary-grey-dark)
+
+	font-size: 1.9rem;
+	line-height: 1.6; 
 }
 
 

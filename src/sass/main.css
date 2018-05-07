@@ -12,5 +12,9 @@ html {
   box-sizing: inherit; }
 
 body {
+  background-image: linear-gradient(to right bottom, #59576b, #23222c);
+  background-size: cover;
+  background-repeat: no-repeat;
   min-height: 100vh;
-  background-image: linear-gradient(to right bottom, #59576b, #23222c); }
+  font-size: 1.9rem;
+  line-height: 1.6; }
