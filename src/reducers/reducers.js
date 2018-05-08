@@ -20,7 +20,7 @@ const reducer = (state = prd, action) => {
         ...state,
         repos: state.repos.filter(repo => {
             if (repo._id === action.id) {
-              repo.active = !repo.active
+              repo.hookEnabled = !repo.hookEnabled
               return repo
             } else return repo
           })

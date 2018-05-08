@@ -13,7 +13,7 @@ class RepositoryItem extends Component {
 
 	render() {
 		return (
-			<div className={this.props.repo.active ? "blue" : "red"}>
+			<div className={this.props.repo.hookEnabled ? "blue" : "red"}>
 				{this.props.repo.name}
 				<button onClick={() => this.handleActivation(this.props.repo._id)} > activate </button>
 			</div>

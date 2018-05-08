@@ -10,14 +10,8 @@ import RepositoryItem from './repository_item'
 class RepositoriesList extends Component {
 
 	componentDidMount() {
-		axios.get(`${config.baseServerUrl}/all/`)
-			.then(res => {		
-				const repos = res.data.map(repo => {
-					repo.active = false;
-					return repo
-				});
-				this.props.allRepositories(repos)
-			})
+		axios.get(`${config.baseServerUrl}/repos`)
+			.then(res => this.props.allRepositories(res.data))
 	}
 
 	renderPullRequestItem () {
@@ -26,7 +20,7 @@ class RepositoriesList extends Component {
 				<RepositoryItem 
 					key={repo._id}
 					repo={repo}
-					active={repo.active}
+					active={repo.hookEnabled}
 				/>
 			)
 		})
