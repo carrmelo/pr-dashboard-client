@@ -3,20 +3,18 @@
 
 import React, { Component } from 'react'
 
-
-
-import DashboardCard from './component_dashboard_card'
-
-class Pannel extends Component {
+class SearchBar extends Component {
 	render() {
 		return (
 			<div className="dashboard__pannel">
-				PANNEL
+				SEARCHBAR
 			</div>
 		)
 	}
 }
 
-export default Pannel
+export default SearchBar
+
+
 
 
