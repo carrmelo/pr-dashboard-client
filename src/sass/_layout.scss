@@ -1,6 +1,22 @@
 
 
 
+.dashboard__content {
+	display: flex;
+}
+
+.dashboard__sidebar {
+    flex: 0 0 260px;
+}
+
+.dashboard__pannel {
+    flex: 1;
+    min-width: 820px;
+    border-color: 3px solid black
+}
+
+    
+
 
 
 

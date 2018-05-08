@@ -6,7 +6,7 @@ import Sidebar from './component_sidebar'
 class DashboardContent extends Component {
 	render() {
 		return (
-			<div>
+			<div className="dashboard__content">
 				<Sidebar />
 				<Pannel />
 			</div>

@@ -29,6 +29,7 @@ $color-primary-orange-light: #fa884e;
 html {
 	box-sizing: border-box; 
 	font-size: 62.5%; 
+
 }
 
 *, 
@@ -37,13 +38,17 @@ html {
 	box-sizing: inherit;
 }
 
+.App {
+    margin: 10px 10px auto;
+    min-height: 100vh;
+}
+
 body {
 	background-image: linear-gradient(to right bottom, $color-primary-grey-light, $color-primary-grey-dark); 
 	background-size: cover; 
 	background-repeat: no-repeat;
 
-	min-height: 100vh; 
-
+	color:white;
 	font-size: 1.9rem;
 	line-height: 1.6; 
 }

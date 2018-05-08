@@ -8,7 +8,9 @@ import React, { Component } from 'react'
 class DashboardHeader extends Component {
 	render() {
 		return (
-			<nav className="header">
+			<nav 
+				style={{backgroundColor: 'inherit', boxShadow: 'inherit'}}
+				className="dashboard__header" >
 				HEADER
 			</nav>
 		)
