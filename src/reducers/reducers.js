@@ -1,9 +1,9 @@
 const prd = {
-  repos: []
+  repos: [],
+  pulls: []
 }
 
 const reducer = (state = prd, action) => {
-  console.log("action", action);
   
   switch (action.type) {
     case 'REPOSITORIES':
@@ -19,11 +19,19 @@ const reducer = (state = prd, action) => {
       return {
         ...state,
         repos: state.repos.filter(repo => {
-            if (repo.id === action.id) {
+            if (repo._id === action.id) {
               repo.active = !repo.active
               return repo
             } else return repo
           })
+      }
+
+    case 'PULL_REQUESTS':
+      return {
+        ...state,
+        pulls: [
+          ...action.pulls
+        ]
       }
 
   default: return state;

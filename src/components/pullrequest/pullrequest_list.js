@@ -2,45 +2,34 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-// import {  } from '../actions';
+import { allPullRequests } from '../../actions';
 
 import config from '../../config';
 import PullRequestItem from './pullrequest_item';
 
-const user = 'carrmelo';
-// const repo = 'redux';
-
 class PullRequestList extends Component {
 
-  // componentDidMount () {
-  //   this.props.repos.map(repo => {
-  //     if (repo.active) {
-  //       axios.get(`${config.baseServerUrl}/repos/${user}/${repo.name}/pulls`)
-  //       .then(res => {
-  //         console.log('axios', res.data);
-  //         return this.setState({ pulls : res.data })
-  //   });
-  //     }
-  //   })
-  // }
+  componentDidMount () {
+    axios.get(`${config.baseServerUrl}/pullrequests`)
+      .then(res => this.props.allPullRequests(res.data))
+  };
 
   renderPullRequestItem (pulls) {
-    console.log('pulls', pulls);
-    
     return pulls.map(pull => {
       return (
-        <div key={pull.id}>
+        <div key={pull._id}>
           <PullRequestItem
-            body={pull.body} 
+            repo={pull.repository.name} 
             closed_at={pull.closed_at}
-            comments_url={pull.comments_url} 
-            commits_url={pull.commits_url} 
-            issue_url={pull.issue_url} 
-            state={pull.state} 
-            title={pull.title} 
+            merged_at={pull.merged_at} 
+            created_at={pull.created_at} 
             updated_at={pull.updated_at} 
-            user={pull.user.login}
-            userUrl={pull.user.html_url}
+            action={pull.action} 
+            title={pull.title} 
+            number={pull.number} 
+            state={pull.state}
+            comment={pull.comment}
+            comments={pull.comments}            
           />
         </div>
       )
@@ -49,28 +38,25 @@ class PullRequestList extends Component {
 
 
   render () {
-    if (this.props.repos) {
-      return this.props.repos.filter(repo => {
-        if (repo.active) {
-          console.log('repo', repo);  
-          return (
-            <div>
-              {this.renderPullRequestItem(repo.pulls)}
-            </div>
-          )
-        }
-      })
+    if (this.props.pulls) {  
+      return (
+        <div>
+          {this.renderPullRequestItem(this.props.pulls)}
+        </div>
+      )
     } else {
       return <p>Loading</p>
     }
   }
 }
 
-const mapStateToProps = ({ repos }) => ({
-  repos
+const mapStateToProps = ({ repos, pulls }) => ({
+  repos,
+  pulls
 })
 
-// const mapDispatchToProps = (dispatch) => ({
-// })
+const mapDispatchToProps = (dispatch) => ({
+  allPullRequests: (pulls) => dispatch(allPullRequests(pulls))
+})
 
-export default connect(mapStateToProps/*, mapDispatchToProps*/)(PullRequestList);
+export default connect(mapStateToProps, mapDispatchToProps)(PullRequestList);

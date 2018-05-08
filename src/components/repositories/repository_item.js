@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './repository_item.css'
 
 import { connect } from 'react-redux';
-import { toggleRepository } from '../actions'
+import { toggleRepository } from '../../actions'
 
 class RepositoryItem extends Component {
 
@@ -15,7 +15,7 @@ class RepositoryItem extends Component {
 		return (
 			<div className={this.props.repo.active ? "blue" : "red"}>
 				{this.props.repo.name}
-				<button onClick={() => this.handleActivation(this.props.repo.id)} > activate </button>
+				<button onClick={() => this.handleActivation(this.props.repo._id)} > activate </button>
 			</div>
 		)
 	}
