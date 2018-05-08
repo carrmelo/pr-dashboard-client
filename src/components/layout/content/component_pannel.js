@@ -1,9 +1,6 @@
 
 
-
 import React, { Component } from 'react'
-
-
 
 import DashboardCard from './component_dashboard_card'
 
