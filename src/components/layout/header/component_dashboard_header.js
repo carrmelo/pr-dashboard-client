@@ -13,7 +13,10 @@ class DashboardHeader extends Component {
 			<header 
 				style={{backgroundColor: 'inherit', boxShadow: 'inherit'}}
 				className="dashboard__header" >
-				<img src="#" className="dashboard__header__logo" alt=""/>
+				
+				<svg className="logo">
+					<use xlinkHref="./icons/sprite.svg#icon-social-github-circular"></use>
+				</svg>
 				
 				<form action="#" className="dashboard__header__search">
 					<input type="text" className="dashboard__header__search__input"/>

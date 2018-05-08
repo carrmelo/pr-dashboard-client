@@ -10,13 +10,13 @@ class Sidebar extends Component {
 			<ul className="dashboard__sidebar">
 				<li className="sidebar__navigation-repositories">
 					<svg className="sidebar__icon-repositories">
-						<use xlinkHref="./icons/sprite.svg#"></use>
+						<use xlinkHref="./icons/sprite.svg#icon-th-large-outline"></use>
 					</svg>
 				</li>
 
 				<li className="sidebar__navigation-pullrequests">
 					<svg className="sidebar__icon-pullrequests">
-						<use xlinkHref="./icons/sprite.svg#"></use>
+						<use xlinkHref="./icons/sprite.svg#icon-flow-switch"></use>
 					</svg>
 				</li>
 			</ul>
