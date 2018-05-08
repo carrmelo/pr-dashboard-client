@@ -72,6 +72,13 @@ svg {
   background-color: #0bd8be;
   border: none; }
 
+.dashboard__header__search__input {
+  font-size: 3rem !important;
+  border-bottom: 2px solid #9e9e9e !important; }
+  .dashboard__header__search__input:focus {
+    border-bottom: 2px solid #0bd8be !important;
+    box-shadow: 0 1px 0 0 #0bd8be !important; }
+
 .dashboard__repository__list {
   background-color: rgba(0, 0, 0, 0.46);
   padding: 5rem 2rem;
