@@ -24,7 +24,9 @@ svg {
   fill: #6a7081; }
 
 .card-panel {
-  background-color: transparent; }
+  background-color: transparent;
+  border-radius: 25px;
+  box-shadow: 0 2px 2px 0 #757575, 0 1px 5px 0 rgba(0, 0, 0, 0.87), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }
 
 .dashboard__content {
   display: flex; }
@@ -34,7 +36,8 @@ svg {
 
 .dashboard__panel {
   flex: 1;
-  min-width: 820px; }
+  min-width: 820px;
+  height: 135vh; }
 
 .dashboard__header {
   height: 6.4rem;
@@ -62,5 +65,11 @@ svg {
   background: transparent;
   border: none; }
 
-.lolo {
-  background-color: #23222c !important; }
+.dashboard__repository__list {
+  background-color: rgba(0, 0, 0, 0.52);
+  padding: 5rem;
+  padding-top: 4rem;
+  height: 65vh;
+  width: 650px;
+  overflow: scroll;
+  border: 1px solid rgba(0, 0, 0, 0.05); }

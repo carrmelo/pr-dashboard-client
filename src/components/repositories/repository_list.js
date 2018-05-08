@@ -35,7 +35,7 @@ class RepositoriesList extends Component {
 
 	render() {
 		return (
-			<div className="lolo">
+			<div className="dashboard__repository__list">
 				{this.renderPullRequestItem()}
 			</div>
 		)
