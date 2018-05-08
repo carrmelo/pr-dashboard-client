@@ -28,16 +28,16 @@ class PullRequestList extends Component {
         <div key={pull._id}>
           <PullRequestItem
             repo={pull.repository.name} 
+            repoWebUrl={pull.repository.webUrl} 
+            pullWebUrl={pull.webUrl} 
             closed_at={pull.closed_at}
             merged_at={pull.merged_at} 
             created_at={pull.created_at} 
             updated_at={pull.updated_at} 
             action={pull.action} 
             title={pull.title} 
-            number={pull.number} 
             state={pull.state}
-            comment={pull.comment}
-            comments={pull.comments}            
+            comment={pull.comment}      
           />
         </div>
       )
