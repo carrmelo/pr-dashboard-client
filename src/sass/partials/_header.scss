@@ -1,19 +1,24 @@
 
 
+
 .dashboard__header {
     height: 6.4rem;
     display: flex;
     padding-top: 15px;
-    margin-bottom: 15px;
+    justify-content: space-between;
+}
+
+.logo {
+    flex: 0 0 18.5%;
 }
 
 .dashboard__header__search {
-	width: 30rem;
+    width: 30rem;
     background-color: inherit;
     border: none;
-    border-bottom: 1px solid #9e9e9e;
     outline: none;
-    height: 3rem;	
+    height: 3rem;
+    flex: 0 0 50%;
 }
 
 .dashboard__header__search__icon {
@@ -26,6 +31,12 @@
     position: fixed;
     padding: 17px;
     background: transparent;
+    border: none;
+}
+
+.dashboard__header__button {
+    width: 60px;
+    background-color: #0bd8be;
     border: none;
 }
 

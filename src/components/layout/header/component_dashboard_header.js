@@ -14,7 +14,7 @@ class DashboardHeader extends Component {
 				style={{backgroundColor: 'inherit', boxShadow: 'inherit'}}
 				className="dashboard__header" >
 				
-				<svg className="logo">
+				<svg className="dashboard__logo">
 					<use xlinkHref="./icons/sprite.svg#icon-social-github-circular"></use>
 				</svg>
 				
