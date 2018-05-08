@@ -1,3 +1,4 @@
+import io from 'socket.io-client';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -7,9 +8,16 @@ import { allPullRequests } from '../../actions';
 import config from '../../config';
 import PullRequestItem from './pullrequest_item';
 
+const socket = io.connect('https://pr-dashboard-server.herokuapp.com/');
+
 class PullRequestList extends Component {
 
   componentDidMount () {
+    socket.on('pr-update', function(data) {
+      console.log('Data from the server');
+      console.log(data);
+    });
+    
     axios.get(`${config.baseServerUrl}/pullrequests`)
       .then(res => this.props.allPullRequests(res.data))
   };
@@ -44,6 +52,7 @@ class PullRequestList extends Component {
           {this.renderPullRequestItem(this.props.pulls)}
         </div>
       )
+
     } else {
       return <p>Loading</p>
     }
