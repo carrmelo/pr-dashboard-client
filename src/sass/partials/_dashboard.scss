@@ -4,13 +4,27 @@
 
 
 .dashboard__repository__list {
-	background-color: rgba(0, 0, 0, 0.52);
-    padding: 5rem;
+	background-color: rgba(0, 0, 0, 0.46);
+    padding: 5rem 2rem;
     padding-top: 4rem;
     height: 65vh;
     width: 650px;
     overflow: scroll;
     border: 1px solid rgba(0,0,0,0.05);
+    list-style:none;
+    padding-right: 0;
+}
+
+.repository__item {
+	padding: 10px 0;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.2);; 
+	}
+}
+
+.respository__item-text {
+    padding-left: 25px;
 }
 
 

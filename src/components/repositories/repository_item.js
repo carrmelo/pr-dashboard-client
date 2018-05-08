@@ -9,9 +9,9 @@ class RepositoryItem extends Component {
 
 	render() {
 		return (
-			<div>
-				{this.props.repo.name}
-			</div>
+			<li className="repository__item">
+				<span className="respository__item-text">{this.props.repo.name}</span>
+			</li>
 		)
 	}
 }
