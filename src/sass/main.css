@@ -42,7 +42,6 @@ svg {
 .dashboard__header {
   height: 6.4rem;
   display: flex;
-  justify-content: space-between;
   padding-top: 15px;
   margin-bottom: 15px; }
 
@@ -74,7 +73,8 @@ svg {
   overflow: scroll;
   border: 1px solid rgba(0, 0, 0, 0.05);
   list-style: none;
-  padding-right: 0; }
+  padding-right: 0;
+  box-shadow: 2px 4px 1px -1px rgba(38, 39, 38, 0.52); }
 
 .repository__item {
   padding: 10px 0; }
