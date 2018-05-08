@@ -11,17 +11,17 @@ html {
 *::after {
   box-sizing: inherit; }
 
-.App {
-  margin: 10px 10px auto;
-  min-height: 100vh; }
-
 body {
   background-image: linear-gradient(to right bottom, #59576b, #23222c);
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
   font-size: 1.9rem;
-  line-height: 1.6; }
+  line-height: 1.6;
+  min-height: 100vh; }
+
+svg {
+  fill: #6a7081; }
 
 .dashboard__content {
   display: flex; }
@@ -34,8 +34,33 @@ body {
   min-width: 820px;
   border-color: 3px solid black; }
 
-.nav {
-  box-shadow: inherit; }
-
 .dashboard__header {
-  height: 6.4rem; }
+  height: 6.4rem;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+  margin-bottom: 15px; }
+
+.dashboard__header__search {
+  width: 30rem;
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  outline: none;
+  height: 3rem; }
+
+.dashboard__header__search__icon {
+  width: 4rem;
+  height: 4rem;
+  position: absolute; }
+
+.dashboard__header__search__button {
+  position: fixed;
+  padding: 17px;
+  background: transparent;
+  border: none; }
+
+.card-panel {
+  border-radius: 20px;
+  box-shadow: 0 2px 2px 0 #757575, 0 1px 5px 0 rgba(0, 0, 0, 0.87), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  background-color: transparent; }

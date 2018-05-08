@@ -7,6 +7,9 @@ $color-primary-grey-light: #59576b;
 $color-primary-grey-dark: #23222c; 
 $color-text-grey: #6a687c; 
 
+$color-primary-icon-nonselect: #6a7081;
+$color-primary-icon-select: #e4e2f0; 
+
 $color-purple-dark: #7c3afd; 
 $color-purple-light: #a76cff; 
 
@@ -38,11 +41,6 @@ html {
 	box-sizing: inherit;
 }
 
-.App {
-    margin: 10px 10px auto;
-    min-height: 100vh;
-}
-
 body {
 	background-image: linear-gradient(to right bottom, $color-primary-grey-light, $color-primary-grey-dark); 
 	background-size: cover; 
@@ -51,6 +49,12 @@ body {
 	color:white;
 	font-size: 1.9rem;
 	line-height: 1.6; 
+
+	min-height: 100vh;
+}
+
+svg {
+	fill: $color-primary-icon-nonselect; 
 }
 
 
