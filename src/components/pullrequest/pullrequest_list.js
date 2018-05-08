@@ -13,11 +13,7 @@ const socket = io.connect('https://pr-dashboard-server.herokuapp.com/');
 class PullRequestList extends Component {
 
   componentDidMount () {
-    socket.on('pr-update', function(data) {
-      console.log('Data from the server');
-      console.log(data);
-    });
-    
+    socket.on('pr-update', this.props.allPullRequests.bind(this));
     axios.get(`${config.baseServerUrl}/pullrequests`)
       .then(res => this.props.allPullRequests(res.data))
   };
@@ -27,17 +23,17 @@ class PullRequestList extends Component {
       return (
         <div key={pull._id}>
           <PullRequestItem
-            repo={pull.repository.name} 
-            repoWebUrl={pull.repository.webUrl} 
-            pullWebUrl={pull.webUrl} 
+            repo={pull.repository.name}
             closed_at={pull.closed_at}
-            merged_at={pull.merged_at} 
-            created_at={pull.created_at} 
-            updated_at={pull.updated_at} 
-            action={pull.action} 
-            title={pull.title} 
+            merged_at={pull.merged_at}
+            created_at={pull.created_at}
+            updated_at={pull.updated_at}
+            action={pull.action}
+            title={pull.title}
+            number={pull.number}
             state={pull.state}
-            comment={pull.comment}      
+            comment={pull.comment}
+            comments={pull.comments}
           />
         </div>
       )
@@ -46,7 +42,7 @@ class PullRequestList extends Component {
 
 
   render () {
-    if (this.props.pulls) {  
+    if (this.props.pulls) {
       return (
         <div>
           {this.renderPullRequestItem(this.props.pulls)}
