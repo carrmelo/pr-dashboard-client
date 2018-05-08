@@ -21,7 +21,7 @@ body {
   min-height: 100vh; }
 
 svg {
-  fill: #6a7081; }
+  fill: rgba(255, 255, 255, 0.7); }
 
 .card-panel {
   background-color: transparent;
@@ -29,7 +29,8 @@ svg {
   box-shadow: 0 2px 2px 0 #757575, 0 1px 5px 0 rgba(0, 0, 0, 0.87), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }
 
 .dashboard__content {
-  display: flex; }
+  display: flex;
+  margin-top: 30px; }
 
 .dashboard__sidebar {
   flex: 0 0 260px; }
@@ -43,10 +44,11 @@ svg {
   height: 6.4rem;
   display: flex;
   padding-top: 15px;
-  justify-content: space-between; }
+  margin-top: 15px; }
 
-.logo {
-  flex: 0 0 18.5%; }
+.dashboard__logo {
+  width: 10rem;
+  height: 10rem; }
 
 .dashboard__header__search {
   width: 30rem;
@@ -54,7 +56,8 @@ svg {
   border: none;
   outline: none;
   height: 3rem;
-  flex: 0 0 50%; }
+  flex: 0 0 60%;
+  min-width: 718px; }
 
 .dashboard__header__search__icon {
   width: 4rem;
@@ -66,6 +69,8 @@ svg {
   padding: 17px;
   background: transparent;
   border: none; }
+  .dashboard__header__search__button:focus {
+    background-color: transparent !important; }
 
 .dashboard__header__button {
   width: 60px;
@@ -78,6 +83,14 @@ svg {
   .dashboard__header__search__input:focus {
     border-bottom: 2px solid #0bd8be !important;
     box-shadow: 0 1px 0 0 #0bd8be !important; }
+
+.left-items {
+  align-self: center;
+  margin-left: 82px; }
+
+.central-right-items {
+  display: flex;
+  flex: 1; }
 
 .dashboard__repository__list {
   background-color: rgba(0, 0, 0, 0.46);

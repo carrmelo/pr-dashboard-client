@@ -5,11 +5,13 @@
     height: 6.4rem;
     display: flex;
     padding-top: 15px;
-    justify-content: space-between;
+    margin-top: 15px;
+
 }
 
-.logo {
-    flex: 0 0 18.5%;
+.dashboard__logo {
+    width: 10rem; 
+    height: 10rem; 
 }
 
 .dashboard__header__search {
@@ -18,7 +20,8 @@
     border: none;
     outline: none;
     height: 3rem;
-    flex: 0 0 50%;
+    flex: 0 0 60%;
+    min-width: 718px;
 }
 
 .dashboard__header__search__icon {
@@ -32,6 +35,10 @@
     padding: 17px;
     background: transparent;
     border: none;
+
+    &:focus {
+        background-color: transparent !important;
+    }
 }
 
 .dashboard__header__button {
@@ -49,6 +56,16 @@
         border-bottom: 2px solid #0bd8be !important;
         box-shadow: 0 1px 0 0 #0bd8be !important;
     }
+}
+
+.left-items {
+    align-self: center;
+    margin-left: 82px;
+}
+
+.central-right-items {
+    display: flex;
+    flex: 1;
 }
 
 
