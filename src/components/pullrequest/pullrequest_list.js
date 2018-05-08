@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
+import socket from '../../websockets';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -7,8 +7,6 @@ import { allPullRequests } from '../../actions';
 
 import config from '../../config';
 import PullRequestItem from './pullrequest_item';
-
-const socket = io.connect('https://pr-dashboard-server.herokuapp.com/');
 
 class PullRequestList extends Component {
 
