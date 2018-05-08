@@ -8,7 +8,7 @@ import RepoList from '../../repositories/repository_list'
 class Pannel extends Component {
 	render() {
 		return (
-			<div className="dashboard__pannel">
+			<div className="card-panel dashboard__panel">
 				
 				
 				<RepoList />

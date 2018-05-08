@@ -23,16 +23,18 @@ body {
 svg {
   fill: #6a7081; }
 
+.card-panel {
+  background-color: transparent; }
+
 .dashboard__content {
   display: flex; }
 
 .dashboard__sidebar {
   flex: 0 0 260px; }
 
-.dashboard__pannel {
+.dashboard__panel {
   flex: 1;
-  min-width: 820px;
-  border-color: 3px solid black; }
+  min-width: 820px; }
 
 .dashboard__header {
   height: 6.4rem;
@@ -60,7 +62,5 @@ svg {
   background: transparent;
   border: none; }
 
-.card-panel {
-  border-radius: 20px;
-  box-shadow: 0 2px 2px 0 #757575, 0 1px 5px 0 rgba(0, 0, 0, 0.87), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-  background-color: transparent; }
+.lolo {
+  background-color: #23222c !important; }
