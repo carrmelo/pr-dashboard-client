@@ -2,7 +2,24 @@
 
 
 
+
+.dashboard__sidebar {
+   	margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 .sidebar__icon-repositories, .sidebar__icon-pullrequests {
 	width: 5rem; 
 	height: 5rem;
+}
+
+.sidebar__navigation-repositories {
+    margin: 40px auto;
+    margin-top: 0;
+}
+
+.sidebar__navigation-pullrequests {
+    margin: 40px auto;
 }
