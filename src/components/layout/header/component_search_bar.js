@@ -11,7 +11,7 @@ class SearchBar extends Component {
 					<input type="text" className="search__input"/>
 					<button className="search__button"></button>
 					<svg className="search__icon">
-						<use xlinkHref="../../../icons/sprite.svg#zoom-outline"></use>
+						<use xlinkHref="./icons/sprite.svg#icon-zoom-outline"></use>
 					</svg>
 			</form>
 		)
