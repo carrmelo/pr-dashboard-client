@@ -83,3 +83,7 @@ svg {
 
 .respository__item-text {
   padding-left: 25px; }
+
+.sidebar__icon-repositories, .sidebar__icon-pullrequests {
+  width: 5rem;
+  height: 5rem; }
