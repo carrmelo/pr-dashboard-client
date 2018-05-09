@@ -24,7 +24,15 @@
 	}
 }
 
-.respository__item-text {
+.repository__item-content {
+    display: flex;
+}
+
+.repository__item-content-text {
+    width: 90%;
+}
+
+.repository__item-content-text {
     padding-left: 25px;
 }
 
