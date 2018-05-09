@@ -1,9 +1,12 @@
-const prd = {
+const initialState = {
   repos: [],
-  pulls: []
+  repositories: {},
+  pull_requests: {},
+  users: {},
 }
 
-const reducer = (state = prd, action) => {
+
+const reducer = (state = initialState, action) => {
   
   switch (action.type) {
     case 'REPOSITORIES':
@@ -29,12 +32,21 @@ const reducer = (state = prd, action) => {
     case 'PULL_REQUESTS':
       return {
         ...state,
-        pulls: [
-          ...action.pulls
-        ]
+        repositories: {
+          ...state.repositories,
+          ...action.pulls.entities.repository
+        },
+        pull_requests: {
+          ...state.pull_requests,
+          ...action.pulls.entities.pull_requests
+        },
+        users: {
+          ...state.users,
+          ...action.pulls.entities.user
+        }
       }
 
-  default: return state;
+    default: return state;
   }
 }
 

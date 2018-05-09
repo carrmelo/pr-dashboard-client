@@ -10,44 +10,15 @@ import { allPullRequests } from '../../actions';
 import config from '../../config';
 import PullRequestItem from './pullrequest_item';
 
+const userSchema = new schema.Entity('user', {}, { idAttribute: 'loginName' });
+const repoSchema = new schema.Entity('repository', {}, { idAttribute: 'fullName' });
+const pullSchema = new schema.Entity(
+  'pull_requests',
+  { repository: repoSchema, user: userSchema },
+  { idAttribute: '_id' }
+);
 
-const users = new schema.Entity('user', {}, { idAtribute: 'loginName' });
-const repos = new schema.Entity('repository', {}, { idAtribute: 'fullName' });
-const pulls = new schema.Entity('pull_requests', {}, { idAttribute: '_id' } )
-const pullSchema = new schema.Entity('pull_requests', { users: users, repos: repos }, {
-  idAttribute: '_id',
-  mergeStrategy: (entityA, entityB) => ({
-    ...entityA,
-    ...entityB,
-    favorites: entityA.favorites
-  })
-});
-
-const otherSchema = new schema.Entity('pull_requests', {}, { idAttribute: '_id' });
-const pullRequestSchema = [ otherSchema ];
-const theSchema = [ pullSchema ]
-
-const data = { id_str: '123', url: 'https://twitter.com', user: { id_str: '456', name: 'Jimmy' } };
-
-const user = new schema.Entity('users', {}, { idAttribute: 'id_str' });
-const tweet = new schema.Entity('tweets', { user: user }, { 
-    idAttribute: 'id_str',
-    // Apply everything from entityB over entityA, except for "favorites"
-    // mergeStrategy: (entityA, entityB) => ({
-    //   ...entityA,
-    //   ...entityB,
-    //   favorites: entityA.favorites
-    // })
-});
-
-const normalizedData = normalize(data, tweet);
-
-// new schema.Array({
-//   pull_requests: pullSchema,
-//   repositories: repoSchema,
-//   users: userSchema
-// }, (input, parent, key) => `${input._id}`);
-
+const pullRequestSchema = [ pullSchema ];
 
 const socket = io.connect('https://pr-dashboard-server.herokuapp.com/');
 
@@ -57,29 +28,28 @@ class PullRequestList extends Component {
     socket.on('pr-update', this.props.allPullRequests.bind(this));
     axios.get(`${config.baseServerUrl}/pullrequests`)
       .then(res => {
-        console.log('normalizedData', normalize(res.data, pullSchema));
-        console.log('normalizedData theSchema', normalize(res.data, theSchema));
-        console.log('normalizedData otherSchema', normalize(res.data, pullRequestSchema));
-        console.log('normalizedData Example', normalizedData);
-        this.props.allPullRequests(res.data)})
+        const normalizedResponse = normalize(res.data, pullRequestSchema);
+        console.log('============================', normalizedResponse);
+        
+        this.props.allPullRequests(normalizedResponse)})
   };
 
   renderPullRequestItem (pulls) {
-    return pulls.map(pull => {
+    return Object.keys(pulls).map(key => {
       return (
-        <div key={pull._id}>
+        <div key={pulls[key]._id}>
           <PullRequestItem
-            repo={pull.repository.name}
-            closed_at={pull.closed_at}
-            merged_at={pull.merged_at}
-            created_at={pull.created_at}
-            updated_at={pull.updated_at}
-            action={pull.action}
-            title={pull.title}
-            number={pull.number}
-            state={pull.state}
-            comment={pull.comment}
-            comments={pull.comments}
+            repo={pulls[key].repository.name}
+            closed_at={pulls[key].closed_at}
+            merged_at={pulls[key].merged_at}
+            created_at={pulls[key].created_at}
+            updated_at={pulls[key].updated_at}
+            action={pulls[key].action}
+            title={pulls[key].title}
+            number={pulls[key].number}
+            state={pulls[key].state}
+            comment={pulls[key].comment}
+            comments={pulls[key].comments}
           />
         </div>
       )
@@ -88,10 +58,10 @@ class PullRequestList extends Component {
 
 
   render () {
-    if (this.props.pulls) {
+    if (Object.keys(this.props.pull_requests).length) {
       return (
         <div>
-          {this.renderPullRequestItem(this.props.pulls)}
+          {this.renderPullRequestItem(this.props.pull_requests)}
         </div>
       )
 
@@ -101,9 +71,9 @@ class PullRequestList extends Component {
   }
 }
 
-const mapStateToProps = ({ repos, pulls }) => ({
+const mapStateToProps = ({ repos, pull_requests }) => ({
   repos,
-  pulls
+  pull_requests
 })
 
 const mapDispatchToProps = (dispatch) => ({
