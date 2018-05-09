@@ -21,12 +21,12 @@ class RepositoryItem extends Component {
 						<Toggle style={styles.toggle} />
 					</div>
 				</div>
+				<div className={this.props.repo.hookEnabled ? "blue" : "red"}>
+					{this.props.repo.name}
+					<button onClick={() => this.handleActivation(this.props.repo._id)} > activate </button>
+				</div>
 			</li>
 
-			<div className={this.props.repo.hookEnabled ? "blue" : "red"}>
-				{this.props.repo.name}
-				<button onClick={() => this.handleActivation(this.props.repo._id)} > activate </button>
-			</div>
 		)
 	}
 }
