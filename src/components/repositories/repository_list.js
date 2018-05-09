@@ -1,33 +1,28 @@
-
+import socket from '../../websockets';
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import axios from 'axios'
 
+import { allRepositories } from '../../actions'
+
+import config from '../../config';
 import RepositoryItem from './repository_item'
 
 class RepositoriesList extends Component {
 
-	constructor(props) {
-		super(props)
-		this.state = {
-			repositories: []
-		}
-	}
-
 	componentDidMount() {
-		axios.get('https://api.github.com/users/reactjs/repos')
-			.then(res => {
-				this.setState({
-					repositories: res.data
-				})
-			})
+		socket.on('repos-update', this.props.allRepositories.bind(this));
+		axios.get(`${config.baseServerUrl}/repos`)
+			.then(res => this.props.allRepositories(res.data))
 	}
 
 	renderPullRequestItem () {
-		return this.state.repositories.map(repo => {
+		return this.props.repos.map(repo => {
 			return (
-				<RepositoryItem 
-					key={repo.id}
+				<RepositoryItem
+					key={repo._id}
 					repo={repo}
+					active={repo.hookEnabled}
 				/>
 			)
 		})
@@ -42,6 +37,14 @@ class RepositoriesList extends Component {
 	}
 }
 
-export default RepositoriesList
+const mapStateToProps = ({ repos }) => ({
+	repos
+})
+
+const mapDispatchToProps = (dispatch) => ({
+	allRepositories: (repos) => dispatch(allRepositories(repos))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(RepositoriesList)
 
 

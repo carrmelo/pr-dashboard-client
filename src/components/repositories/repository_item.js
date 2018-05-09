@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import Toggle from 'material-ui/Toggle';
 
+import Toggle from 'material-ui/Toggle';
+import { connect } from 'react-redux';
+import { toggleRepository } from '../../actions'
 
 class RepositoryItem extends Component {
 
-	//WHY NOT NEEDED TO RENDER LIST 
-	constructor(props) {
-		super(props)
+	handleActivation = (id) => {
+		this.props.toggleRepository(id)
 	}
 
 	render() {
@@ -21,6 +22,11 @@ class RepositoryItem extends Component {
 					</div>
 				</div>
 			</li>
+
+			<div className={this.props.repo.hookEnabled ? "blue" : "red"}>
+				{this.props.repo.name}
+				<button onClick={() => this.handleActivation(this.props.repo._id)} > activate </button>
+			</div>
 		)
 	}
 }
@@ -31,4 +37,13 @@ const styles = {
 	}
 }
 
-export default RepositoryItem
+const mapStateToProps = ({ repos }) => ({
+	repos
+})
+
+const mapDispatchToProps = (dispatch) => ({
+	toggleRepository: (id) => dispatch(toggleRepository(id))
+})
+
+export default connect (mapStateToProps, mapDispatchToProps)(RepositoryItem)
+

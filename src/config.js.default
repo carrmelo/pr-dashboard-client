@@ -1,6 +1,6 @@
 const config = {
-  baseServerUrl:
-  baseClientUrl:
+  baseServerUrl: ,
+  baseClientUrl: 
 }
 
 export default config;
