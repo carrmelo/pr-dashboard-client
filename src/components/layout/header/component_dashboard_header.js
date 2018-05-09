@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 
-import SearchBar from './component_search_bar'
+// import SearchBar from './component_search_bar'
 
 class DashboardHeader extends Component {
 	render() {
