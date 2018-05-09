@@ -1,7 +1,11 @@
 
-* {
-	margin: 0; 
-	padding: 0; 
-	box-sizing: border-box; 
-}
+
+
+@import './partials/base'; 
+@import './partials/layout'; 
+@import './partials/header'; 
+@import './partials/dashboard'; 
+@import './partials/sidebar'; 
+
+
 

@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-
+import './sass/main.css'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-
 import reducer from './reducers/reducers'
 
 const store = createStore(
@@ -15,7 +15,14 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-	  <App />
+    <MuiThemeProvider>
+	    <App />
+    </MuiThemeProvider>
   </Provider>,
 	document.getElementById('root'));
 registerServiceWorker();
+
+
+
+
+
