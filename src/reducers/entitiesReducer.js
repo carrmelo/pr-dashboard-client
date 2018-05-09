@@ -1,12 +1,13 @@
 const initialState = {
-  repos: [],
   repositories: {},
+  repos: [],
   pull_requests: {},
   users: {},
+  fetching: false,
+  error: null
 }
 
-
-const reducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   
   switch (action.type) {
     case 'REPOSITORIES':
@@ -28,7 +29,7 @@ const reducer = (state = initialState, action) => {
             } else return repo
           })
       }
-
+      
     case 'PULL_REQUESTS':
       return {
         ...state,
@@ -46,8 +47,37 @@ const reducer = (state = initialState, action) => {
         }
       }
 
-    default: return state;
+    case 'GET_PULLS_REQUESTS':
+      return {
+        ...state,
+        fetching: true
+      }
+
+    case 'GET_PULLS_FAILURE':
+      return {
+        ...state,
+        fetching: false,
+        error: action.payload
+      }
+
+    case 'GET_PULL_SUCCESS':
+      return {
+        ...state,
+        repositories: {
+          ...state.repositories,
+          ...action.pulls.entities.repository
+        },
+        pull_requests: {
+          ...state.pull_requests,
+          ...action.pulls.entities.pull_requests
+        },
+        users: {
+          ...state.users,
+          ...action.pulls.entities.user
+        },
+        fetching: false
+      }
+
+  default: return state;
   }
 }
-
-export default reducer;

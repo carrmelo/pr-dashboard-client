@@ -1,20 +1,34 @@
+import { normalize, schema } from 'normalizr';
+
 import config from '../config';
 export const API = Symbol('API');
 
-export const api = store => next => action => {
+const userSchema = new schema.Entity('user', {}, { idAttribute: 'loginName' });
+const repoSchema = new schema.Entity('repository', {}, { idAttribute: 'fullName' });
+const pullSchema = new schema.Entity(
+  'pull_requests',
+  { repository: repoSchema, user: userSchema },
+  { idAttribute: '_id' }
+);
+
+const pullRequestSchema = [ pullSchema ];
+
+
+export const api
+ = store => next => action => {
   if (action[API]) {
     const { url, method, body, header } = action[API];
     fetch(config.baseServer + url, {
-    
-      body: JSON.stringify(body),  method: method || 'GET',
+      method: method || 'GET',
+      body: JSON.stringify(body),
       header
     })
     .then(response => response.json())
     .then(data => {
+      const normalizedData = normalize(data, pullRequestSchema);        
       store.dispatch({
         type: action.type + '_SUCCESS',
-        data,
-        user: action.user
+        normalizedData
       })
     })
     .catch(error => {

@@ -28,13 +28,11 @@ class PullRequestList extends Component {
     socket.on('pr-update', this.props.allPullRequests.bind(this));
     axios.get(`${config.baseServerUrl}/pullrequests`)
       .then(res => {
-        const normalizedResponse = normalize(res.data, pullRequestSchema);
-        console.log('============================', normalizedResponse);
-        
+        const normalizedResponse = normalize(res.data, pullRequestSchema);  
         this.props.allPullRequests(normalizedResponse)})
   };
 
-  renderPullRequestItem (pulls) {
+  renderPullRequestItem (pulls) {  
     return Object.keys(pulls).map(key => {
       return (
         <div key={pulls[key]._id}>
@@ -58,22 +56,20 @@ class PullRequestList extends Component {
 
 
   render () {
-    if (Object.keys(this.props.pull_requests).length) {
+    if (Object.keys(this.props.pulls).length) {
       return (
         <div>
-          {this.renderPullRequestItem(this.props.pull_requests)}
+          {this.renderPullRequestItem(this.props.pulls)}
         </div>
       )
-
     } else {
       return <p>Loading</p>
     }
   }
 }
 
-const mapStateToProps = ({ repos, pull_requests }) => ({
-  repos,
-  pull_requests
+const mapStateToProps = ({ entities }) => ({
+  pulls: entities.pull_requests
 })
 
 const mapDispatchToProps = (dispatch) => ({
