@@ -1,22 +1,8 @@
 
-
 import React, { Component } from 'react'
-
-
 import RepoList from '../../repositories/repository_list'
 import PullRequestList from '../../pullrequest/pullrequest_list'
-
-
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-
-
-const REPO = () => {
-	return <div>REPOLIST</div>
-}
-
-const PULL = () => {
-	return <div>PULLLIST</div>
-}
+import { Route } from 'react-router-dom'
 
 class Pannel extends Component {
 	render() {

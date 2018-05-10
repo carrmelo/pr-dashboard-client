@@ -25,10 +25,11 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider>
-		<Router>
-			<Route path="/" component={App} />
-		</Router>
+  		<Router>
+  			<Route path="/" component={App} />
+  		</Router>
     </MuiThemeProvider>
   </Provider>,
 	document.getElementById('root'));
 registerServiceWorker();
+
