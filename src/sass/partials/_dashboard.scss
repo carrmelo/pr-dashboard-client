@@ -1,0 +1,42 @@
+
+
+
+
+
+.dashboard__repository__list {
+	background-color: rgba(0, 0, 0, 0.46);
+    padding: 5rem 2rem;
+    padding-top: 4rem;
+    height: 65vh;
+    width: 650px;
+    overflow: scroll;
+    border: 1px solid rgba(0,0,0,0.05);
+    list-style:none;
+    padding-right: 0;
+    box-shadow: 2px 4px 1px -1px rgba(38, 39, 38, 0.52);
+}
+
+.repository__item {
+	padding: 10px 0;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.2);; 
+	}
+}
+
+.repository__item-content {
+    display: flex;
+}
+
+.repository__item-content-text {
+    width: 90%;
+}
+
+.repository__item-content-text {
+    padding-left: 25px;
+}
+
+
+//background-color: #23222c !important;
+//box-shadow: 0 2px 2px 0 #757575, 0 1px 5px 0 rgba(0,0,0,0.87), 0 3px 1px -2px rgba(0,0,0,0.2);
+//box-shadow: 2px 4px 1px -1px rgba(38, 39, 38, 0.52);

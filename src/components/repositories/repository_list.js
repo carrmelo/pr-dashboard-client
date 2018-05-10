@@ -1,3 +1,4 @@
+import socket from '../../websockets';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios'
@@ -10,6 +11,7 @@ import RepositoryItem from './repository_item'
 class RepositoriesList extends Component {
 
 	componentDidMount() {
+		socket.on('repos-update', this.props.allRepositories.bind(this));
 		axios.get(`${config.baseServerUrl}/repos`)
 			.then(res => this.props.allRepositories(res.data))
 	}
@@ -17,7 +19,7 @@ class RepositoriesList extends Component {
 	renderRepositoryItem () {
 		return this.props.repos.map(repo => {
 			return (
-				<RepositoryItem 
+				<RepositoryItem
 					key={repo._id}
 					repo={repo}
 					active={repo.hookEnabled}
