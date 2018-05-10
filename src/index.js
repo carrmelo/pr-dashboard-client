@@ -13,6 +13,10 @@ import reducer from './reducers/index'
 import './sass/main.css'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+console.log(Router, '***')
+
 const store = createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
@@ -22,7 +26,9 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider>
-	    <App />
+		<Router>
+			<Route path="/" component={App} />
+		</Router>
     </MuiThemeProvider>
   </Provider>,
 	document.getElementById('root'));
