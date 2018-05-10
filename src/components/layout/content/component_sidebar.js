@@ -6,7 +6,6 @@ import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
 
-console.log('***', Link)
 
 class Sidebar extends Component {
 	render() {
@@ -17,7 +16,8 @@ class Sidebar extends Component {
 						<use xlinkHref="./icons/sprite.svg#icon-th-large-outline"></use>
 					</svg>
 				</li>
-
+				<Link to="/repos">REPOS</Link>
+				<Link to="/pulls">PULLS</Link>
 				<li className="sidebar__navigation-pullrequests">
 					<svg className="sidebar__icon-pullrequests">
 						<use xlinkHref="./icons/sprite.svg#icon-flow-switch"></use>
