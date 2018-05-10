@@ -22,12 +22,8 @@ class Pannel extends Component {
 	render() {
 		return (
 			<div className="card-panel dashboard__panel">
-		
-
-					<Route path="/repos" component={RepoList} />
-					<Route path="/pulls" component={PullRequestList} />
-
-				
+				<Route path="/repos" component={RepoList} />
+				<Route path="/pulls" component={PullRequestList} />	
 			</div>
 		)
 	}
