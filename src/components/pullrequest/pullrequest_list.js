@@ -3,6 +3,7 @@ import { normalize } from 'normalizr';
 import { Schemas } from '../../middleware/api'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { getPullRequests, setPullsFromSocket } from '../../actions';
 
@@ -61,8 +62,12 @@ const mapStateToProps = ({ entities }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+<<<<<<< HEAD
   getPullRequests: () => dispatch(getPullRequests()),
   setPullsFromSocket: (pulls) => dispatch(setPullsFromSocket(pulls))
+=======
+  getPullRequests: bindActionCreators(getPullRequests, dispatch)
+>>>>>>> feat: authentication popup window, action and reducers
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PullRequestList);

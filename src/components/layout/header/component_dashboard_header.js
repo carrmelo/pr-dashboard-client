@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 
+
 // import SearchBar from './component_search_bar'
 
 class DashboardHeader extends Component {
@@ -27,13 +28,13 @@ class DashboardHeader extends Component {
 					</form>
 				</div>
 
-				<div className="header__config">
+				{/* <div className="header__config">
 					<button className="header__config-button">
 						<svg className="header__config-icon">
 							<use xlinkHref="./icons/sprite.svg#icon-cog-outline"></use>
 						</svg>
 					</button>
-				</div>
+				</div> */}
 			</header>
 		)
 	}

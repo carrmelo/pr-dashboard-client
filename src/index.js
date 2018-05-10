@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
-import api from './middleware/api';
-
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
+import api from './middleware/api';
 import reducer from './reducers/index'
 
 import './sass/main.css'
