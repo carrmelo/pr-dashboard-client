@@ -16,7 +16,7 @@ class RepositoriesList extends Component {
 			.then(res => this.props.allRepositories(res.data))
 	}
 
-	renderPullRequestItem () {
+	renderRepositoryItem () {
 		return this.props.repos.map(repo => {
 			return (
 				<RepositoryItem
@@ -29,16 +29,20 @@ class RepositoriesList extends Component {
 	}
 
 	render() {
-		return (
-			<ul className="dashboard__repository__list">
-				{this.renderPullRequestItem()}
-			</ul>
-		)
+		if (this.props.repos) {	
+			return (
+				<div>
+					{this.renderRepositoryItem()}
+				</div>
+			)
+		} else {
+			return <p>Loading</p>
+		}
 	}
 }
 
-const mapStateToProps = ({ repos }) => ({
-	repos
+const mapStateToProps = ({ entities }) => ({
+	repos: entities.repos
 })
 
 const mapDispatchToProps = (dispatch) => ({

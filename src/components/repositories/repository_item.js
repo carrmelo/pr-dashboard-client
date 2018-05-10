@@ -26,7 +26,6 @@ class RepositoryItem extends Component {
 					<button onClick={() => this.handleActivation(this.props.repo._id)} > activate </button>
 				</div>
 			</li>
-
 		)
 	}
 }
