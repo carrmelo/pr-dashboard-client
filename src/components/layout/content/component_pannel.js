@@ -24,8 +24,8 @@ class Pannel extends Component {
 			<div className="card-panel dashboard__panel">
 		
 
-					<Route path="/repos" component={REPO} />
-					<Route path="/pulls" component={PULL} />
+					<Route path="/repos" component={RepoList} />
+					<Route path="/pulls" component={PullRequestList} />
 
 				
 			</div>
