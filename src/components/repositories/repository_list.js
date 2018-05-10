@@ -29,15 +29,11 @@ class RepositoriesList extends Component {
 	}
 
 	render() {
-		if (this.props.repos) {	
-			return (
-				<div>
-					{this.renderRepositoryItem()}
-				</div>
-			)
-		} else {
-			return <p>Loading</p>
-		}
+		return (
+			<ul className="dashboard__repository__list">
+				{this.renderRepositoryItem()}
+			</ul>
+		)
 	}
 }
 

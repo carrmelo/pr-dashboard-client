@@ -1,9 +1,11 @@
 import config from '../config';
 import { CALL_API, Schemas } from '../middleware/api'
+import {
+  PULLS_REQUEST,
+  PULLS_SUCCESS,
+  PULLS_FAILURE
+} from './types'
 
-export const PULLS_REQUEST = 'PULLS_REQUEST'
-export const PULLS_SUCCESS = 'PULLS_SUCCESS'
-export const PULLS_FAILURE = 'PULLS_FAILURE'
 
 export const getPullRequests = () => ({
   [CALL_API]: {
