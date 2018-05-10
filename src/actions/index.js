@@ -3,7 +3,8 @@ import { CALL_API, Schemas } from '../middleware/api'
 import {
   PULLS_REQUEST,
   PULLS_SUCCESS,
-  PULLS_FAILURE
+  PULLS_FAILURE, 
+  GET_REPOSITORIES
 } from './types'
 
 
@@ -15,8 +16,8 @@ export const getPullRequests = () => ({
   }
 })
 
-export const allRepositories = (repos) => ({
-  type: 'REPOSITORIES',
+export const getRepositories = (repos) => ({
+  type: GET_REPOSITORIES,
   repos
 })
 

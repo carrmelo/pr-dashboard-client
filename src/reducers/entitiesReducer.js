@@ -1,3 +1,7 @@
+
+import { GET_REPOSITORIES } from '../actions/types'
+
+
 const initialState = {
   repositories: {},
   repos: [],
@@ -26,7 +30,7 @@ export default (state = initialState, action) => {
   }
 
   switch (action.type) {
-    case 'REPOSITORIES':
+    case GET_REPOSITORIES:
       return {
         ...state,
         repos: [
