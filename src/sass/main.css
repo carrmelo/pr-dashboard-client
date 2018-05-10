@@ -95,7 +95,7 @@ svg {
 .dashboard__repository__list {
   background-color: rgba(0, 0, 0, 0.46);
   padding: 5rem 2rem;
-  padding-top: 4rem;
+  padding-top: 3rem;
   height: 65vh;
   width: 650px;
   overflow: scroll;
@@ -117,6 +117,13 @@ svg {
 
 .repository__item-content-text {
   padding-left: 25px; }
+
+h4.dashboard__repository__title {
+  width: 650px;
+  color: #0bd8be;
+  background-color: #607D8B;
+  font-family: 'Lobster', cursive;
+  font-size: 4.28rem; }
 
 .dashboard__sidebar {
   margin-top: 30px;

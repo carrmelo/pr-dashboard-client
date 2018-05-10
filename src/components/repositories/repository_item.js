@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Toggle from 'material-ui/Toggle';
+import Divider from 'material-ui/Divider';
 
 class RepositoryItem extends Component {
 
@@ -15,6 +16,7 @@ class RepositoryItem extends Component {
 						<Toggle />
 					</div>
 				</div>
+				<Divider />
 			</li>
 		)
 	}

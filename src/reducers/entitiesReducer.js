@@ -1,5 +1,7 @@
 
-import { GET_REPOSITORIES } from '../actions/types'
+import { 
+  GET_REPOSITORIES 
+} from '../actions/types'
 
 
 const initialState = {

@@ -34,9 +34,15 @@ class RepositoriesList extends Component {
 
 	render() {
 		return (
-			<ul className="dashboard__repository__list">
-				{this.renderRepositoryItem()}
-			</ul>
+			<div className="dashboard__repository__card">
+				<h4 className="dashboard__repository__title">
+					Repositories
+				</h4>
+				<ul className="dashboard__repository__list">
+					{this.renderRepositoryItem()}
+				</ul>
+			</div>
+			
 		)
 	}
 }
