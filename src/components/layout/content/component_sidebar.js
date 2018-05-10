@@ -4,6 +4,10 @@
 
 import React, { Component } from 'react'
 
+import { Link } from 'react-router-dom'
+
+console.log('***', Link)
+
 class Sidebar extends Component {
 	render() {
 		return (

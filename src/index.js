@@ -15,7 +15,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-console.log(Router, '***')
 
 const store = createStore(
   reducer,
