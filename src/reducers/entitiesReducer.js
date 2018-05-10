@@ -3,12 +3,28 @@ const initialState = {
   repos: [],
   pull_requests: {},
   users: {},
-  fetching: false,
-  error: null
 }
 
 export default (state = initialState, action) => {
-  
+
+  if (action.response && action.response.entities) {
+    return {
+      ...state,
+        repositories: {
+          ...state.repositories,
+          ...action.response.entities.repository
+        },
+        pull_requests: {
+          ...state.pull_requests,
+          ...action.response.entities.pull_requests
+        },
+        users: {
+          ...state.users,
+          ...action.response.entities.user
+        }
+    }
+  }
+
   switch (action.type) {
     case 'REPOSITORIES':
       return {
@@ -28,54 +44,6 @@ export default (state = initialState, action) => {
               return repo
             } else return repo
           })
-      }
-      
-    case 'PULL_REQUESTS':
-      return {
-        ...state,
-        repositories: {
-          ...state.repositories,
-          ...action.pulls.entities.repository
-        },
-        pull_requests: {
-          ...state.pull_requests,
-          ...action.pulls.entities.pull_requests
-        },
-        users: {
-          ...state.users,
-          ...action.pulls.entities.user
-        }
-      }
-
-    case 'GET_PULLS_REQUESTS':
-      return {
-        ...state,
-        fetching: true
-      }
-
-    case 'GET_PULLS_FAILURE':
-      return {
-        ...state,
-        fetching: false,
-        error: action.payload
-      }
-
-    case 'GET_PULL_SUCCESS':
-      return {
-        ...state,
-        repositories: {
-          ...state.repositories,
-          ...action.pulls.entities.repository
-        },
-        pull_requests: {
-          ...state.pull_requests,
-          ...action.pulls.entities.pull_requests
-        },
-        users: {
-          ...state.users,
-          ...action.pulls.entities.user
-        },
-        fetching: false
       }
 
   default: return state;

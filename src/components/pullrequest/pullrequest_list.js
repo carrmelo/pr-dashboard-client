@@ -1,35 +1,18 @@
 import io from 'socket.io-client';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
-import { normalize, schema } from 'normalizr';
+import { getPullRequests } from '../../actions';
 
-import { allPullRequests } from '../../actions';
-
-import config from '../../config';
 import PullRequestItem from './pullrequest_item';
-
-const userSchema = new schema.Entity('user', {}, { idAttribute: 'loginName' });
-const repoSchema = new schema.Entity('repository', {}, { idAttribute: 'fullName' });
-const pullSchema = new schema.Entity(
-  'pull_requests',
-  { repository: repoSchema, user: userSchema },
-  { idAttribute: '_id' }
-);
-
-const pullRequestSchema = [ pullSchema ];
 
 const socket = io.connect('https://pr-dashboard-server.herokuapp.com/');
 
 class PullRequestList extends Component {
 
   componentDidMount () {
-    socket.on('pr-update', this.props.allPullRequests.bind(this));
-    axios.get(`${config.baseServerUrl}/pullrequests`)
-      .then(res => {
-        const normalizedResponse = normalize(res.data, pullRequestSchema);  
-        this.props.allPullRequests(normalizedResponse)})
+    socket.on('pr-update', this.props.getPullRequests.bind(this));
+    this.props.getPullRequests();
   };
 
   renderPullRequestItem (pulls) {  
@@ -54,7 +37,6 @@ class PullRequestList extends Component {
     })
   }
 
-
   render () {
     if (Object.keys(this.props.pulls).length) {
       return (
@@ -73,7 +55,7 @@ const mapStateToProps = ({ entities }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  allPullRequests: (pulls) => dispatch(allPullRequests(pulls))
+  getPullRequests: () => dispatch(getPullRequests())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PullRequestList);

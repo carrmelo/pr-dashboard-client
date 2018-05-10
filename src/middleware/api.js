@@ -1,9 +1,5 @@
 import { normalize, schema } from 'normalizr';
 
-// import config from '../config';
-
-// export const CALL_API = Symbol('API');
-
 // Fetch and normalizr of API
 
 const callApi = (endpoint, schema) => {
@@ -47,9 +43,9 @@ export default store => next => action => {
   let { endpoint } = callAPI
   const { schema, types } = callAPI
 
-  if (typeof endpoint === 'function') {
-    endpoint = endpoint(store.getState())
-  }
+  // if (typeof endpoint === 'function') {
+  //   endpoint = endpoint(store.getState())
+  // }
 
   const actionWith = data => {
     const finalAction = Object.assign({}, action, data)
