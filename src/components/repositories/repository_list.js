@@ -3,17 +3,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios'
 
-import { allRepositories } from '../../actions'
+import { getRepositories } from '../../actions'
 
 import config from '../../config';
 import RepositoryItem from './repository_item'
 
+import { bindActionCreators } from 'redux'
+
 class RepositoriesList extends Component {
 
 	componentDidMount() {
-		socket.on('repos-update', this.props.allRepositories.bind(this));
+		socket.on('repos-update', this.props.getRepositories.bind(this));
 		axios.get(`${config.baseServerUrl}/repos`)
-			.then(res => this.props.allRepositories(res.data))
+			.then(res => {
+				this.props.getRepositories(res.data)
+			})
 	}
 
 	renderRepositoryItem () {
@@ -30,9 +34,15 @@ class RepositoriesList extends Component {
 
 	render() {
 		return (
-			<ul className="dashboard__repository__list">
-				{this.renderRepositoryItem()}
-			</ul>
+			<div className="dashboard__repository__card">
+				<h4 className="dashboard__repository__title">
+					Repositories
+				</h4>
+				<ul className="dashboard__repository__list">
+					{this.renderRepositoryItem()}
+				</ul>
+			</div>
+			
 		)
 	}
 }
@@ -41,9 +51,9 @@ const mapStateToProps = ({ entities }) => ({
 	repos: entities.repos
 })
 
-const mapDispatchToProps = (dispatch) => ({
-	allRepositories: (repos) => dispatch(allRepositories(repos))
-})
+const mapDispatchToProps = (dispatch) => {
+	return bindActionCreators({ getRepositories }, dispatch)
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepositoriesList)
 
