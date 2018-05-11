@@ -2,20 +2,22 @@ import { normalize, schema } from 'normalizr';
 
 // Fetch and normalizr of API
 
-const callApi = (endpoint, schema) => {
-  return fetch(endpoint)
-    .then(response =>
-      response.json().then(json=> {
-        if (!response.ok) {
-          return Promise.reject(json)
-        }
+const callApi = (endpoint, schema, method) => {
+  return fetch(endpoint, {
+    method: method || 'GET'
+  })
+  .then(response =>
+    response.json().then(json=> {
+      if (!response.ok) {
+        return Promise.reject(json)
+      }
 
-        return Object.assign({},
-          normalize(json, schema)
-        
-        )
-      })
-    )
+      return Object.assign({},
+        normalize(json, schema)
+      
+      )
+    })
+  )
 }
 
 // Defining Schemas for normalizing data
@@ -40,7 +42,7 @@ export default store => next => action => {
     return next(action)
   }
 
-  let { endpoint } = callAPI
+  let { endpoint, method } = callAPI
   const { schema, types } = callAPI
 
   // if (typeof endpoint === 'function') {
@@ -56,7 +58,7 @@ export default store => next => action => {
   const [ requestType, successType, failureType ] = types
   next(actionWith({ type: requestType }))
 
-  return callApi(endpoint, schema).then(
+  return callApi(endpoint, schema, method).then(
     response => next(actionWith({
       response,
       type: successType
