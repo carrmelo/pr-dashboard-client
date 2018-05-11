@@ -1,6 +1,6 @@
 
-import { 
-  GET_REPOSITORIES 
+import {
+  GET_REPOSITORIES
 } from '../actions/types'
 
 
@@ -50,6 +50,23 @@ export default (state = initialState, action) => {
               return repo
             } else return repo
           })
+      }
+
+    case 'GET_PULLS':
+      return {
+        ...state,
+          repositories: {
+            ...state.repositories,
+            ...action.pulls.entities.repository
+          },
+          pull_requests: {
+            ...state.pull_requests,
+            ...action.pulls.entities.pull_requests
+          },
+          users: {
+            ...state.users,
+            ...action.pulls.entities.user
+          }
       }
 
   default: return state;

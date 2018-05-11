@@ -1,19 +1,27 @@
 import socket from '../../websockets';
+import { normalize } from 'normalizr';
+import { Schemas } from '../../middleware/api'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getPullRequests } from '../../actions';
+import { getPullRequests, setPullsFromSocket } from '../../actions';
 
 import PullRequestItem from './pullrequest_item';
 
 class PullRequestList extends Component {
 
   componentDidMount () {
-    socket.on('pr-update', this.props.getPullRequests.bind(this));
+    //socket.on('pr-update', this.setPRsFromSocket.bind(this));
+    socket.on('pr-update', this.updateFromSocket.bind(this));
     this.props.getPullRequests();
   };
 
-  renderPullRequestItem (pulls) {  
+  updateFromSocket (pulls) {
+    const normalizedPulls = normalize(pulls, Schemas.PULLS)
+    this.props.setPullsFromSocket(normalizedPulls);
+  }
+
+  renderPullRequestItem (pulls) {
     return Object.keys(pulls).map(key => {
       return (
         <div key={pulls[key]._id}>
@@ -53,7 +61,8 @@ const mapStateToProps = ({ entities }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getPullRequests: () => dispatch(getPullRequests())
+  getPullRequests: () => dispatch(getPullRequests()),
+  setPullsFromSocket: (pulls) => dispatch(setPullsFromSocket(pulls))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PullRequestList);
