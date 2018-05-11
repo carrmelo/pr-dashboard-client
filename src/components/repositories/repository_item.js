@@ -9,8 +9,8 @@ import Divider from 'material-ui/Divider';
 class RepositoryItem extends Component {
 
 	handleToggle = (id, action) => {
-		const serverAction = action ? 'enable' : 'disable'
-		this.props.toggleRepository(id, action)
+		const serverAction = action ? 'disable' : 'enable'
+		this.props.toggleRepository(id, serverAction)
 	}
 
 	render() {
@@ -23,8 +23,8 @@ class RepositoryItem extends Component {
 					<div className="repository__item-content-toggle">
 						{/* <span onClick={this.toggleRepository}> */}
 							<Toggle 
-							defaultToggled={this.props.active}
-							onToggle={() => this.handleToggle(this.props.repo._id, this.props.active)}/>
+							toggled={this.props.active}
+							onToggle={() => this.handleToggle(this.props.itemId, this.props.active)}/>
 						{/* </span> */}
 					</div>
 				</div>
