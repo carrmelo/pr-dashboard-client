@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/authActionTypes';
 export const STATE_KEY = 'currentUser';
 
 const initialState = {
-  current_User: {},
+  currentUser: {},
   isAuthenticated: false,
   error: ''
 };

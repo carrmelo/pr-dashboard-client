@@ -1,10 +1,27 @@
 
 import React, { Component } from 'react'
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-// import SearchBar from './component_search_bar'
+import config from '../../../config';
+import loginTab from '../../authentication/openWindow';
+import * as authActions from '../../../actions/authActions';
+import { STATE_KEY as USER_STATE_KEY } from '../../../reducers/authenticationReducer'
 
 class DashboardHeader extends Component {
+
+	handleLogIn = () => {
+		const msg = loginTab(`https://pr-dashboard-server.herokuapp.com/v1/auth/github`)
+		msg.then(user => {
+			this.props.authActions.injectUser(user)
+		})
+	}
+
+	handleLogOut = () => {
+		this.props.authActions.logoutUser();
+	}
+
 	render() {
 		return (
 			<header 
@@ -28,19 +45,28 @@ class DashboardHeader extends Component {
 					</form>
 				</div>
 
-				{/* <div className="header__config">
-					<button className="header__config-button">
+				<div className="header__config">
+					<button className="header__config-button" onClick={this.handleLogIn}>
 						<svg className="header__config-icon">
 							<use xlinkHref="./icons/sprite.svg#icon-cog-outline"></use>
 						</svg>
 					</button>
-				</div> */}
+				</div>
 			</header>
 		)
 	}
 }
 
-export default DashboardHeader
+// const mapStateToProps = authentication => ({
+// 	isAuthenticated: authentication[USER_STATE_KEY].isAuthenticated,
+// 	currentUser: authentication[USER_STATE_KEY].currentUser
+// })
+
+const mapDispatchToProps = dispatch => ({
+	authActions: bindActionCreators(authActions, dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(DashboardHeader);
 
 
 

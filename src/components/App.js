@@ -4,9 +4,6 @@ import DashboardHeader from './layout/header/component_dashboard_header'
 import DashboardContent from './layout/content/component_dashboard_content'
 import 'materialize-css/dist/css/materialize.min.css'
 
-// import { BrowserRouter as Router, Route } from 'react-router-dom'
-
-
 class App extends Component {
   render() {
     return (
