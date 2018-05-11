@@ -1,4 +1,4 @@
-import * as ActionTypes from './authActionTypes';
+import * as ActionTypes from './types';
 
 export const injectUser = (user) => ({
   type: ActionTypes.INJECT,
