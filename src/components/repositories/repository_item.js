@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import { toggleRepository } from '../../actions'
 
 import Toggle from 'material-ui/Toggle';
 import Divider from 'material-ui/Divider';
 
 class RepositoryItem extends Component {
+
+	handleToggle = (id, action) => {
+		const serverAction = action ? 'enable' : 'disable'
+		this.props.toggleRepository(id, action)
+	}
 
 	render() {
 		return (
@@ -13,7 +21,11 @@ class RepositoryItem extends Component {
 						<span>{this.props.repo.name}</span>
 					</div>
 					<div className="repository__item-content-toggle">
-						<Toggle />
+						{/* <span onClick={this.toggleRepository}> */}
+							<Toggle 
+							defaultToggled={this.props.active}
+							onToggle={() => this.handleToggle(this.props.repo._id, this.props.active)}/>
+						{/* </span> */}
 					</div>
 				</div>
 				<Divider />
@@ -22,5 +34,9 @@ class RepositoryItem extends Component {
 	}
 }
 
-export default RepositoryItem
+const mapDispatchToProps = (dispatch) => ({
+	toggleRepository: (id, action) => dispatch(toggleRepository(id, action))
+})
+
+export default connect(null, mapDispatchToProps)(RepositoryItem)
 

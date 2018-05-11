@@ -26,7 +26,9 @@ export const setPullsFromSocket = (pulls) => ({
   pulls
 })
 
-export const toggleRepository = (id) => ({
+export const toggleRepository = (id, action) => {
+  console.log(id, action)
+  return ({
   type: 'TOGGLE_ACTIVE',
   id
-})
+})}
