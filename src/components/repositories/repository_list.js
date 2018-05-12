@@ -26,21 +26,23 @@ class RepositoriesList extends Component {
 	}
 
 	renderRepositoryItem () {
-		if(!this.props.repositories) return <div>LOADING</div>
 		
-		Object.keys(this.props.repositories)
-			.map(repoKey => {
+		let { repositories } = this.props
+
+		if(!repositories) return <div>LOADING</div>
+		
+		return Object.keys(repositories)
+			.map(key => {
 				return (
-					<li>
-						{this.props.repositories[repoKey].fullName}
-					</li>
+					<RepositoryItem 
+						key={key} 
+						repo={repositories[key]}
+					/>
 				)
 			})
 	}
 
 	render() {
-
-
 		return (
 			<div className="dashboard__repository__card">
 				<h4 className="dashboard__repository__title">
@@ -55,10 +57,8 @@ class RepositoriesList extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-	return {
-		repositories: state.entities.repositories
-	}		
+const mapStateToProps = ({ entities: repositories }) => {
+	return { repositories }		
 }
 	
 
