@@ -32,12 +32,12 @@ export default (state = initialState, action) => {
         }
     }
   }
-  console.log('*** PRE DATA ***', action)
+
   switch (action.type) {
-    case REPOS_GET_REQUEST:
-      //REPOS_GET_REQUEST
-      console.log('*** DATA ***', action)
+    case REPOS_GET_REQUEST: 
       return state
+    case REPOS_GET_SUCCESS:
+      return { ...state, repositories: { ...action.response.entities.repositories }}
 
     case 'TOGGLE_ACTIVE':
       return {

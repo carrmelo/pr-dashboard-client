@@ -57,8 +57,8 @@ class RepositoriesList extends Component {
 	}
 }
 
-const mapStateToProps = ({ entities: repositories }) => {
-	return { repositories }		
+const mapStateToProps = (state) => {
+	return { repositories: state.entities.repositories }		
 }
 	
 

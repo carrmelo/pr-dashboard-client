@@ -9,7 +9,7 @@ class RepositoryItem extends Component {
 			<li className="repository__item">
 				<div className="repository__item-content">
 					<div className="repository__item-content-text">
-						<span>NAME</span>
+						<span>{this.props.repo.fullName}</span>
 					</div>
 					<div className="repository__item-content-toggle">
 						<Toggle />
