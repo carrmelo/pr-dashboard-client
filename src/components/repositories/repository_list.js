@@ -12,27 +12,35 @@ import { bindActionCreators } from 'redux'
 
 class RepositoriesList extends Component {
 
-	componentDidMount() {
-		socket.on('repos-update', this.props.getRepositories.bind(this));
-		axios.get(`${config.baseServerUrl}/repos`)
-			.then(res => {
-				this.props.getRepositories(res.data)
-			})
+	// componentDidMount() {
+	// 	socket.on('repos-update', this.props.getRepositories.bind(this));
+	// 	axios.get(`${config.baseServerUrl}/repos`)
+	// 		.then(res => {
+	// 			console.log('***', res)
+	// 			this.props.getRepositories(res.data)
+	// 		})
+	// }
+
+	componentWillMount() {
+		this.props.getRepositories()
 	}
 
 	renderRepositoryItem () {
-		return this.props.repos.map(repo => {
-			return (
-				<RepositoryItem
-					key={repo._id}
-					repo={repo}
-					active={repo.hookEnabled}
-				/>
-			)
-		})
+		if(!this.props.repositories) return <div>LOADING</div>
+		
+		Object.keys(this.props.repositories)
+			.map(repoKey => {
+				return (
+					<li>
+						{this.props.repositories[repoKey].fullName}
+					</li>
+				)
+			})
 	}
 
 	render() {
+
+
 		return (
 			<div className="dashboard__repository__card">
 				<h4 className="dashboard__repository__title">
@@ -47,9 +55,12 @@ class RepositoriesList extends Component {
 	}
 }
 
-const mapStateToProps = ({ entities }) => ({
-	repos: entities.repos
-})
+const mapStateToProps = (state) => {
+	return {
+		repositories: state.entities.repositories
+	}		
+}
+	
 
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({ getRepositories }, dispatch)

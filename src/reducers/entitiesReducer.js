@@ -1,12 +1,14 @@
 
 import {
-  GET_REPOSITORIES
+  GET_REPOSITORIES, 
+  REPOS_GET_SUCCESS, 
+  REPOS_GET_FAIL, 
+  REPOS_GET_REQUEST
 } from '../actions/types'
 
 
 const initialState = {
   repositories: {},
-  repos: [],
   pull_requests: {},
   users: {},
 }
@@ -18,7 +20,7 @@ export default (state = initialState, action) => {
       ...state,
         repositories: {
           ...state.repositories,
-          ...action.response.entities.repository
+          ...action.response.entities.repositories
         },
         pull_requests: {
           ...state.pull_requests,
@@ -30,16 +32,12 @@ export default (state = initialState, action) => {
         }
     }
   }
-
+  console.log('*** PRE DATA ***', action)
   switch (action.type) {
-    case GET_REPOSITORIES:
-      return {
-        ...state,
-        repos: [
-          // ...state.repos,
-          ...action.repos
-        ]
-      }
+    case REPOS_GET_REQUEST:
+      //REPOS_GET_REQUEST
+      console.log('*** DATA ***', action)
+      return state
 
     case 'TOGGLE_ACTIVE':
       return {
