@@ -11,7 +11,8 @@ import RepositoryItem from './repository_item'
 import { bindActionCreators } from 'redux'
 
 class RepositoriesList extends Component {
-
+	
+	//UPDATE ON REAL TIME SOCKETS
 	// componentDidMount() {
 	// 	socket.on('repos-update', this.props.getRepositories.bind(this));
 	// 	axios.get(`${config.baseServerUrl}/repos`)

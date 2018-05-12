@@ -2,7 +2,7 @@
 .dashboard__repository__list {
 	background-color: rgba(0, 0, 0, 0.46);
     padding: 5rem 2rem;
-    padding-top: 3rem;
+    padding-top: 0px;
     height: 65vh;
     width: 650px;
     overflow: scroll;
@@ -13,15 +13,24 @@
 }
 
 .repository__item {
-	padding: 10px 0;
+	padding: 0px;
+    height: 115px;
+    padding-top: 20px;
 
 	&:hover {
 		background-color: rgba(0, 0, 0, 0.2);; 
 	}
 }
 
+.repository__item {
+    height: 140px;
+    padding-top: 30px;
+}
+
 .repository__item-content {
     display: flex;
+    height: 100%;
+    flex-wrap: wrap;
 }
 
 .repository__item-content-text {
@@ -32,15 +41,46 @@
     padding-left: 25px;
 }
 
+
+
 h4.dashboard__repository__title {
     width: 650px;
-    // color: #0bd8be;
-    // background-color: #607D8B;
+
     font-family: 'Lobster', cursive;
     font-size: 4.28rem;
 }
 
 
-//background-color: #23222c !important;
-//box-shadow: 0 2px 2px 0 #757575, 0 1px 5px 0 rgba(0,0,0,0.87), 0 3px 1px -2px rgba(0,0,0,0.2);
-//box-shadow: 2px 4px 1px -1px rgba(38, 39, 38, 0.52);
+.repository__item__content__extras {
+    width: 100%;
+    margin-left: 21px;
+    display: flex;
+    margin-right: 21px;
+}
+
+.repository__item__tech {
+    width: 80%;
+}
+
+.repository__item__color__picker {
+    display: flex;
+    width: 20%;
+    justify-content: flex-end;
+}
+
+button.repository__item__color__picker__button {
+    width: 4vw;
+    height: 4vw;
+    border-radius: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
