@@ -16,6 +16,14 @@ export const getPullRequests = () => ({
   }
 })
 
+export const getRepositories = () => ({
+  [CALL_API]: {
+    types: [ REPOSITORY_FETCH_REQUEST, REPOSITORY_FETCH_SUCCESS, REPOSITORY_FETCH_FAIL  ], 
+    endpoint: `${config.baseServerUrl}/repos`, 
+    payload: 'LIST OF REPOSITORIES'
+  }
+})
+
 export const getRepositories = (repos) => ({
   type: GET_REPOSITORIES,
   repos
