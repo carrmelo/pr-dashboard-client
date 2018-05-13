@@ -1,4 +1,8 @@
-import * as actionTypes from '../actions/types';
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE
+} from '../actions/types';
 
 export const STATE_KEY = 'currentUser';
 
@@ -10,19 +14,25 @@ const initialState = {
 
 export default (state = initialState, action) => {
     const { type, payload } = action;
+    console.log('LLEGUE', action);
+    if (action.response && action.response.token) {
+      return {
+        ...state,
+        currentUser: action.response.token,
+        isAuthenticated: true
+      }
+    }
 
     switch(type) {
-      case actionTypes.INJECT:
+      case LOGIN_REQUEST:
         return {
           ...state,
-          isAuthenticated: true,
-          currentUser: payload.user
         }
     
-      case actionTypes.LOGOUT:
-        return {
-          ...initialState
-        }
+      // case actionTypes.LOGOUT:
+      //   return {
+      //     ...initialState
+      //   }
 
       default:
         return state;

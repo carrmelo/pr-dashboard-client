@@ -4,20 +4,21 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import config from '../../../config';
-import loginTab from '../../authentication/openWindow';
 import * as authActions from '../../../actions/authActions';
-import { STATE_KEY as USER_STATE_KEY } from '../../../reducers/authenticationReducer'
 
 class DashboardHeader extends Component {
 
+	redirect() {
+    window.location.href = `https://pr-dashboard-server.herokuapp.com/v1/auth/github`;
+  }
+
 	handleLogIn = () => {
-		const msg = loginTab(`https://pr-dashboard-server.herokuapp.com/v1/auth/github`)
-		msg.then(user => {
-			console.log('USER', user);
+		// const msg = loginTab(`https://pr-dashboard-server.herokuapp.com/v1/auth/github`)
+		// msg.then(user => {
+		// 	console.log('USER', user);
 			
-			this.props.authActions.injectUser(user)
-		})
+		this.props.authActions.loginUser()
+
 	}
 
 	handleLogOut = () => {
@@ -46,8 +47,8 @@ class DashboardHeader extends Component {
 						</button>
 					</form>
 				</div>
-				
-				<a href={`${config.serverUrl}/auth/github`} target="_blank">link</a>
+
+				<a href= 'https://pr-dashboard-server.herokuapp.com/v1/auth/github '>Link </a>
 
 				<div className="header__config">
 					<button className="header__config-button" onClick={this.handleLogIn}>
@@ -60,11 +61,6 @@ class DashboardHeader extends Component {
 		)
 	}
 }
-
-const mapStateToProps = authentication => ({
-	isAuthenticated: authentication[USER_STATE_KEY].isAuthenticated,
-	currentUser: authentication[USER_STATE_KEY].currentUser
-})
 
 const mapDispatchToProps = dispatch => ({
 	authActions: bindActionCreators(authActions, dispatch)

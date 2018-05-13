@@ -1,13 +1,24 @@
 import { normalize, schema } from 'normalizr';
-
+import { authHeader } from '../helpers/auth-header'
 // Fetch and normalizr of API
 
 const callApi = (endpoint, schema) => {
-  return fetch(endpoint)
-    .then(response =>
-      response.json().then(json=> {
+  console.log(endpoint, schema);
+  
+  return fetch(endpoint, {
+    headers: authHeader()
+  })
+    .then(response => 
+      response.json()
+      .then(json=> {
+        console.log('IM RESPONSE', response);
+        console.log('IM JASON', json);
+        
         if (!response.ok) {
           return Promise.reject(json)
+        }
+        if (json.token) {
+          return Object.assign({}, json)
         }
 
         return Object.assign({},

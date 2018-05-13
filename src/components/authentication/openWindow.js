@@ -24,22 +24,17 @@ const popup = (myUrl) => {
 
   // Listen to message from child window
   const authPromise = new Promise((resolve, reject) => {
-    eventer(messageEvent, (msg) => {
-      if (!~msg.origin.indexOf(`${window.location.protocol}//${window.location.host}`)) {
+    eventer(messageEvent, (e) => {
+      console.log(e);
+      
+      if (e.origin !== window.SITE_DOMAIN) {
         authWindow.close();
         reject('Not allowed');
       }
 
-      if (msg.data.payload) {
-        try {
-          resolve(JSON.parse(msg.data.payload));
-        }
-        catch(e) {
-          resolve(msg.data.payload);
-        }
-        finally {
-          authWindow.close();
-        }
+      if (e.data.auth) {
+        resolve(JSON.parse(e.data.auth));
+        authWindow.close();
       } else {
         authWindow.close();
         reject('Unauthorised');

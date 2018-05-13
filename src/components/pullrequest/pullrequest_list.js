@@ -3,7 +3,8 @@ import { normalize } from 'normalizr';
 import { Schemas } from '../../middleware/api'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+
+import { authHeader } from '../../helpers/auth-header'
 
 import { getPullRequests, setPullsFromSocket } from '../../actions';
 
@@ -14,7 +15,8 @@ class PullRequestList extends Component {
   componentDidMount () {
     //socket.on('pr-update', this.setPRsFromSocket.bind(this));
     socket.on('pr-update', this.updateFromSocket.bind(this));
-    this.props.getPullRequests();
+    const header = authHeader()
+    this.props.getPullRequests(header);
   };
 
   updateFromSocket (pulls) {
@@ -62,7 +64,7 @@ const mapStateToProps = ({ entities }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getPullRequests: () => dispatch(getPullRequests()),
+  getPullRequests: (header) => dispatch(getPullRequests(header)),
   setPullsFromSocket: (pulls) => dispatch(setPullsFromSocket(pulls))
 })
 

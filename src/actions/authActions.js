@@ -1,10 +1,19 @@
-import * as ActionTypes from './types';
+import config from '../config';
+import { CALL_API } from '../middleware/api'
 
-export const injectUser = (user) => ({
-  type: ActionTypes.INJECT,
-  user
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE
+} from './types';
+
+export const loginUser = (code) => ({
+  [CALL_API]: {
+    types: [ LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE ],
+    endpoint: `${config.serverUrl}/auth/callback${code}`
+  }
 })
 
-export const logoutUser = () => ({
-  type: ActionTypes.LOGOUT
-})
+// export const logoutUser = () => ({
+//   type: ActionTypes.LOGOUT
+// })

@@ -3,20 +3,23 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios'
 
+import { authHeader } from '../../helpers/auth-header'
+
 import { getRepositories } from '../../actions'
 
 import config from '../../config';
 import RepositoryItem from './repository_item'
 
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 
 class RepositoriesList extends Component {
 
 	componentDidMount() {
 		socket.on('repos-update', this.props.getRepositories.bind(this));
-		axios.get(`${config.baseServerUrl}/repos`)
+		const header = authHeader()
+		axios.get(`${config.serverUrl}/repos`, { headers: header })
 			.then(res => {
-				this.props.getRepositories(res.data)
+				this.props.getRepositories(res.data, header)
 			})
 	}
 
@@ -51,9 +54,10 @@ const mapStateToProps = ({ entities }) => ({
 	repos: entities.repos
 })
 
-const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ getRepositories }, dispatch)
-}
+const mapDispatchToProps = (dispatch) => ({
+	getRepositories: (repos, header) => dispatch(getRepositories(repos, header))
+	// return bindActionCreators({ getRepositories }, dispatch)
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepositoriesList)
 
