@@ -1,15 +1,14 @@
 
 .dashboard__repository__list {
-	background-color: rgba(0, 0, 0, 0.46);
-    padding: 5rem 2rem;
-    padding-top: 0px;
     height: 65vh;
-    width: 650px;
     overflow: scroll;
-    border: 1px solid rgba(0,0,0,0.05);
     list-style:none;
     padding-right: 0;
     box-shadow: 2px 4px 1px -1px rgba(38, 39, 38, 0.52);
+    padding-left: 0;
+    list-style-type: none;
+    background-color: snow;
+    max-width: 790px;
 }
 
 .repository__item {
@@ -24,7 +23,8 @@
 
 .repository__item {
     height: 140px;
-    padding-top: 30px;
+    padding-top: 0;
+    background-color: white;
 }
 
 .repository__item-content {
@@ -34,43 +34,50 @@
 }
 
 .repository__item-content-text {
+    padding-left: 25px;
+    border-left: 6px solid #0bd8be;
+    background-color: white;
+    color: black;
+    font-weight: 500;
     width: 90%;
 }
 
-.repository__item-content-text {
-    padding-left: 25px;
+.repository__item-content-toggle {
+    background-color: white;
+    padding-top: 5px;
 }
-
 
 
 h4.dashboard__repository__title {
     width: 650px;
-
-    font-family: 'Lobster', cursive;
-    font-size: 4.28rem;
+    font-size: 3.28rem;
 }
 
 
 .repository__item__content__extras {
     width: 100%;
-    margin-left: 21px;
     display: flex;
-    margin-right: 21px;
+    background-color: #f3f4f6;
+    margin: 0;
 }
 
+
 .repository__item__tech {
-    width: 80%;
+    padding-left: 17px;
+    width: 90%;
+    border-left: 6px solid #2196F3;
 }
 
 .repository__item__color__picker {
     display: flex;
-    width: 20%;
-    justify-content: flex-end;
+    width: 10%;
+    justify-content: center;
+    padding-top: 5.45px;
 }
 
 button.repository__item__color__picker__button {
-    width: 4vw;
-    height: 4vw;
+    width: 20px;
+    height: 20px;
     border-radius: 100px;
 }
 

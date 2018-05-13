@@ -23,6 +23,10 @@ class RepositoryItem extends Component {
 		return languageName
 	}
 
+	onClickHandler() {
+		console.log('CLICK')
+	}
+
 	render() {
 		return (
 			<li className="repository__item">
@@ -44,7 +48,7 @@ class RepositoryItem extends Component {
 						</div>
 
 						<div className="repository__item__color__picker">
-							<button className="repository__item__color__picker__button">ON</button>
+							<button onClick={this.onClickHandler()}className="repository__item__color__picker__button"></button>
 						</div>
 
 					</div>
