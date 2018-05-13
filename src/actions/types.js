@@ -8,5 +8,8 @@ export const REPOS_GET_REQUEST = 'REPOS_GET_REQUEST'
 export const REPOS_GET_SUCCESS = 'REPOS_GET_SUCCESS' 
 export const REPOS_GET_FAIL = 'REPOS_GET_FAIL'
 
+export const REPO_ACTIVATED = 'REPO_ACTIVATED'
+
+
 
 

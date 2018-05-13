@@ -10,6 +10,8 @@ import {
   REPOS_GET_SUCCESS, 
   REPOS_GET_FAIL, 
 
+  REPO_ACTIVATED
+
 } from './types'
 
 export const getRepositories = () => ({
@@ -32,17 +34,22 @@ export const getPullRequests = () => ({
   }
 })
 
-// export const getRepositories = (repos) => ({
-//   type: GET_REPOSITORIES,
-//   repos
+export const repoSwitch = () => {
+  return {
+    type: REPO_ACTIVATED, 
+    payload: 'SWITCHED REPOSITORY'
+  }
+}
+
+// export const toggleRepository = (id) => ({
+//   type: 'TOGGLE_ACTIVE',
+//   id
 // })
+
+
 
 export const setPullsFromSocket = (pulls) => ({
   type: 'GET_PULLS',
   pulls
 })
 
-export const toggleRepository = (id) => ({
-  type: 'TOGGLE_ACTIVE',
-  id
-})

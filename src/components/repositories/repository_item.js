@@ -1,30 +1,24 @@
 import React, { Component } from 'react'
 import Toggle from 'material-ui/Toggle';
-import Divider from 'material-ui/Divider';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 
 class RepositoryItem extends Component {
-	
-	componentWillMount() {
-		//active={repo.hookEnabled} // boolean
-		// description
-		// fullName
-		// hookEnabled
-		// name
-		// private
-		// webUrl
-		// _id
-		console.log('***', this.props.repo)
+	//active={repo.hookEnabled} // boolean
+	// description
+	// fullName
+	// hookEnabled
+	// name
+	// private
+	// webUrl
+	// _id
+
+	onToggleSwitch () {
+		console.log(this.props.repo)
 	}
 
-	languageLetterCreator(languageName) {
-		
-		return languageName
-	}
-
-	onClickHandler() {
-		console.log('CLICK')
+	onColorButtonClick () {
+		console.log('SELECT COLOR')
 	}
 
 	render() {
@@ -35,7 +29,9 @@ class RepositoryItem extends Component {
 						<span>{this.props.repo.fullName}</span>
 					</div>
 					<div className="repository__item-content-toggle">
-						<Toggle />
+						<Toggle 
+							onClick={() => this.onToggleSwitch() }
+						/>
 					</div>
 
 					<div className="repository__item__content__extras">
@@ -43,18 +39,17 @@ class RepositoryItem extends Component {
 						<div className="repository__item__tech">
 							<Chip style={styles.chip}>
 					          <Avatar size={32}></Avatar>
-					          {this.languageLetterCreator(this.props.repo.language)}
+					          {this.props.repo.language}
 					        </Chip>
 						</div>
 
 						<div className="repository__item__color__picker">
-							<button onClick={this.onClickHandler()}className="repository__item__color__picker__button"></button>
+							<button onClick={() => this.onColorButtonClick() }className="repository__item__color__picker__button"></button>
 						</div>
 
 					</div>
 					
 				</div>
-				<Divider />
 			</li>
 		)
 	}
@@ -72,16 +67,33 @@ const styles = {
 
 export default RepositoryItem
 
-
-/*
-
-<div className="repository__item__description">
-	
-</div>
-
-<div className="repository__item__url">
-
-</div>
-
-*/
+//   render() {
+//     const actions = [
+//       <FlatButton
+//         label="Cancel"
+//         primary={true}
+//         onClick={this.handleClose}
+//       />,
+//       <FlatButton
+//         label="Submit"
+//         primary={true}
+//         keyboardFocused={true}
+//         onClick={this.handleClose}
+//       />,
+//     ];
+//     return (
+//       <div>
+//         <RaisedButton label="Dialog" onClick={this.handleOpen} />
+//         <Dialog
+//           title="Dialog With Actions"
+//           actions={actions}
+//           modal={false}
+//           open={this.state.open}
+//           onRequestClose={this.handleClose}
+//         >
+//         </Dialog>
+//       </div>
+//     );
+//   }
+// }
 
