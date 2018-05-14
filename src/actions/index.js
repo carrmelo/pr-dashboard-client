@@ -1,38 +1,25 @@
-import config from '../config';
 import { CALL_API, Schemas } from '../middleware/api'
 import {
-  PULLS_REQUEST,
-  PULLS_SUCCESS,
-  PULLS_FAILURE,
-  GET_REPOSITORIES, 
-
-  REPOS_GET_REQUEST, 
-  REPOS_GET_SUCCESS, 
-  REPOS_GET_FAIL, 
-
+  REPOS_GET,
+  PULLS_GET,
   REPO_ACTIVATED, 
   SELECTED_PULLREQUESTS, 
-
-  COLOR_SELECTED
-
+  COLOR_SELECTED,
+  SOCKETS_PULLS_SET
 } from './types'
 
 export const getRepositories = () => ({
+  type: REPOS_GET,
   [CALL_API]: {
-    types: [ 
-      REPOS_GET_REQUEST, 
-      REPOS_GET_SUCCESS, 
-      REPOS_GET_FAIL
-    ], 
-    endpoint: `${config.baseServerUrl}/repos`, 
+    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos`, 
     schema: Schemas.REPOS
   }
 })
 
 export const getPullRequests = () => ({
-  type: 'GET_PULLS',
+  type: PULLS_GET,
   [CALL_API]: {
-    endpoint: `${config.serverUrl}/pullrequests`,
+    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/pullrequests`,
     schema: Schemas.PULLS,
   }
 })
@@ -64,7 +51,7 @@ export const selectColor = (color) => {
 }
 
 export const setPullsFromSocket = (pulls) => ({
-  type: 'SET_PULLS',
-  pulls
+  type: SOCKETS_PULLS_SET,
+  payload: pulls
 })
 

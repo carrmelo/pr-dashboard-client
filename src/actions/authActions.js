@@ -1,4 +1,3 @@
-import config from '../config';
 import { CALL_API, Schemas } from '../middleware/api'
 
 // import {
@@ -14,7 +13,7 @@ import { CALL_API, Schemas } from '../middleware/api'
 export const getUserInfo = () => ({
   type: 'GET_USER_INFO',
   [CALL_API]: {
-    endpoint: `${config.serverUrl}/user/me`,
+    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/user/me`,
     schema: Schemas.USER  
   }
 })
@@ -22,7 +21,7 @@ export const getUserInfo = () => ({
 export const loginUser = (code) => ({
   type: 'LOGIN_USER',
   [CALL_API]: {
-    endpoint: `${config.serverUrl}/auth/callback${code}`
+    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/auth/callback${code}`
   }
 })
 
