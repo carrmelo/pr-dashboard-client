@@ -16,12 +16,16 @@ export default (state = initialState, action) => {
         isAuthenticated: true
       }
 
-    } else if (action.response && action.response.entities && action.type === "USER_INFO_SUCCESS") {
+    } else if (action.type === "USER_INFO_SUCCESS") {
       
       return {
         ...state,
         currentUser: action.response.entities.user
       }
+
+    } else if (action.type === 'LOGOUT_USER') {
+
+      return initialState
 
     } else {
 

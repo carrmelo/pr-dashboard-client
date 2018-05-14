@@ -7,7 +7,8 @@ import {
   LOGIN_FAILURE,
   USER_INFO_REQUEST,
   USER_INFO_SUCCESS,
-  USER_INFO_FAILURE
+  USER_INFO_FAILURE,
+  LOGOUT_USER
 } from './types';
 
 export const getUserInfo = () => ({
@@ -25,6 +26,6 @@ export const loginUser = (code) => ({
   }
 })
 
-// export const logoutUser = () => ({
-//   type: ActionTypes.LOGOUT
-// })
+export const logoutUser = () => ({
+  type: LOGOUT_USER
+})

@@ -24,6 +24,7 @@ const callApi = (endpoint, schema) => {
         )
       })
     )
+
 }
 
 // Defining Schemas for normalizing data

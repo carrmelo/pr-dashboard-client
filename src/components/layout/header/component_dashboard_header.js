@@ -12,13 +12,8 @@ class DashboardHeader extends Component {
     window.location.href = `https://pr-dashboard-server.herokuapp.com/v1/auth/github`;
   }
 
-	handleLogIn = () => {
-		// const msg = loginTab(`https://pr-dashboard-server.herokuapp.com/v1/auth/github`)
-		// msg.then(user => {
-		// 	console.log('USER', user);
-			
+	handleLogIn = () => {	
 		this.props.authActions.loginUser()
-
 	}
 
 	handleLogOut = () => {
@@ -51,7 +46,7 @@ class DashboardHeader extends Component {
 				<a href= 'https://pr-dashboard-server.herokuapp.com/v1/auth/github '>Link </a>
 
 				<div className="header__config">
-					<button className="header__config-button" onClick={this.handleLogIn}>
+					<button className="header__config-button" onClick={this.handleLogOut}>
 						<svg className="header__config-icon">
 							<use xlinkHref="./icons/sprite.svg#icon-cog-outline"></use>
 						</svg>
