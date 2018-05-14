@@ -4,6 +4,15 @@ import React, { Component } from 'react'
 // import SearchBar from './component_search_bar'
 
 class DashboardHeader extends Component {
+	
+	state = { value: '' }
+	
+	onInputChange = (e) => {
+		this.setState({
+			value: e.target.value
+		}, () => console.log(this.state.value)) 
+	}
+
 	render() {
 		return (
 			<header 
@@ -18,7 +27,11 @@ class DashboardHeader extends Component {
 
 				<div className="header__search">
 					<form action="#" className="header__search-form">
-						<input type="text" className="header__search-input" placeholder="" />
+						<input 
+							type="text" className="header__search-input" placeholder="" 
+							onChange={this.onInputChange}
+							value={this.state.value}
+						/>
 						<button className="header__search-button">
 							<svg className="header__search-icon">
 								<use xlinkHref="./icons/sprite.svg#icon-zoom-outline"></use>

@@ -13,7 +13,7 @@ import {
   REPO_ACTIVATED, 
   SELECTED_PULLREQUESTS, 
 
-  COLOR_SELECT
+  COLOR_SELECTED
 
 } from './types'
 
@@ -58,7 +58,7 @@ export const getSelectedPullRequests = () => {
 
 export const selectColor = (color) => {
   return {
-    type: COLOR_SELECT, 
+    type: COLOR_SELECTED, 
     payload: color
   }
 }
