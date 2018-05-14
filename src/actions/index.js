@@ -32,8 +32,8 @@ export const getRepositories = () => ({
 export const getPullRequests = () => ({
   [CALL_API]: {
     types: [ PULLS_REQUEST, PULLS_SUCCESS, PULLS_FAILURE ],
-    endpoint: `${config.baseServerUrl}/pullrequests`,
-    schema: Schemas.PULLS
+    endpoint: `${config.serverUrl}/pullrequests`,
+    schema: Schemas.PULLS,
   }
 })
 
@@ -63,10 +63,8 @@ export const selectColor = (color) => {
   }
 }
 
-
-
 export const setPullsFromSocket = (pulls) => ({
-  type: 'GET_PULLS',
+  type: 'SET_PULLS',
   pulls
 })
 

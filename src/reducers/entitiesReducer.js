@@ -15,8 +15,8 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-
-  if (action.response && action.response.entities) {
+  
+  if (action.response && action.response.entities && action.type !== "USER_INFO_SUCCESS") {
     return {
       ...state,
         repositories: {
@@ -57,7 +57,7 @@ export default (state = initialState, action) => {
           })
       }
 
-    case 'GET_PULLS':
+    case 'SET_PULLS':
       return {
         ...state,
           repositories: {

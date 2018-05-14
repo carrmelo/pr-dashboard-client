@@ -3,15 +3,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios'
 
-import { 
-	getRepositories, 
-	
-	} from '../../actions'
+import { getRepositories } from '../../actions'
 
 import config from '../../config';
 import RepositoryItem from './repository_item'
 
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 
 class RepositoriesList extends Component {
 	
@@ -66,9 +63,10 @@ const mapStateToProps = (state) => {
 }
 	
 
-const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ getRepositories }, dispatch)
-}
+const mapDispatchToProps = (dispatch) => ({
+	getRepositories: (repos, header) => dispatch(getRepositories(repos, header))
+	// return bindActionCreators({ getRepositories }, dispatch)
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepositoriesList)
 

@@ -1,7 +1,10 @@
 
 import React, { Component } from 'react'
 
-// import SearchBar from './component_search_bar'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as authActions from '../../../actions/authActions';
 
 class DashboardHeader extends Component {
 	
@@ -10,7 +13,11 @@ class DashboardHeader extends Component {
 	onInputChange = (e) => {
 		this.setState({
 			value: e.target.value
-		}, () => console.log(this.state.value)) 
+		}, () => console.log(this.state.value))
+	} 
+
+	handleLogOut = () => {
+		this.props.authActions.logoutUser();
 	}
 
 	render() {
@@ -40,8 +47,10 @@ class DashboardHeader extends Component {
 					</form>
 				</div>
 
+				<a href= 'https://pr-dashboard-server.herokuapp.com/v1/auth/github '>Link </a>
+
 				<div className="header__config">
-					<button className="header__config-button">
+					<button className="header__config-button" onClick={this.handleLogOut}>
 						<svg className="header__config-icon">
 							<use xlinkHref="./icons/sprite.svg#icon-cog-outline"></use>
 						</svg>
@@ -52,7 +61,11 @@ class DashboardHeader extends Component {
 	}
 }
 
-export default DashboardHeader
+const mapDispatchToProps = dispatch => ({
+	authActions: bindActionCreators(authActions, dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(DashboardHeader);
 
 
 
