@@ -28,27 +28,15 @@ class RepositoryItem extends Component {
 	
 	onColorButtonClick = (e) => {
 	    e.preventDefault();
-		const { currentTarget } = e
-
-			this.setState({
-		    	open: true,
-		      	anchorEl: currentTarget,
-		    });
-
-		console.log('COLOR SELECT', this.state.color)
+		this.setState({ open: true, anchorEl: e.currentTarget });
   	};
 
 	handleRequestClose = () => {
-		this.setState({
-	    	open: false, 
-	    });
+		this.setState({ open: false });
 	};
 
 	handleColorChange = (e) => {
-		console.log('***', e)
-		this.setState({
-			background: e.hex
-		}, () => console.log(this.state.background))
+		this.setState({ background: e.hex })
 	}
 
 	onToggleSwitch (repoID) {
@@ -123,33 +111,4 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(null, mapDispatchToProps)(RepositoryItem)
 
-//   render() {
-//     const actions = [
-//       <FlatButton
-//         label="Cancel"
-//         primary={true}
-//         onClick={this.handleClose}
-//       />,
-//       <FlatButton
-//         label="Submit"
-//         primary={true}
-//         keyboardFocused={true}
-//         onClick={this.handleClose}
-//       />,
-//     ];
-//     return (
-//       <div>
-//         <RaisedButton label="Dialog" onClick={this.handleOpen} />
-//         <Dialog
-//           title="Dialog With Actions"
-//           actions={actions}
-//           modal={false}
-//           open={this.state.open}
-//           onRequestClose={this.handleClose}
-//         >
-//         </Dialog>
-//       </div>
-//     );
-//   }
-// }
 
