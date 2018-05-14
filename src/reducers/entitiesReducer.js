@@ -1,12 +1,15 @@
 
 import {
-  GET_REPOSITORIES
+  GET_REPOSITORIES, 
+  REPOS_GET_SUCCESS, 
+  REPOS_GET_FAIL, 
+  REPOS_GET_REQUEST, 
+  REPO_ACTIVATED
 } from '../actions/types'
 
 
 const initialState = {
   repositories: {},
-  repos: [],
   pull_requests: {},
   users: {},
 }
@@ -18,7 +21,7 @@ export default (state = initialState, action) => {
       ...state,
         repositories: {
           ...state.repositories,
-          ...action.response.entities.repository
+          ...action.response.entities.repositories
         },
         pull_requests: {
           ...state.pull_requests,
@@ -30,16 +33,18 @@ export default (state = initialState, action) => {
         }
     }
   }
-
+  
   switch (action.type) {
-    case GET_REPOSITORIES:
-      return {
-        ...state,
-        repos: [
-          // ...state.repos,
-          ...action.repos
-        ]
-      }
+    case REPOS_GET_REQUEST: 
+      return state
+    case REPOS_GET_SUCCESS:
+      return { ...state, repositories: { ...action.response.entities.repositories }}
+    case REPO_ACTIVATED: 
+      
+      console.log(action.payload)
+      console.log(state.repositories[action.payload])
+      console.log('CHANGE', action, action.payload)
+      return { ...state, repositories: null }
 
     case 'TOGGLE_ACTIVE':
       return {

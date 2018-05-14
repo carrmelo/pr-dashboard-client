@@ -1,22 +1,15 @@
 import { normalize, schema } from 'normalizr';
-import { authHeader } from '../helpers/auth-header'
+
 // Fetch and normalizr of API
 
 const callApi = (endpoint, schema) => {
-  
-  return fetch(endpoint, {
-    headers: authHeader()
-  })
+  return fetch(endpoint)
     .then(response => 
       response.json()
-      .then(json=> {
-        
-        if (!response.ok) {
-          return Promise.reject(json)
-        }
-        if (json.token) {
-          return Object.assign({}, json)
-        }
+        .then(json=> {
+          if (!response.ok) {
+            return Promise.reject(json)
+          }
 
           return Object.assign({},
             normalize(json, schema)
@@ -24,7 +17,6 @@ const callApi = (endpoint, schema) => {
           )
       })
     )
-
 }
 
 // Defining Schemas for normalizing data
@@ -38,40 +30,43 @@ const pullSchema = new schema.Entity(
 );
 
 export const Schemas = {
-  REPOS: [ repoSchema ],
-  PULLS: [ pullSchema ],
-  USER: [ userSchema ]
+  REPOS: [ repoSchema ], 
+  PULLS: [ pullSchema ], 
 }
 
-export const CALL_API = 'CALL_API'
-
-const actionWith = (data, action) => {
-  const finalAction = Object.assign({}, action, data)
-  delete finalAction[CALL_API]
-  return finalAction
-}
+export const CALL_API = 'Call API'
 
 export default store => next => action => {
-  
   const callAPI = action[CALL_API]
   if (typeof callAPI === 'undefined') {
     return next(action)
   }
 
-  const { schema, types, endpoint } = callAPI
+  let { endpoint } = callAPI
+  const { schema, types } = callAPI
 
-  next({
-    ...action,
-    type: action.type + '_REQUEST'
-  })
+  // if (typeof endpoint === 'function') {
+  //   endpoint = endpoint(store.getState())
+  // }
+
+  const actionWith = data => {
+    const finalAction = Object.assign({}, action, data)
+    delete finalAction[CALL_API]
+    return finalAction
+  }
+
+  const [ requestType, successType, failureType ] = types
+  next(actionWith({ type: requestType }))
 
   return callApi(endpoint, schema).then(
-    response => store.dispatch(actionWith({
-      type: action.type + '_SUCCESS',
-      response
-    })),
-    error => store.dispatch(actionWith({
-      type: action.type + '_FAILURE',
+    response => {
+      // console.log(response)
+      next(actionWith({
+        response,
+        type: successType
+      }))},
+    error => next(actionWith({
+      type: failureType,
       error: error.message || 'Something bad happened'
     }))
   )

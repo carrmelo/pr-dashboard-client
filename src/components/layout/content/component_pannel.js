@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 import RepoList from '../../repositories/repository_list';
+//TEMPORARY CHANGE TO EXTENDED TO TEST TOGGLE WIRING
+// import PullRequestList from '../../pullrequest/pullrequest_list_extended'
 import PullRequestList from '../../pullrequest/pullrequest_list';
 import SignIn from '../../authentication/signin';
 import Welcome from '../../authentication/welcome';
