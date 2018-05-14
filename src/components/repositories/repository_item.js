@@ -3,7 +3,10 @@ import Toggle from 'material-ui/Toggle';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 
-import { repoSwitch } from '../../actions'
+import { 
+	repoSwitch, 
+	selectColor
+} from '../../actions'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -24,7 +27,9 @@ class RepositoryItem extends Component {
 	}
 
 	onColorButtonClick () {
-		console.log('SELECT COLOR')
+		
+		console.log('ACTION CREATOR', this.props.selectColor)
+		console.log('REPO ITEM', this.props.repo)
 	}
 
 	render() {
@@ -72,7 +77,7 @@ const styles = {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ repoSwitch }, dispatch)
+	return bindActionCreators({ repoSwitch, selectColor }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(RepositoryItem)

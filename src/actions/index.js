@@ -11,7 +11,9 @@ import {
   REPOS_GET_FAIL, 
 
   REPO_ACTIVATED, 
-  SELECTED_PULLREQUESTS
+  SELECTED_PULLREQUESTS, 
+
+  COLOR_SELECT
 
 } from './types'
 
@@ -53,6 +55,13 @@ export const getSelectedPullRequests = () => {
 //   type: 'TOGGLE_ACTIVE',
 //   id
 // })
+
+export const selectColor = (color) => {
+  return {
+    type: COLOR_SELECT, 
+    payload: color
+  }
+}
 
 
 
