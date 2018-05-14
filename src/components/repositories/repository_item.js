@@ -13,7 +13,10 @@ import { connect } from 'react-redux'
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+
 import RaisedButton from 'material-ui/RaisedButton';
+import Popover from 'material-ui/Popover';
+
 
 import { HuePicker, BlockPicker, GithubPicker, CirclePicker} from 'react-color'
 
@@ -22,6 +25,11 @@ import { HuePicker, BlockPicker, GithubPicker, CirclePicker} from 'react-color'
 class RepositoryItem extends Component {
 	//active={repo.hookEnabled} // boolean // description // fullName
 	// hookEnabled // name // private // webUrl // _id
+
+	state = {
+      open: false,
+    };
+
 	onToggleSwitch (repoID) {
 		this.props.repoSwitch(repoID)
 	}
@@ -31,22 +39,50 @@ class RepositoryItem extends Component {
 		console.log('REPO ITEM', this.props.repo)
 	}
 
-	  state = {
-	    open: false,
-	    color: '#fff', 
+	  
+
+
+	handleClick = (event) => {
+	    // This prevents ghost click.
+	    event.preventDefault();
+		
+		const { currentTarget } = event
+		setTimeout(() => {
+			this.setState({
+		    	open: true,
+		      	anchorEl: currentTarget,
+		    });
+		}, 500)
+	    
+  	};
+
+	  handleRequestClose = () => {
+	    this.setState({
+	      open: false,
+	    });
 	  };
 
-	  handleOpen = () => {
-	    this.setState({open: true});
-	  };
-
-	  handleClose = () => {
-	    this.setState({open: false});
-	  };
-
- render() {
-  
- }
+ 	render() {
+    	return (
+	      <div>
+	        <RaisedButton
+	          onClick={this.handleClick}
+	          label="Click me"
+	        />
+	        <Popover
+	          open={this.state.open}
+	          anchorEl={this.state.anchorEl}
+	          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+	          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+	          onRequestClose={this.handleRequestClose}
+	        >
+				<div>
+			    	<HuePicker />
+			    </div>
+	        </Popover>
+	      </div>
+	    );
+  	}
 }
 
 const styles = {
@@ -66,13 +102,18 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(RepositoryItem)
 /*
 <div>
-         	<HuePicker />
+         	
          </div>
 
-         <div>
-         	<BlockPicker />
-         </div>
+         
 */
+
+
+
+
+
+    
+  
 
 
 
