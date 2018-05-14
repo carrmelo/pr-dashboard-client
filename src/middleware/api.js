@@ -1,13 +1,21 @@
 import { normalize, schema } from 'normalizr';
-
+import { authHeader } from '../helpers/auth-header'
 // Fetch and normalizr of API
 
 const callApi = (endpoint, schema) => {
-  return fetch(endpoint)
-    .then(response =>
-      response.json().then(json=> {
+  
+  return fetch(endpoint, {
+    headers: authHeader()
+  })
+    .then(response => 
+      response.json()
+      .then(json=> {
+        
         if (!response.ok) {
           return Promise.reject(json)
+        }
+        if (json.token) {
+          return Object.assign({}, json)
         }
 
         return Object.assign({},
@@ -29,7 +37,8 @@ const pullSchema = new schema.Entity(
 );
 
 export const Schemas = {
-  PULLS: [ pullSchema ]
+  PULLS: [ pullSchema ],
+  USER: [ userSchema ]
 }
 
 export const CALL_API = 'Call API'
@@ -43,10 +52,6 @@ export default store => next => action => {
   let { endpoint } = callAPI
   const { schema, types } = callAPI
 
-  // if (typeof endpoint === 'function') {
-  //   endpoint = endpoint(store.getState())
-  // }
-
   const actionWith = data => {
     const finalAction = Object.assign({}, action, data)
     delete finalAction[CALL_API]
@@ -57,13 +62,15 @@ export default store => next => action => {
   next(actionWith({ type: requestType }))
 
   return callApi(endpoint, schema).then(
-    response => next(actionWith({
+    response => {
+      
+      next(actionWith({
       response,
       type: successType
-    })),
+    }))},
     error => next(actionWith({
       type: failureType,
-      error: error.message || 'Something bad happened'
+      error: error.message || 'Something bad happened',
     }))
   )
 }

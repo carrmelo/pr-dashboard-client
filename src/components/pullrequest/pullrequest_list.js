@@ -11,7 +11,6 @@ import PullRequestItem from './pullrequest_item';
 class PullRequestList extends Component {
 
   componentDidMount () {
-    //socket.on('pr-update', this.setPRsFromSocket.bind(this));
     socket.on('pr-update', this.updateFromSocket.bind(this));
     this.props.getPullRequests();
   };
