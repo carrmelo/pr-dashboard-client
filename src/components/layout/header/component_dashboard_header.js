@@ -7,14 +7,14 @@ import { bindActionCreators } from 'redux';
 import * as authActions from '../../../actions/authActions';
 
 class DashboardHeader extends Component {
-
-	redirect() {
-    window.location.href = `https://pr-dashboard-server.herokuapp.com/v1/auth/github`;
-  }
-
-	handleLogIn = () => {	
-		this.props.authActions.loginUser()
-	}
+	
+	state = { value: '' }
+	
+	onInputChange = (e) => {
+		this.setState({
+			value: e.target.value
+		}, () => console.log(this.state.value))
+	} 
 
 	handleLogOut = () => {
 		this.props.authActions.logoutUser();
@@ -34,7 +34,11 @@ class DashboardHeader extends Component {
 
 				<div className="header__search">
 					<form action="#" className="header__search-form">
-						<input type="text" className="header__search-input" placeholder="" />
+						<input 
+							type="text" className="header__search-input" placeholder="" 
+							onChange={this.onInputChange}
+							value={this.state.value}
+						/>
 						<button className="header__search-button">
 							<svg className="header__search-icon">
 								<use xlinkHref="./icons/sprite.svg#icon-zoom-outline"></use>
@@ -43,7 +47,7 @@ class DashboardHeader extends Component {
 					</form>
 				</div>
 
-				<a href= 'https://pr-dashboard-server.herokuapp.com/v1/auth/github '>Link </a>
+				<a href= 'https://pr-dashboard-server.herokuapp.com/v1/auth/github'> Link </a>
 
 				<div className="header__config">
 					<button className="header__config-button" onClick={this.handleLogOut}>
