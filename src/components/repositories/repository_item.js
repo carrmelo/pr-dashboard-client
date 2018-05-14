@@ -23,7 +23,7 @@ class RepositoryItem extends Component {
 	
 	state = {
 		open: false,
-		background: '#fff'
+		background: "#0bd8be"
 	};
 	
 	onColorButtonClick = (e) => {
