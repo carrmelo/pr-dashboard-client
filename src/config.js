@@ -1,7 +1,7 @@
 const config = {
-  baseServerUrl: 'http://localhost:5000/v1',
-  baseClientUrl: 'http://localhost:3000',
-  serverUrl: 'http://localhost:5000/v1'
-}
+  baseServerUrl: 'https://pr-dashboard-server.herokuapp.com/v1',
+  baseClientUrl: 'https://pure-client.herokuapp.com',
+  serverUrl: 'https://pr-dashboard-server.herokuapp.com/v1',
+};
 
 export default config;
