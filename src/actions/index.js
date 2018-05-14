@@ -11,18 +11,19 @@ import {
 export const getPullRequests = () => ({
   [CALL_API]: {
     types: [ PULLS_REQUEST, PULLS_SUCCESS, PULLS_FAILURE ],
-    endpoint: `${config.baseServerUrl}/pullrequests`,
-    schema: Schemas.PULLS
+    endpoint: `${config.serverUrl}/pullrequests`,
+    schema: Schemas.PULLS,
   }
 })
 
-export const getRepositories = (repos) => ({
+export const getRepositories = (repos, header) => ({
   type: GET_REPOSITORIES,
-  repos
+  repos,
+  headers: header
 })
 
 export const setPullsFromSocket = (pulls) => ({
-  type: 'GET_PULLS',
+  type: 'SET_PULLS',
   pulls
 })
 
