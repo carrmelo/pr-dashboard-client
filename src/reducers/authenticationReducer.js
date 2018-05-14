@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
         isAuthenticated: true
       }
 
-    } else if (action.type === "USER_INFO_SUCCESS") {
+    } else if (action.type === "GET_USER_INFO_SUCCESS") {
       
       return {
         ...state,

@@ -1,23 +1,23 @@
 import config from '../config';
 import { CALL_API, Schemas } from '../middleware/api'
-import {
-  PULLS_REQUEST,
-  PULLS_SUCCESS,
-  PULLS_FAILURE,
-  GET_REPOSITORIES
-} from './types'
+// import {
+//   PULLS_REQUEST,
+//   PULLS_SUCCESS,
+//   PULLS_FAILURE,
+//   GET_REPOSITORIES
+// } from './types'
 
 
 export const getPullRequests = () => ({
+  type: 'GET_PULLS',
   [CALL_API]: {
-    types: [ PULLS_REQUEST, PULLS_SUCCESS, PULLS_FAILURE ],
     endpoint: `${config.serverUrl}/pullrequests`,
     schema: Schemas.PULLS,
   }
 })
 
 export const getRepositories = (repos, header) => ({
-  type: GET_REPOSITORIES,
+  type: 'GET_REPOSITORIES',
   repos,
   headers: header
 })
