@@ -30,7 +30,7 @@ const store = createStore(
 // and saves them, no more than one time per second
 store.subscribe(throttle(() => {
   if (store.getState().authentication.isAuthenticated)
-    saveState(store.getState().authentication.currentUser);
+    saveState(store.getState().authentication);
 }, 1000));
 
 ReactDOM.render(

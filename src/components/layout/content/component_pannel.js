@@ -11,8 +11,8 @@ class Pannel extends Component {
 	render() {
 		return (
 			<div className="card-panel dashboard__panel">
-				<Route path="/" component={SignIn} />
-				<Route path="/welcome" component={Welcome} />
+				<Route exact path="/" component={SignIn} />
+				<Route exact path="/welcome" component={Welcome} />
 				<PrivateRoute exact path="/repos" component={RepoList} />
 				<PrivateRoute exact path="/pulls" component={PullRequestList} />	
 			</div>
