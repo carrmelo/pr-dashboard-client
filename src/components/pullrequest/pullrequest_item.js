@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 
-<<<<<<< HEAD
-// import './pullrequest_item.css'
-
-=======
->>>>>>> develop
 class PullRequestItem extends Component {
 
   render() {

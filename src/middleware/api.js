@@ -24,6 +24,7 @@ const callApi = (endpoint, schema) => {
           )
       })
     )
+
 }
 
 // Defining Schemas for normalizing data
@@ -42,36 +43,36 @@ export const Schemas = {
   USER: [ userSchema ]
 }
 
-export const CALL_API = 'Call API'
+export const CALL_API = 'CALL_API'
+
+const actionWith = (data, action) => {
+  const finalAction = Object.assign({}, action, data)
+  delete finalAction[CALL_API]
+  return finalAction
+}
 
 export default store => next => action => {
+  
   const callAPI = action[CALL_API]
   if (typeof callAPI === 'undefined') {
     return next(action)
   }
 
-  let { endpoint } = callAPI
-  const { schema, types } = callAPI
+  const { schema, types, endpoint } = callAPI
 
-  const actionWith = data => {
-    const finalAction = Object.assign({}, action, data)
-    delete finalAction[CALL_API]
-    return finalAction
-  }
-
-  const [ requestType, successType, failureType ] = types
-  next(actionWith({ type: requestType }))
+  next({
+    ...action,
+    type: action.type + '_REQUEST'
+  })
 
   return callApi(endpoint, schema).then(
-    response => {
-      
-      next(actionWith({
-      response,
-      type: successType
-    }))},
-    error => next(actionWith({
-      type: failureType,
-      error: error.message || 'Something bad happened',
+    response => store.dispatch(actionWith({
+      type: action.type + '_SUCCESS',
+      response
+    })),
+    error => store.dispatch(actionWith({
+      type: action.type + '_FAILURE',
+      error: error.message || 'Something bad happened'
     }))
   )
 }

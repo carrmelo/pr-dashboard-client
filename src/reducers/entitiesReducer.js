@@ -1,10 +1,7 @@
 
 import {
-  GET_REPOSITORIES, 
-  REPOS_GET_SUCCESS, 
-  REPOS_GET_FAIL, 
-  REPOS_GET_REQUEST, 
-  REPO_ACTIVATED
+  REPO_ACTIVATED,
+  SOCKETS_PULLS_SET
 } from '../actions/types'
 
 
@@ -35,9 +32,9 @@ export default (state = initialState, action) => {
   }
   
   switch (action.type) {
-    case REPOS_GET_REQUEST: 
+    case 'REPOS_GET_REQUEST': 
       return state
-    case REPOS_GET_SUCCESS:
+    case 'REPOS_GET_SUCCESS':
       return { ...state, repositories: { ...action.response.entities.repositories }}
     case REPO_ACTIVATED: 
       
@@ -57,7 +54,7 @@ export default (state = initialState, action) => {
           })
       }
 
-    case 'SET_PULLS':
+    case SOCKETS_PULLS_SET:
       return {
         ...state,
           repositories: {
@@ -73,6 +70,9 @@ export default (state = initialState, action) => {
             ...action.pulls.entities.user
           }
       }
+
+    case 'LOGOUT_USER':
+      return initialState
 
   default: return state;
   }

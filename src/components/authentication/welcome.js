@@ -10,32 +10,28 @@ class Welcome extends Component {
     this.props.loginUser(code)
   }
 
-  getUserHandler () {
-    
-    this.props.getUserInfo()
-  }
+  // static getDerivedStateFromProps (nextProps, prevState) {
+  //   if (nextProps.isAuth) {
+  //     nextProps.getUserInfo()
+  //     nextProps.history.push('/repos')
+  //   }
+  //   return { ...nextProps }
+  // }
 
-  redirect () {
-    this.props.history.push('/repos')
-  }
-
- 
-  render() {
-    if (!Object.keys(this.props.currentUser).length) {
-      return (
-        <div>
-          Welcome to PR Dashboard, we are redirecting you to your Repositories<br/>
-          if you are able to read this far, maybe something went wrong, we'll let you know
-          {this.getUserHandler()}
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          {this.redirect()}
-        </div>
-      )
+  componentDidUpdate () {
+    if (this.props.isAuth) {
+      this.props.getUserInfo()
+      this.props.history.push('/repos')
     }
+  }
+
+  render() {
+    return (
+      <div>
+        Welcome to PR Dashboard, we are redirecting you to your Repositories<br/>
+        if you are able to read this far, maybe something went wrong, we'll let you know
+      </div>
+    )
   }
 }
 

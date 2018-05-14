@@ -47,7 +47,7 @@ class DashboardHeader extends Component {
 					</form>
 				</div>
 
-				<a href= 'https://pr-dashboard-server.herokuapp.com/v1/auth/github '>Link </a>
+				<a href={`${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/auth/github`}>Link </a>
 
 				<div className="header__config">
 					<button className="header__config-button" onClick={this.handleLogOut}>

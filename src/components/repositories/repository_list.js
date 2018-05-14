@@ -5,7 +5,6 @@ import axios from 'axios'
 
 import { getRepositories } from '../../actions'
 
-import config from '../../config';
 import RepositoryItem from './repository_item'
 
 // import { bindActionCreators } from 'redux'

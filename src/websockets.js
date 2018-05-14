@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
 
-const socket = io.connect('https://pr-dashboard-server.herokuapp.com/');
+const socket = io.connect(process.env.REACT_APP_SERVER_URL);
 
 export default socket;
