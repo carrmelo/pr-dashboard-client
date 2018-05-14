@@ -1,4 +1,3 @@
-import config from '../config';
 import { CALL_API, Schemas } from '../middleware/api'
 
 import {
@@ -13,7 +12,7 @@ import {
 export const getUserInfo = () => ({
   [CALL_API]: {
     types: [ USER_INFO_REQUEST, USER_INFO_SUCCESS, USER_INFO_FAILURE ],
-    endpoint: `${config.serverUrl}/user/me`,
+    endpoint: `${REACT_APP_SERVER_URL}/user/me`,
     schema: Schemas.USER  
   }
 })
