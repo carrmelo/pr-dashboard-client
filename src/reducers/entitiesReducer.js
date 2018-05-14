@@ -3,7 +3,8 @@ import {
   GET_REPOSITORIES, 
   REPOS_GET_SUCCESS, 
   REPOS_GET_FAIL, 
-  REPOS_GET_REQUEST
+  REPOS_GET_REQUEST, 
+  REPO_ACTIVATED
 } from '../actions/types'
 
 
@@ -32,12 +33,18 @@ export default (state = initialState, action) => {
         }
     }
   }
-
+  
   switch (action.type) {
     case REPOS_GET_REQUEST: 
       return state
     case REPOS_GET_SUCCESS:
       return { ...state, repositories: { ...action.response.entities.repositories }}
+    case REPO_ACTIVATED: 
+      
+      console.log(action.payload)
+      console.log(state.repositories[action.payload])
+      console.log('CHANGE', action, action.payload)
+      return { ...state, repositories: null }
 
     case 'TOGGLE_ACTIVE':
       return {

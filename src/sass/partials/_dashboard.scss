@@ -1,14 +1,10 @@
 
 .dashboard__repository__list {
-    height: 65vh;
     overflow: scroll;
     list-style:none;
     padding-right: 0;
     box-shadow: 2px 4px 1px -1px rgba(38, 39, 38, 0.52);
-    padding-left: 0;
-    list-style-type: none;
     background-color: snow;
-    max-width: 790px;
 }
 
 .repository__item {
@@ -25,6 +21,7 @@
     height: 140px;
     padding-top: 0;
     background-color: white;
+    margin-bottom: 20px;
 }
 
 .repository__item-content {
@@ -49,7 +46,6 @@
 
 
 h4.dashboard__repository__title {
-    width: 650px;
     font-size: 3.28rem;
 }
 
@@ -65,7 +61,7 @@ h4.dashboard__repository__title {
 .repository__item__tech {
     padding-left: 17px;
     width: 90%;
-    border-left: 6px solid #2196F3;
+    border-left: 6px solid #0bd8be;
 }
 
 .repository__item__color__picker {

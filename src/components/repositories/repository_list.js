@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios'
 
-import { getRepositories } from '../../actions'
+import { 
+	getRepositories, 
+	
+	} from '../../actions'
 
 import config from '../../config';
 import RepositoryItem from './repository_item'

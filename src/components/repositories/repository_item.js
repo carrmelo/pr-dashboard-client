@@ -3,6 +3,11 @@ import Toggle from 'material-ui/Toggle';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 
+import { repoSwitch } from '../../actions'
+
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
 class RepositoryItem extends Component {
 	//active={repo.hookEnabled} // boolean
 	// description
@@ -13,8 +18,9 @@ class RepositoryItem extends Component {
 	// webUrl
 	// _id
 
-	onToggleSwitch () {
-		console.log(this.props.repo)
+	onToggleSwitch (repoID) {
+
+		this.props.repoSwitch(repoID)
 	}
 
 	onColorButtonClick () {
@@ -30,7 +36,7 @@ class RepositoryItem extends Component {
 					</div>
 					<div className="repository__item-content-toggle">
 						<Toggle 
-							onClick={() => this.onToggleSwitch() }
+							onClick={() => this.onToggleSwitch(this.props.repo._id) }
 						/>
 					</div>
 
@@ -65,7 +71,11 @@ const styles = {
   },
 };
 
-export default RepositoryItem
+const mapDispatchToProps = (dispatch) => {
+	return bindActionCreators({ repoSwitch }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(RepositoryItem)
 
 //   render() {
 //     const actions = [

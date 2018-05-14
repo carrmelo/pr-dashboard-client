@@ -25,7 +25,6 @@ svg {
 
 .card-panel {
   background-color: transparent;
-  border-radius: 25px;
   box-shadow: 0 2px 2px 0 #757575, 0 1px 5px 0 rgba(0, 0, 0, 0.87), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }
 
 .dashboard__content {
@@ -36,9 +35,11 @@ svg {
   flex: 0 0 260px; }
 
 .dashboard__panel {
-  flex: 1;
+  flex: 1 1;
   min-width: 820px;
-  height: 135vh; }
+  color: #ff0000ba;
+  background-color: white;
+  margin-top: 0; }
 
 .dashboard__header {
   height: 6.4rem;
@@ -93,15 +94,11 @@ svg {
   background: white; }
 
 .dashboard__repository__list {
-  height: 65vh;
   overflow: scroll;
   list-style: none;
   padding-right: 0;
   box-shadow: 2px 4px 1px -1px rgba(38, 39, 38, 0.52);
-  padding-left: 0;
-  list-style-type: none;
-  background-color: snow;
-  max-width: 790px; }
+  background-color: snow; }
 
 .repository__item {
   padding: 0px;
@@ -113,7 +110,8 @@ svg {
 .repository__item {
   height: 140px;
   padding-top: 0;
-  background-color: white; }
+  background-color: white;
+  margin-bottom: 20px; }
 
 .repository__item-content {
   display: flex;
@@ -133,7 +131,6 @@ svg {
   padding-top: 5px; }
 
 h4.dashboard__repository__title {
-  width: 650px;
   font-size: 3.28rem; }
 
 .repository__item__content__extras {
@@ -145,7 +142,7 @@ h4.dashboard__repository__title {
 .repository__item__tech {
   padding-left: 17px;
   width: 90%;
-  border-left: 6px solid #2196F3; }
+  border-left: 6px solid #0bd8be; }
 
 .repository__item__color__picker {
   display: flex;

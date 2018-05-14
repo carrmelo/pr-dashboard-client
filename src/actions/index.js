@@ -10,7 +10,8 @@ import {
   REPOS_GET_SUCCESS, 
   REPOS_GET_FAIL, 
 
-  REPO_ACTIVATED
+  REPO_ACTIVATED, 
+  SELECTED_PULLREQUESTS
 
 } from './types'
 
@@ -34,10 +35,17 @@ export const getPullRequests = () => ({
   }
 })
 
-export const repoSwitch = () => {
+export const repoSwitch = (repoID) => {
   return {
     type: REPO_ACTIVATED, 
-    payload: 'SWITCHED REPOSITORY'
+    payload: repoID
+  }
+}
+
+export const getSelectedPullRequests = () => {
+  return {
+    type: SELECTED_PULLREQUESTS, 
+    payload: 'FOLLOWED ONES'
   }
 }
 
