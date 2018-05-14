@@ -120,7 +120,6 @@ svg {
 
 .repository__item-content-text {
   padding-left: 25px;
-  border-left: 6px solid #0bd8be;
   background-color: white;
   color: black;
   font-weight: 500;
@@ -141,8 +140,7 @@ h4.dashboard__repository__title {
 
 .repository__item__tech {
   padding-left: 17px;
-  width: 90%;
-  border-left: 6px solid #0bd8be; }
+  width: 90%; }
 
 .repository__item__color__picker {
   display: flex;

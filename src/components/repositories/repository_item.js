@@ -20,48 +20,48 @@ import Popover from 'material-ui/Popover';
 import { HuePicker } from 'react-color'
 
 class RepositoryItem extends Component {
-	//active={repo.hookEnabled} // boolean
-	// description
-	// fullName
-	// hookEnabled
-	// name
-	// private
-	// webUrl
-	// _id
-
+	
 	state = {
-      open: false,
-    };
-    
+		open: false,
+		background: '#fff'
+	};
+	
 	onColorButtonClick = (e) => {
 	    e.preventDefault();
 		const { currentTarget } = e
 
-		setTimeout(() => {
 			this.setState({
 		    	open: true,
 		      	anchorEl: currentTarget,
 		    });
-		}, 1000)
 
-		console.log('ACTION CREATOR', this.propsselectColor)
-		console.log('REPO ITEM', this.props.repo)
-	    
+		console.log('COLOR SELECT', this.state.color)
   	};
 
 	handleRequestClose = () => {
 		this.setState({
-	    	open: false,
+	    	open: false, 
 	    });
 	};
+
+	handleColorChange = (e) => {
+		console.log('***', e)
+		this.setState({
+			background: e.hex
+		}, () => console.log(this.state.background))
+	}
 
 	onToggleSwitch (repoID) {
 		this.props.repoSwitch(repoID)
 	}
 
 	render() {
+
 		return (
-			<li className="repository__item">
+			<li 
+				className="repository__item"
+				style={{borderLeft: `6px solid ${this.state.background}`}}
+			>
 				<div className="repository__item-content">
 					<div className="repository__item-content-text">
 						<span>{this.props.repo.fullName}</span>
@@ -91,10 +91,12 @@ class RepositoryItem extends Component {
 				          anchorEl={this.state.anchorEl}
 				          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
 				          targetOrigin={{horizontal: 'left', vertical: 'top'}}
-				          
 				          onRequestClose={this.handleRequestClose}
 				        >
-						<HuePicker />
+						<HuePicker 
+							color={this.state.background}
+							onChangeComplete={this.handleColorChange}
+						/>
 				        </Popover>
 				    </div>
 
