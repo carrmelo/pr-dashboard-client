@@ -20,12 +20,14 @@
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install && yarn run build",
+    "heroku-postbuild":
+      "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "compile-sass": "node-sass src/sass/main.scss src/css/style.css"
