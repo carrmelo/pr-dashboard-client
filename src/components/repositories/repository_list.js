@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios'
 
-import { authHeader } from '../../helpers/auth-header'
-
 import { getRepositories } from '../../actions'
 
 import config from '../../config';
@@ -13,26 +11,36 @@ import RepositoryItem from './repository_item'
 // import { bindActionCreators } from 'redux'
 
 class RepositoriesList extends Component {
+	
+	//UPDATE ON REAL TIME SOCKETS
+	// componentDidMount() {
+	// 	socket.on('repos-update', this.props.getRepositories.bind(this));
+	// 	axios.get(`${config.baseServerUrl}/repos`)
+	// 		.then(res => {
+	// 			console.log('***', res)
+	// 			this.props.getRepositories(res.data)
+	// 		})
+	// }
 
-	componentDidMount() {
-		socket.on('repos-update', this.props.getRepositories.bind(this));
-		const header = authHeader()
-		axios.get(`${config.serverUrl}/repos`, { headers: header })
-			.then(res => {
-				this.props.getRepositories(res.data, header)
-			})
+	componentWillMount() {
+		this.props.getRepositories()
 	}
 
 	renderRepositoryItem () {
-		return this.props.repos.map(repo => {
-			return (
-				<RepositoryItem
-					key={repo._id}
-					repo={repo}
-					active={repo.hookEnabled}
-				/>
-			)
-		})
+		
+		let { repositories } = this.props
+
+		if(!repositories) return <div>LOADING</div>
+		
+		return Object.keys(repositories)
+			.map(key => {
+				return (
+					<RepositoryItem 
+						key={key} 
+						repo={repositories[key]}
+					/>
+				)
+			})
 	}
 
 	render() {
@@ -50,9 +58,10 @@ class RepositoriesList extends Component {
 	}
 }
 
-const mapStateToProps = ({ entities }) => ({
-	repos: entities.repos
-})
+const mapStateToProps = (state) => {
+	return { repositories: state.entities.repositories }		
+}
+	
 
 const mapDispatchToProps = (dispatch) => ({
 	getRepositories: (repos, header) => dispatch(getRepositories(repos, header))
