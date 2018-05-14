@@ -25,6 +25,7 @@ class RepositoriesList extends Component {
 			return (
 				<RepositoryItem
 					key={repo._id}
+					itemId={repo._id}
 					repo={repo}
 					active={repo.hookEnabled}
 				/>

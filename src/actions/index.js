@@ -4,7 +4,10 @@ import {
   PULLS_REQUEST,
   PULLS_SUCCESS,
   PULLS_FAILURE,
-  GET_REPOSITORIES
+  GET_REPOSITORIES,
+  TOGGLE_WEBHOOK_REQUEST,
+  TOGGLE_WEBHOOK_SUCCESS,
+  TOGGLE_WEBHOOK_FAILURE
 } from './types'
 
 
@@ -26,7 +29,14 @@ export const setPullsFromSocket = (pulls) => ({
   pulls
 })
 
-export const toggleRepository = (id) => ({
-  type: 'TOGGLE_ACTIVE',
-  id
+export const toggleRepository = (id, action) => ({
+  [CALL_API]: {
+    types: [
+      TOGGLE_WEBHOOK_REQUEST,
+      TOGGLE_WEBHOOK_SUCCESS,
+      TOGGLE_WEBHOOK_FAILURE
+    ],
+    endpoint: `${config.baseServerUrl}/repos/${id}/${action}`,
+    method: 'PATCH'
+  }
 })
