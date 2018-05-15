@@ -1,21 +1,18 @@
 import { CALL_API, Schemas } from '../middleware/api'
 import {
-<<<<<<< HEAD
   PULLS_REQUEST,
   PULLS_SUCCESS,
   PULLS_FAILURE,
   GET_REPOSITORIES,
   TOGGLE_WEBHOOK_REQUEST,
   TOGGLE_WEBHOOK_SUCCESS,
-  TOGGLE_WEBHOOK_FAILURE
-=======
+  TOGGLE_WEBHOOK_FAILURE,
   REPOS_GET,
   PULLS_GET,
   REPO_ACTIVATED,
   SELECTED_PULLREQUESTS,
   COLOR_SELECTED,
   SOCKETS_PULLS_SET
->>>>>>> develop
 } from './types'
 
 export const getRepositories = () => ({
@@ -64,18 +61,11 @@ export const setPullsFromSocket = (pulls) => ({
   type: SOCKETS_PULLS_SET,
   payload: pulls
 })
-<<<<<<< HEAD
 
 export const toggleRepository = (id, action) => ({
+  type: 'TOGGLE_WEBHOOK',
   [CALL_API]: {
-    types: [
-      TOGGLE_WEBHOOK_REQUEST,
-      TOGGLE_WEBHOOK_SUCCESS,
-      TOGGLE_WEBHOOK_FAILURE
-    ],
-    endpoint: `${config.baseServerUrl}/repos/${id}/${action}`,
+    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos/${id}/${action}`,
     method: 'PATCH'
   }
 })
-=======
->>>>>>> develop

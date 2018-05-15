@@ -2,32 +2,39 @@ import { normalize, schema } from 'normalizr';
 import { authHeader } from '../helpers/auth-header'
 // Fetch and normalizr of API
 
-const callApi = (endpoint, schema) => {
+const callApi = (endpoint, schema, method) => {
 
   return fetch(endpoint, {
     headers: authHeader(),
     method: method || 'GET'
   })
-    .then(response =>
-      response.json()
-      .then(json=> {
-
-        if (!response.ok) {
-          return Promise.reject(json)
-        }
-        if (json.token) {
-          return Object.assign({}, json)
-        }
-        if (!schema) {
-          return json
-        }
-
+    .then(response => {
+      const contentType = response.headers.get('Content-Type')
+      console.log('Hola', contentType)
+      console.log('Chao', response)
+      if (contentType && contentType.indexOf('application/json') !== -1) {
+        return response.json()
+        .then(json=> {
+          
+          if (!response.ok) {
+            return Promise.reject(json)
+          }
+          if (json.token) {
+            return Object.assign({}, json)
+          }
+          if (!schema) {
+            return json
+          }
+          
           return Object.assign({},
             normalize(json, schema)
-
+            
           )
-      })
-    )
+        })
+      } else {
+        return null;
+      }
+    })
 
 }
 
@@ -62,29 +69,17 @@ export default store => next => action => {
     return next(action)
   }
 
-<<<<<<< HEAD
-  let { endpoint, method } = callAPI
-  const { schema, types } = callAPI
-=======
-  const { schema, types, endpoint } = callAPI
->>>>>>> develop
+  const { schema, types, endpoint, method } = callAPI
 
   next({
     ...action,
     type: action.type + '_REQUEST'
   })
 
-<<<<<<< HEAD
   return callApi(endpoint, schema, method).then(
-    response => next(actionWith({
-      response,
-      type: successType
-=======
-  return callApi(endpoint, schema).then(
     response => store.dispatch(actionWith({
       type: action.type + '_SUCCESS',
       response
->>>>>>> develop
     })),
     error => store.dispatch(actionWith({
       type: action.type + '_FAILURE',

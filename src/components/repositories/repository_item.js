@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
-<<<<<<< HEAD
 import { connect } from 'react-redux'
 
 import { toggleRepository } from '../../actions'
 
-=======
->>>>>>> develop
 import Toggle from 'material-ui/Toggle';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
@@ -16,7 +13,6 @@ import {
 } from '../../actions'
 
 import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -67,16 +63,9 @@ class RepositoryItem extends Component {
 						<span>{this.props.repo.fullName}</span>
 					</div>
 					<div className="repository__item-content-toggle">
-<<<<<<< HEAD
-						{/* <span onClick={this.toggleRepository}> */}
-							<Toggle 
+<Toggle 
 							toggled={this.props.active}
 							onToggle={() => this.handleToggle(this.props.itemId, this.props.active)}/>
-						{/* </span> */}
-=======
-						<Toggle 
-							onClick={() => this.onToggleSwitch(this.props.repo._id) }
-						/>
 					</div>
 
 					<div className="repository__item__content__extras">
@@ -107,7 +96,6 @@ class RepositoryItem extends Component {
 				        </Popover>
 				    </div>
 
->>>>>>> develop
 					</div>
 				</div>
 			</li>
@@ -115,13 +103,6 @@ class RepositoryItem extends Component {
 	}
 }
 
-<<<<<<< HEAD
-const mapDispatchToProps = (dispatch) => ({
-	toggleRepository: (id, action) => dispatch(toggleRepository(id, action))
-})
-
-export default connect(null, mapDispatchToProps)(RepositoryItem)
-=======
 const styles = {
   chip: {
     margin: 4,
@@ -133,10 +114,9 @@ const styles = {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ repoSwitch, selectColor }, dispatch)
+	return bindActionCreators({ repoSwitch, selectColor, toggleRepository }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(RepositoryItem)
 
->>>>>>> develop
 

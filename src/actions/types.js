@@ -1,13 +1,11 @@
 export const REPOS_GET = 'REPOS_GET'
 export const PULLS_GET = 'PULLS_GET';
 
-<<<<<<< HEAD
 export const GET_REPOSITORIES = 'get_repositories'
 
 export const TOGGLE_WEBHOOK_REQUEST = 'TOGGLE_WEBHOOK_REQUEST'
 export const TOGGLE_WEBHOOK_SUCCESS = 'TOGGLE_WEBHOOK_SUCCESS'
 export const TOGGLE_WEBHOOK_FAILURE = 'TOGGLE_WEBHOOK_FAILURE'
-=======
 export const REPO_ACTIVATED = 'REPO_ACTIVATED'
 export const SELECTED_PULLREQUESTS = 'SELECTED_PULLREQUESTS'
 
@@ -24,4 +22,3 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export const LOGOUT_USER = 'LOGOUT_USER';
->>>>>>> develop
