@@ -1,70 +1,93 @@
 import { normalize, schema } from 'normalizr';
-
+import { authHeader } from '../helpers/auth-header'
 // Fetch and normalizr of API
 
-const callApi = (endpoint, schema, method) => {
+const callApi = (endpoint, schema) => {
+
   return fetch(endpoint, {
+    headers: authHeader(),
     method: method || 'GET'
   })
-  .then(response =>
-    response.json().then(json=> {
-      if (!response.ok) {
-        return Promise.reject(json)
-      }
+    .then(response =>
+      response.json()
+      .then(json=> {
 
-      return Object.assign({},
-        normalize(json, schema)
-      
-      )
-    })
-  )
+        if (!response.ok) {
+          return Promise.reject(json)
+        }
+        if (json.token) {
+          return Object.assign({}, json)
+        }
+        if (!schema) {
+          return json
+        }
+
+          return Object.assign({},
+            normalize(json, schema)
+
+          )
+      })
+    )
+
 }
 
 // Defining Schemas for normalizing data
 
 const userSchema = new schema.Entity('user', {}, { idAttribute: 'loginName' });
-const repoSchema = new schema.Entity('repository', {}, { idAttribute: 'fullName' });
+const repoSchema = new schema.Entity('repositories', {}, { idAttribute: 'fullName' });
 const pullSchema = new schema.Entity(
   'pull_requests',
-  { repository: repoSchema, user: userSchema },
+  { repositories: repoSchema, user: userSchema },
   { idAttribute: '_id' }
 );
 
 export const Schemas = {
-  PULLS: [ pullSchema ]
+  REPOS: [ repoSchema ],
+  PULLS: [ pullSchema ],
+  USER: [ userSchema ]
 }
 
-export const CALL_API = 'Call API'
+export const CALL_API = 'CALL_API'
+
+const actionWith = (data, action) => {
+  const finalAction = Object.assign({}, action, data)
+  delete finalAction[CALL_API]
+  return finalAction
+}
 
 export default store => next => action => {
+
   const callAPI = action[CALL_API]
   if (typeof callAPI === 'undefined') {
     return next(action)
   }
 
+<<<<<<< HEAD
   let { endpoint, method } = callAPI
   const { schema, types } = callAPI
+=======
+  const { schema, types, endpoint } = callAPI
+>>>>>>> develop
 
-  // if (typeof endpoint === 'function') {
-  //   endpoint = endpoint(store.getState())
-  // }
+  next({
+    ...action,
+    type: action.type + '_REQUEST'
+  })
 
-  const actionWith = data => {
-    const finalAction = Object.assign({}, action, data)
-    delete finalAction[CALL_API]
-    return finalAction
-  }
-
-  const [ requestType, successType, failureType ] = types
-  next(actionWith({ type: requestType }))
-
+<<<<<<< HEAD
   return callApi(endpoint, schema, method).then(
     response => next(actionWith({
       response,
       type: successType
+=======
+  return callApi(endpoint, schema).then(
+    response => store.dispatch(actionWith({
+      type: action.type + '_SUCCESS',
+      response
+>>>>>>> develop
     })),
-    error => next(actionWith({
-      type: failureType,
+    error => store.dispatch(actionWith({
+      type: action.type + '_FAILURE',
       error: error.message || 'Something bad happened'
     }))
   )

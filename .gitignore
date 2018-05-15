@@ -20,6 +20,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 node-modules
-config.js
+.env.development
 yarn.lock
 yarn.lock

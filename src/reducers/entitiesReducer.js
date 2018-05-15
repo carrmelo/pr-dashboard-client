@@ -1,24 +1,23 @@
-
 import {
-  GET_REPOSITORIES
+  REPO_ACTIVATED,
+  SOCKETS_PULLS_SET
 } from '../actions/types'
 
 
 const initialState = {
   repositories: {},
-  repos: [],
   pull_requests: {},
   users: {},
 }
 
 export default (state = initialState, action) => {
 
-  if (action.response && action.response.entities) {
+  if (action.response && action.response.entities && action.type !== "USER_INFO_SUCCESS") {
     return {
       ...state,
         repositories: {
           ...state.repositories,
-          ...action.response.entities.repository
+          ...action.response.entities.repositories
         },
         pull_requests: {
           ...state.pull_requests,
@@ -32,14 +31,16 @@ export default (state = initialState, action) => {
   }
 
   switch (action.type) {
-    case GET_REPOSITORIES:
-      return {
-        ...state,
-        repos: [
-          // ...state.repos,
-          ...action.repos
-        ]
-      }
+    case 'REPOS_GET_REQUEST':
+      return state
+    case 'REPOS_GET_SUCCESS':
+      return { ...state, repositories: { ...action.response.entities.repositories }}
+    case REPO_ACTIVATED:
+
+      console.log(action.payload)
+      console.log(state.repositories[action.payload])
+      console.log('CHANGE', action, action.payload)
+      return { ...state, repositories: null }
 
     case 'TOGGLE_ACTIVE':
       return {
@@ -52,7 +53,7 @@ export default (state = initialState, action) => {
           })
       }
 
-    case 'GET_PULLS':
+    case SOCKETS_PULLS_SET:
       return {
         ...state,
           repositories: {
@@ -68,6 +69,33 @@ export default (state = initialState, action) => {
             ...action.pulls.entities.user
           }
       }
+
+    case 'LOGOUT_USER':
+      return initialState
+
+    // Update Pull Requests from socket
+    case 'pull_request_received':
+    return {
+      ...state,
+      pull_requests: {
+        ...state.pull_requests,
+        ...action.data.entities.pull_requests
+      },
+      users: {
+        ...state.users,
+        ...action.data.entities.user
+      }
+    }
+
+    // Update Repositories from socket
+    case 'repos-update_received':
+
+    return {
+      ...state,
+      repositories: {
+        ...action.data.entities.repositories
+      }
+  }
 
   default: return state;
   }

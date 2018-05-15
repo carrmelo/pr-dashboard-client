@@ -1,7 +1,3 @@
-
-
-
-
 import React, { Component } from 'react'
 
 import { Link } from 'react-router-dom'
@@ -19,7 +15,7 @@ class Sidebar extends Component {
 						</svg>
 					</Link>
 				</li>
-				
+
 				<li className="sidebar__navigation-pullrequests">
 					<Link to="/pulls">
 						<svg className="sidebar__icon-pullrequests">
@@ -27,11 +23,10 @@ class Sidebar extends Component {
 						</svg>
 					</Link>
 				</li>
-				
+
 			</ul>
 		)
 	}
 }
 
 export default Sidebar
-

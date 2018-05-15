@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import './pullrequest_item.css'
-
 class PullRequestItem extends Component {
 
   render() {

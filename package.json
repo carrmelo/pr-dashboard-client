@@ -9,11 +9,13 @@
     "node-sass-chokidar": "^1.2.2",
     "normalizr": "^3.2.4",
     "react": "^16.3.2",
+    "react-color": "^2.14.1",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "socket.io-client": "^2.1.0"
   },
@@ -24,6 +26,7 @@
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "compile-sass": "node-sass src/sass/main.scss src/css/style.css"
