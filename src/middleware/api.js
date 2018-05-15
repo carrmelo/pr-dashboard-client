@@ -3,24 +3,27 @@ import { authHeader } from '../helpers/auth-header'
 // Fetch and normalizr of API
 
 const callApi = (endpoint, schema) => {
-  
+
   return fetch(endpoint, {
     headers: authHeader()
   })
-    .then(response => 
+    .then(response =>
       response.json()
       .then(json=> {
-        
+
         if (!response.ok) {
           return Promise.reject(json)
         }
         if (json.token) {
           return Object.assign({}, json)
         }
+        if (!schema) {
+          return json
+        }
 
           return Object.assign({},
             normalize(json, schema)
-          
+
           )
       })
     )
@@ -52,7 +55,7 @@ const actionWith = (data, action) => {
 }
 
 export default store => next => action => {
-  
+
   const callAPI = action[CALL_API]
   if (typeof callAPI === 'undefined') {
     return next(action)

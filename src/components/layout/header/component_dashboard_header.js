@@ -7,25 +7,51 @@ import { bindActionCreators } from 'redux';
 import * as authActions from '../../../actions/authActions';
 
 class DashboardHeader extends Component {
-	
+
 	state = { value: '' }
-	
+
 	onInputChange = (e) => {
 		this.setState({
 			value: e.target.value
 		}, () => console.log(this.state.value))
-	} 
+	}
 
 	handleLogOut = () => {
 		this.props.authActions.logoutUser();
+		localStorage.clear();
 	}
+
+	renderLogOutButton = () => (
+		(this.props.isAuth)
+		? <div className="header__config">
+				<button className="header__config-button" onClick={this.handleLogOut}>
+					Sign Out
+					<svg className="header__config-icon">
+						<use xlinkHref="./icons/sprite.svg#icon-cog-outline"></use>
+					</svg>
+				</button>
+			</div>
+		: null
+	)
+
+	renderName = (user) => (
+			<div className="header__config">
+				Hello <br />{user[0].loginName}
+			</div>
+	)
+
+	renderSignIn = () => (
+	  <div> Please,
+			<a href={`${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/auth/github`}> sign in </a>
+		</div>
+	)
 
 	render() {
 		return (
-			<header 
+			<header
 				style={{backgroundColor: 'inherit', boxShadow: 'inherit'}}
 				className="dashboard__header" >
-				
+
 				<div className="header__logo">
 					<svg className="header__logo-icon">
 						<use xlinkHref="./icons/sprite.svg#icon-social-github-circular"></use>
@@ -34,8 +60,8 @@ class DashboardHeader extends Component {
 
 				<div className="header__search">
 					<form action="#" className="header__search-form">
-						<input 
-							type="text" className="header__search-input" placeholder="" 
+						<input
+							type="text" className="header__search-input" placeholder=""
 							onChange={this.onInputChange}
 							value={this.state.value}
 						/>
@@ -47,26 +73,24 @@ class DashboardHeader extends Component {
 					</form>
 				</div>
 
-				<a href={`${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/auth/github`}>Link </a>
+				{(this.props.isAuth && this.props.user[0])
+				? this.renderName(this.props.user)
+				: this.renderSignIn()}
 
-				<div className="header__config">
-					<button className="header__config-button" onClick={this.handleLogOut}>
-						<svg className="header__config-icon">
-							<use xlinkHref="./icons/sprite.svg#icon-cog-outline"></use>
-						</svg>
-					</button>
-				</div>
+				{this.renderLogOutButton()}
+
 			</header>
 		)
 	}
 }
 
+const mapStateToProps = ({ authentication }) => ({
+	isAuth: authentication.isAuthenticated,
+	user: authentication.currentUser
+})
+
 const mapDispatchToProps = dispatch => ({
 	authActions: bindActionCreators(authActions, dispatch)
 });
 
-export default connect(null, mapDispatchToProps)(DashboardHeader);
-
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardHeader);

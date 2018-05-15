@@ -20,6 +20,12 @@ class PullRequestList extends Component {
     this.props.setPullsFromSocket(normalizedPulls);
   }
 
+  componentDidUpdate () {
+    if (!this.props.isAuth) {
+      this.props.history.push('/')
+    }
+  }
+
   renderPullRequestItem (pulls) {
     return Object.keys(pulls).map(key => {
       return (
@@ -55,7 +61,8 @@ class PullRequestList extends Component {
   }
 }
 
-const mapStateToProps = ({ entities }) => ({
+const mapStateToProps = ({ entities, authentication }) => ({
+  isAuth: authentication.isAuthenticated,
   pulls: entities.pull_requests
 })
 
