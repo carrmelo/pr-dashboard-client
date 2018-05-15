@@ -35,7 +35,7 @@ const callApi = (endpoint, schema, method) => {
         if (!response.ok) {
           return Promise.reject(response)
         } else {
-          return response.url;
+          return response;
         }
       }
     })
