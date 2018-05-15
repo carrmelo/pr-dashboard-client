@@ -57,7 +57,7 @@ export default store => next => action => {
   if (typeof callAPI === 'undefined') {
     return next(action)
   }
-
+  //method
   const { schema, types, endpoint } = callAPI
 
   next({

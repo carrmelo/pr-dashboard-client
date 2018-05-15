@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { searchTerm } from '../../../actions'
+
 import * as authActions from '../../../actions/authActions';
 
 class DashboardHeader extends Component {
@@ -13,8 +15,10 @@ class DashboardHeader extends Component {
 	onInputChange = (e) => {
 		this.setState({
 			value: e.target.value
-		}, () => console.log(this.state.value))
-	} 
+		}, () => {
+			this.props.searchTerm(this.state.value)
+		})
+	} 	
 
 	handleLogOut = () => {
 		this.props.authActions.logoutUser();
@@ -62,7 +66,8 @@ class DashboardHeader extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-	authActions: bindActionCreators(authActions, dispatch)
+	authActions: bindActionCreators(authActions, dispatch), 
+	searchTerm: bindActionCreators(searchTerm, dispatch)
 });
 
 export default connect(null, mapDispatchToProps)(DashboardHeader);

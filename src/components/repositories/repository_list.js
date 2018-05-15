@@ -3,11 +3,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios'
 
-import { getRepositories } from '../../actions'
+import { 
+	getRepositories
+} from '../../actions'
 
 import RepositoryItem from './repository_item'
-
-// import { bindActionCreators } from 'redux'
 
 class RepositoriesList extends Component {
 	
@@ -23,6 +23,21 @@ class RepositoriesList extends Component {
 
 	componentWillMount() {
 		this.props.getRepositories()
+	}
+
+	filterList = (searchValue) => {
+		
+		const DATA = ["Aaa", "aaa", "bbb", "BBB", "bbb"]
+
+		return (
+			<li>
+			{DATA
+				.filter( item => item.toUpperCase().includes(searchValue.toUpperCase()) )
+				.map( item => {return (<li>{item}</li>)} )
+			}
+			</li>
+		)
+
 	}
 
 	renderRepositoryItem () {
@@ -44,29 +59,48 @@ class RepositoriesList extends Component {
 
 	render() {
 		return (
-			<div className="dashboard__repository__card">
-				<h4 className="dashboard__repository__title">
-					Repositories
-				</h4>
-				<ul className="dashboard__repository__list">
-					{this.renderRepositoryItem()}
-				</ul>
-			</div>
+			<ul>
+				{this.filterList(this.props.searchValue)}
+			</ul>
 			
 		)
 	}
 }
 
 const mapStateToProps = (state) => {
-	return { repositories: state.entities.repositories }		
+	return { 
+		repositories: state.entities.repositories, 
+		searchValue: state.search 
+	}		
 }
 	
-
 const mapDispatchToProps = (dispatch) => ({
 	getRepositories: (repos, header) => dispatch(getRepositories(repos, header))
 	// return bindActionCreators({ getRepositories }, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepositoriesList)
+
+
+
+
+
+// <div className="dashboard__repository__card">
+// 	<h4 className="dashboard__repository__title">
+// 		Repositories
+// 	</h4>
+// 	<ul className="dashboard__repository__list">
+// 		{this.renderRepositoryItem()}
+// 	</ul>
+// </div>
+
+
+
+
+
+
+
+
+
 
 
