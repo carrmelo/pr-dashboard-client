@@ -60,7 +60,10 @@ class RepositoriesList extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return { repositories: state.entities.repositories }
+	return {
+		repositories: state.entities.repositories,
+		isAuth: state.authentication.isAuthenticated
+	 }
 }
 
 

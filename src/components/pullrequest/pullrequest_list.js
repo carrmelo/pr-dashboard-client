@@ -56,7 +56,7 @@ class PullRequestList extends Component {
         </div>
       )
     } else {
-      return <p>Loading</p>
+      return <p>Seems like there's nothing to show yet</p>
     }
   }
 }
