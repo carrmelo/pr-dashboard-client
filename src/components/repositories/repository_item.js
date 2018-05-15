@@ -5,7 +5,8 @@ import Avatar from 'material-ui/Avatar';
 
 import { 
 	toggleRepository, 
-	selectColor
+	selectColor, 
+	toggleRepo
 } from '../../actions'
 
 import { bindActionCreators } from 'redux'
@@ -41,13 +42,16 @@ class RepositoryItem extends Component {
 	}
 
 	onToggleSwitch = () => {
-		this.state.toggle === true 
-		? this.setState({ toggle: false }, () => {
-			this.props.toggleRepository(this.props.repo._id, "disable")
-		}) 
-		: this.setState({ toggle: true }, () => {
-			this.props.toggleRepository(this.props.repo._id, "enable")
-		})
+
+		this.props.toggleRepo(this.props.repo._id, "disable")
+
+		// this.state.toggle === true 
+		// ? this.setState({ toggle: false }, () => {
+		// 	this.props.toggleRepository(this.props.repo._id, "disable")
+		// }) 
+		// : this.setState({ toggle: true }, () => {
+		// 	this.props.toggleRepository(this.props.repo._id, "enable")
+		// })
 	}
 
 	render() {
@@ -64,7 +68,7 @@ class RepositoryItem extends Component {
 						<Toggle 
 							defaultToggled={true}
 							onClick={this.onToggleSwitch} 
-						/>
+						/> 
 					</div>
 
 					<div className="repository__item__content__extras">
@@ -113,7 +117,7 @@ const styles = {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ toggleRepository, selectColor }, dispatch)
+	return bindActionCreators({ toggleRepository, selectColor, toggleRepo }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(RepositoryItem)

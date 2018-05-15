@@ -16,6 +16,7 @@ import './sass/main.css'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import reduxThunk from 'redux-thunk'
 
 // const persistedState = loadState();
 
@@ -23,7 +24,7 @@ const store = createStore(
   reducer,
   // persistedState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(/*logger, */api)
+  applyMiddleware(/*logger, */api, reduxThunk)
 )
 
 // Listen to the changes on the state

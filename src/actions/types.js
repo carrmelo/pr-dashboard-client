@@ -20,3 +20,7 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 
 export const SEARCH_TERM = 'SEARCH_TERM';
 export const TOGGLE_WEBHOOK = 'TOGGLE_WEBHOOK';
+
+export const ACTIVATE_REPO = 'ACTIVATE_REPO';
+
+

@@ -1,4 +1,5 @@
 import { CALL_API, Schemas } from '../middleware/api'
+import axios from 'axios'
 import {
   REPOS_GET,
   PULLS_GET,
@@ -7,8 +8,14 @@ import {
   COLOR_SELECTED,
   SOCKETS_PULLS_SET, 
   SEARCH_TERM, 
-  TOGGLE_WEBHOOK
+  TOGGLE_WEBHOOK, 
+  ACTIVATE_REPO
 } from './types'
+
+import { authHeader } from '../helpers/auth-header'
+
+
+let BASE_PATCH_URL = `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos/` 
 
 export const getRepositories = () => ({
   type: REPOS_GET,
@@ -41,6 +48,30 @@ export const toggleRepository = (id, toggleActive) => ({
   }
 })
 
+/*id, toggleActive*/
+// payload: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos/${id}/${toggleActive}`,
+export const toggleRepo = (repoID, repoActive) => {
+
+  const axiosConfig = { headers: authHeader() };
+  
+  console.log('FFF', authHeader())
+  console.log('+++', axiosConfig)
+  // ${id}/${toggleActive}
+  // repos/5afae266151ccf00042c4f15/enable
+  return dispatch => {
+    BASE_PATCH_URL += `${repoID}/${repoActive}`
+
+    axios.patch(BASE_PATCH_URL, axiosConfig)
+      .then(response => {
+        console.log(response)
+            dispatch({ 
+            type: ACTIVATE_REPO,
+            payload: 'ONOFFREPO' 
+          })
+      })   
+  }
+}
+   
 export const getSelectedPullRequests = () => {
   return {
     type: SELECTED_PULLREQUESTS, 
