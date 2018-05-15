@@ -44,7 +44,7 @@ class RepositoryItem extends Component {
 	}
 
 	render() {
-
+		console.log('***', this.props.repo)
 		return (
 			<li 
 				className="repository__item"
