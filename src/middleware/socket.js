@@ -31,7 +31,7 @@ const socket = url => store => {
   return next => action => {
     try {
       const usersObj = store.getState('authentication').authentication.currentUser;
-      const name = Object.keys(usersObj)[0];
+      const name = usersObj[0].loginName;
 
       if (name) {
         socket.emit('hook-id-to-user', (name))
