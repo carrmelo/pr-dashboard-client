@@ -1,4 +1,3 @@
-
 import {
   REPO_ACTIVATED,
   SOCKETS_PULLS_SET
@@ -73,6 +72,30 @@ export default (state = initialState, action) => {
 
     case 'LOGOUT_USER':
       return initialState
+
+    // Update Pull Requests from socket
+    case 'pull_request_received':
+    return {
+      ...state,
+      pull_requests: {
+        ...state.pull_requests,
+        ...action.data.entities.pull_requests
+      },
+      users: {
+        ...state.users,
+        ...action.data.entities.user
+      }
+    }
+
+    // Update Repositories from socket
+    case 'repos-update_received':
+
+    return {
+      ...state,
+      repositories: {
+        ...action.data.entities.repositories
+      }
+  }
 
   default: return state;
   }
