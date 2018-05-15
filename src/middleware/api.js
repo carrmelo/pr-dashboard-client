@@ -18,7 +18,6 @@ const callApi = (endpoint, schema, method) => {
         if (json.token) {
           return Object.assign({}, json)
         }
-        if (!schema) return json
 
           return Object.assign({},
             normalize(json, schema)
@@ -48,12 +47,8 @@ export const Schemas = {
 export const CALL_API = 'CALL_API'
 
 const actionWith = (data, action) => {
-  console.log('PRE', action)
-  console.log('PRE', data)
   const finalAction = Object.assign({}, action, data)
   delete finalAction[CALL_API]
-   console.log('AFTER', action)
-  console.log('AFTER', data)
   return finalAction
 }
 
@@ -64,16 +59,15 @@ export default store => next => action => {
     return next(action)
   }
   //method
-  
-  const { schema, types, endpoint, method } = callAPI
-  
-  console.log('****', action)
-  // next({
-  //   ...action,
-  //   type: action.type + '_REQUEST'
-  // })
-  
-  console.log('POST', action)
+
+  let { endpoint, method } = callAPI
+  const { schema, types } = callAPI
+
+  next({
+    ...action,
+    type: action.type + '_REQUEST'
+  })
+
   return callApi(endpoint, schema, method).then(
     response => store.dispatch(actionWith({
       type: action.type + '_SUCCESS',

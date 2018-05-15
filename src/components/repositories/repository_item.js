@@ -41,7 +41,6 @@ class RepositoryItem extends Component {
 	}
 
 	onToggleSwitch = () => {
-
 		this.state.toggle === true 
 		? this.setState({ toggle: false }, () => {
 			this.props.toggleRepository(this.props.repo._id, "disable")
@@ -49,8 +48,6 @@ class RepositoryItem extends Component {
 		: this.setState({ toggle: true }, () => {
 			this.props.toggleRepository(this.props.repo._id, "enable")
 		})
-
-		
 	}
 
 	render() {
