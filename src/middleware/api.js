@@ -32,7 +32,11 @@ const callApi = (endpoint, schema, method) => {
           )
         })
       } else {
-        return null;
+        if (!response.ok) {
+          return Promise.reject(response)
+        } else {
+          return response.url;
+        }
       }
     })
 
@@ -40,8 +44,8 @@ const callApi = (endpoint, schema, method) => {
 
 // Defining Schemas for normalizing data
 
-const userSchema = new schema.Entity('user', {}, { idAttribute: 'loginName' });
-const repoSchema = new schema.Entity('repositories', {}, { idAttribute: 'fullName' });
+const userSchema = new schema.Entity('user', {}, { idAttribute: '_id' });
+const repoSchema = new schema.Entity('repositories', {}, { idAttribute: '_id' });
 const pullSchema = new schema.Entity(
   'pull_requests',
   { repositories: repoSchema, user: userSchema },
