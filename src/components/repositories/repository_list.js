@@ -1,4 +1,4 @@
-import socket from '../../websockets';
+// import socket from '../../websockets';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
@@ -64,6 +64,7 @@ const mapStateToProps = (state) => {
 		repositories: state.entities.repositories,
 		isAuth: state.authentication.isAuthenticated
 	 }
+
 }
 
 
