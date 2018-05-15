@@ -25,7 +25,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
   persistedState,
-  composeEnhancers(applyMiddleware(logger, api, socket('localhost:5000')))
+  composeEnhancers(applyMiddleware(logger, api, socket(process.env.REACT_APP_SERVER_URL)))
 )
 
 // Listen to the changes on the state
