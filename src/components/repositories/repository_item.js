@@ -41,13 +41,16 @@ class RepositoryItem extends Component {
 	}
 
 	onToggleSwitch = () => {
+
 		this.state.toggle === true 
 		? this.setState({ toggle: false }, () => {
-			this.props.toggleRepository(this.props.repo._id, this.state.toggle)
+			this.props.toggleRepository(this.props.repo._id, "disable")
 		}) 
 		: this.setState({ toggle: true }, () => {
-			this.props.toggleRepository(this.props.repo._id, this.state.toggle)
+			this.props.toggleRepository(this.props.repo._id, "enable")
 		})
+
+		
 	}
 
 	render() {
@@ -62,7 +65,7 @@ class RepositoryItem extends Component {
 					</div>
 					<div className="repository__item-content-toggle">
 						<Toggle 
-							defaultToggled={true}
+							defaultToggled={this.props.repo.hookEnabled}
 							onClick={this.onToggleSwitch} 
 						/>
 					</div>
