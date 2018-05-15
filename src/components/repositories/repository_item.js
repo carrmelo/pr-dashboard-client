@@ -4,7 +4,7 @@ import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 
 import { 
-	repoSwitch, 
+	toggleRepository, 
 	selectColor
 } from '../../actions'
 
@@ -39,12 +39,13 @@ class RepositoryItem extends Component {
 		this.setState({ background: e.hex })
 	}
 
-	onToggleSwitch (repoID) {
-		this.props.repoSwitch(repoID)
+	onToggleSwitch = () => {
+		console.log('STATE', this.props.repo)
+		console.log('ID', this.props.repo._id)
+		console.log('TOGGLE', this.props.toggleRepository())
 	}
 
 	render() {
-		//console.log('***', this.props.repo)
 		return (
 			<li 
 				className="repository__item"
@@ -55,9 +56,7 @@ class RepositoryItem extends Component {
 						<span>{this.props.repo.fullName}</span>
 					</div>
 					<div className="repository__item-content-toggle">
-						<Toggle 
-							onClick={() => this.onToggleSwitch(this.props.repo._id) }
-						/>
+						<Toggle onClick={this.onToggleSwitch} />
 					</div>
 
 					<div className="repository__item__content__extras">
@@ -106,7 +105,7 @@ const styles = {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ repoSwitch, selectColor }, dispatch)
+	return bindActionCreators({ toggleRepository, selectColor }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(RepositoryItem)

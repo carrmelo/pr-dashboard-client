@@ -6,7 +6,8 @@ import {
   SELECTED_PULLREQUESTS, 
   COLOR_SELECTED,
   SOCKETS_PULLS_SET, 
-  SEARCH_TERM
+  SEARCH_TERM, 
+  TOGGLE_WEBHOOK
 } from './types'
 
 export const getRepositories = () => ({
@@ -25,12 +26,20 @@ export const getPullRequests = () => ({
   }
 })
 
-export const repoSwitch = (repoID) => {
-  return {
-    type: REPO_ACTIVATED, 
-    payload: repoID
+// export const repoSwitch = (repoID) => {
+//   return {
+//     type: REPO_ACTIVATED, 
+//     payload: repoID
+//   }
+// }
+
+export const toggleRepository = (id, toggleActive) => ({
+   type: TOGGLE_WEBHOOK,
+   [CALL_API]: {
+    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos/${id}/${toggleActive}`,
+    method: 'PATCH'
   }
-}
+})
 
 export const getSelectedPullRequests = () => {
   return {
@@ -38,11 +47,6 @@ export const getSelectedPullRequests = () => {
     payload: 'FOLLOWED ONES'
   }
 }
-
-// export const toggleRepository = (id) => ({
-//   type: 'TOGGLE_ACTIVE',
-//   id
-// })
 
 export const selectColor = (color) => {
   return {

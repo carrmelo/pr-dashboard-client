@@ -25,24 +25,9 @@ class RepositoriesList extends Component {
 		this.props.getRepositories()
 	}
 
-	filterList = (searchValue) => {
-		
-		const DATA = ["Aaa", "aaa", "bbb", "BBB", "bbb"]
-
-		return (
-			<li>
-			{DATA
-				.filter(item => item.toUpperCase().includes(searchValue.toUpperCase()) )
-				.map(item => <li>{item}</li> )
-			}
-			</li>
-		)
-	}
-
 	renderRepositoryItem (searchValue) {
 		
 		let { repositories } = this.props
-
 		if(!repositories) return <div>LOADING</div>
 		
 		return Object.keys(repositories)
@@ -80,8 +65,6 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepositoriesList)
-
-
 
 
 

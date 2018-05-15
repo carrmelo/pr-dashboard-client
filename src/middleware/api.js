@@ -2,10 +2,11 @@ import { normalize, schema } from 'normalizr';
 import { authHeader } from '../helpers/auth-header'
 // Fetch and normalizr of API
 
-const callApi = (endpoint, schema) => {
+const callApi = (endpoint, schema, method) => {
   
   return fetch(endpoint, {
-    headers: authHeader()
+    headers: authHeader(), 
+    method: method || 'GET'
   })
     .then(response => 
       response.json()
@@ -58,14 +59,16 @@ export default store => next => action => {
     return next(action)
   }
   //method
-  const { schema, types, endpoint } = callAPI
+
+  let { endpoint, method } = callAPI
+  const { schema, types } = callAPI
 
   next({
     ...action,
     type: action.type + '_REQUEST'
   })
 
-  return callApi(endpoint, schema).then(
+  return callApi(endpoint, schema, method).then(
     response => store.dispatch(actionWith({
       type: action.type + '_SUCCESS',
       response
