@@ -32,21 +32,21 @@ class RepositoriesList extends Component {
 		return (
 			<li>
 			{DATA
-				.filter( item => item.toUpperCase().includes(searchValue.toUpperCase()) )
-				.map( item => {return (<li>{item}</li>)} )
+				.filter(item => item.toUpperCase().includes(searchValue.toUpperCase()) )
+				.map(item => <li>{item}</li> )
 			}
 			</li>
 		)
-
 	}
 
-	renderRepositoryItem () {
+	renderRepositoryItem (searchValue) {
 		
 		let { repositories } = this.props
 
 		if(!repositories) return <div>LOADING</div>
 		
 		return Object.keys(repositories)
+			.filter(item => item.toUpperCase().includes(searchValue.toUpperCase()) )
 			.map(key => {
 				return (
 					<RepositoryItem 
@@ -60,7 +60,7 @@ class RepositoriesList extends Component {
 	render() {
 		return (
 			<ul>
-				{this.filterList(this.props.searchValue)}
+				{this.renderRepositoryItem(this.props.searchValue)}
 			</ul>
 			
 		)
