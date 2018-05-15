@@ -6,8 +6,13 @@ import { loginUser, getUserInfo } from '../../actions/authActions';
 class Welcome extends Component {
 
   componentDidMount () {
-    const code = this.props.location.search
-    this.props.loginUser(code)
+    if (!this.props.isAuth){
+      const code = this.props.location.search
+      this.props.loginUser(code)
+    } else if (!this.props.user) {
+      this.props.getUserInfo()
+      this.props.history.push('/repos')
+    }
   }
 
   // static getDerivedStateFromProps (nextProps, prevState) {
@@ -37,7 +42,7 @@ class Welcome extends Component {
 
 const mapStateToProps = ({ authentication }) => ({
   isAuth: authentication.isAuthenticated,
-  currentUser: authentication.currentUser
+  user: authentication.currentUser
 })
 
 const mapDispatchToProps = (dispatch) => ({

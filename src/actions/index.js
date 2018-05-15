@@ -2,8 +2,8 @@ import { CALL_API, Schemas } from '../middleware/api'
 import {
   REPOS_GET,
   PULLS_GET,
-  REPO_ACTIVATED, 
-  SELECTED_PULLREQUESTS, 
+  REPO_ACTIVATED,
+  SELECTED_PULLREQUESTS,
   COLOR_SELECTED,
   SOCKETS_PULLS_SET
 } from './types'
@@ -11,7 +11,7 @@ import {
 export const getRepositories = () => ({
   type: REPOS_GET,
   [CALL_API]: {
-    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos`, 
+    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos`,
     schema: Schemas.REPOS
   }
 })
@@ -26,14 +26,14 @@ export const getPullRequests = () => ({
 
 export const repoSwitch = (repoID) => {
   return {
-    type: REPO_ACTIVATED, 
+    type: REPO_ACTIVATED,
     payload: repoID
   }
 }
 
 export const getSelectedPullRequests = () => {
   return {
-    type: SELECTED_PULLREQUESTS, 
+    type: SELECTED_PULLREQUESTS,
     payload: 'FOLLOWED ONES'
   }
 }
@@ -45,7 +45,7 @@ export const getSelectedPullRequests = () => {
 
 export const selectColor = (color) => {
   return {
-    type: COLOR_SELECTED, 
+    type: COLOR_SELECTED,
     payload: color
   }
 }
@@ -54,4 +54,3 @@ export const setPullsFromSocket = (pulls) => ({
   type: SOCKETS_PULLS_SET,
   payload: pulls
 })
-

@@ -16,11 +16,10 @@ class Pannel extends Component {
 				<Route exact path="/" component={SignIn} />
 				<Route exact path="/welcome" component={Welcome} />
 				<PrivateRoute exact path="/repos" component={RepoList} />
-				<PrivateRoute exact path="/pulls" component={PullRequestList} />	
+				<PrivateRoute exact path="/pulls" component={PullRequestList} />
 			</div>
 		)
 	}
 }
 
 export default Pannel
-          

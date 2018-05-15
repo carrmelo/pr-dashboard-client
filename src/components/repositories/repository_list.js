@@ -1,7 +1,6 @@
 import socket from '../../websockets';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import axios from 'axios'
 
 import { getRepositories } from '../../actions'
 
@@ -10,32 +9,35 @@ import RepositoryItem from './repository_item'
 // import { bindActionCreators } from 'redux'
 
 class RepositoriesList extends Component {
-	
+
 	//UPDATE ON REAL TIME SOCKETS
-	// componentDidMount() {
+	componentDidMount() {
 	// 	socket.on('repos-update', this.props.getRepositories.bind(this));
 	// 	axios.get(`${config.baseServerUrl}/repos`)
 	// 		.then(res => {
 	// 			console.log('***', res)
 	// 			this.props.getRepositories(res.data)
 	// 		})
-	// }
-
-	componentWillMount() {
 		this.props.getRepositories()
 	}
 
+	componentDidUpdate() {
+		if (!this.props.isAuth) {
+      this.props.history.push('/')
+    }
+	}
+
 	renderRepositoryItem () {
-		
+
 		let { repositories } = this.props
 
 		if(!repositories) return <div>LOADING</div>
-		
+
 		return Object.keys(repositories)
 			.map(key => {
 				return (
-					<RepositoryItem 
-						key={key} 
+					<RepositoryItem
+						key={key}
 						repo={repositories[key]}
 					/>
 				)
@@ -52,21 +54,22 @@ class RepositoriesList extends Component {
 					{this.renderRepositoryItem()}
 				</ul>
 			</div>
-			
+
 		)
 	}
 }
 
 const mapStateToProps = (state) => {
-	return { repositories: state.entities.repositories }		
+	return {
+		repositories: state.entities.repositories,
+		isAuth: state.authentication.isAuthenticated
+	 }
 }
-	
+
 
 const mapDispatchToProps = (dispatch) => ({
-	getRepositories: (repos, header) => dispatch(getRepositories(repos, header))
+	getRepositories: () => dispatch(getRepositories())
 	// return bindActionCreators({ getRepositories }, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepositoriesList)
-
-

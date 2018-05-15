@@ -12,7 +12,7 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-  
+
   if (action.response && action.response.entities && action.type !== "USER_INFO_SUCCESS") {
     return {
       ...state,
@@ -30,14 +30,14 @@ export default (state = initialState, action) => {
         }
     }
   }
-  
+
   switch (action.type) {
-    case 'REPOS_GET_REQUEST': 
+    case 'REPOS_GET_REQUEST':
       return state
     case 'REPOS_GET_SUCCESS':
       return { ...state, repositories: { ...action.response.entities.repositories }}
-    case REPO_ACTIVATED: 
-      
+    case REPO_ACTIVATED:
+
       console.log(action.payload)
       console.log(state.repositories[action.payload])
       console.log('CHANGE', action, action.payload)
