@@ -1,4 +1,4 @@
-import socket from '../../websockets';
+// import socket from '../../websockets';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
@@ -39,6 +39,8 @@ class RepositoriesList extends Component {
 					<RepositoryItem
 						key={key}
 						repo={repositories[key]}
+						itemId={repositories[key]._id}
+						active={repositories[key].hookEnabled}
 					/>
 				)
 			})
@@ -64,6 +66,7 @@ const mapStateToProps = (state) => {
 		repositories: state.entities.repositories,
 		isAuth: state.authentication.isAuthenticated
 	 }
+
 }
 
 
