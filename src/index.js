@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 import api from './middleware/api';
+import socket from './middleware/socket';
 import reducer from './reducers/index'
 import { loadState, saveState } from './helpers/localStorage'
 import throttle from 'lodash/throttle'
@@ -24,7 +25,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
   persistedState,
-  composeEnhancers(applyMiddleware(logger, api))
+  composeEnhancers(applyMiddleware(logger, api, socket(process.env.REACT_APP_SERVER_URL)))
 )
 
 // Listen to the changes on the state
