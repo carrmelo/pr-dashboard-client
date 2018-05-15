@@ -23,7 +23,7 @@ const store = createStore(
   reducer,
   // persistedState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(logger, api)
+  applyMiddleware(/*logger, */api)
 )
 
 // Listen to the changes on the state

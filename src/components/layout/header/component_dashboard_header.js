@@ -4,8 +4,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { searchTerm } from '../../../actions'
+import FlatButton from 'material-ui/FlatButton';
 
+import { searchTerm } from '../../../actions'
 import * as authActions from '../../../actions/authActions';
 
 class DashboardHeader extends Component {
@@ -54,11 +55,10 @@ class DashboardHeader extends Component {
 				<a href={`${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/auth/github`}>Link </a>
 
 				<div className="header__config">
-					<button className="header__config-button" onClick={this.handleLogOut}>
-						<svg className="header__config-icon">
-							<use xlinkHref="./icons/sprite.svg#icon-cog-outline"></use>
-						</svg>
-					</button>
+					<FlatButton 
+						onClick={this.handleLogOut}
+						className="header__config-button"
+					>LOG OUT</FlatButton>
 				</div>
 			</header>
 		)
