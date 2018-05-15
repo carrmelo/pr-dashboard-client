@@ -78,11 +78,9 @@ export default (state = initialState, action) => {
     return {
       ...state,
       pull_requests: {
-        ...state.pull_requests,
         ...action.data.entities.pull_requests
       },
       users: {
-        ...state.users,
         ...action.data.entities.user
       }
     }
