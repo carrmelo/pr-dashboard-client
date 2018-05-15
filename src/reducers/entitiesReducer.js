@@ -43,11 +43,11 @@ export default (state = initialState, action) => {
       return { ...state, repositories: null }
 
     case 'TOGGLE_WEBHOOK_SUCCESS':
-    const post = state.repositories[action.response.split('/')[5]]
+    const post = state.repositories[action.response.id]
       return {
         ...state,
         repositories: { ...state.repositories,
-          [action.response.split('/')[5]] : {
+          [action.response.id] : {
             ...post,
             hookEnabled: !post.hookEnabled
           }
