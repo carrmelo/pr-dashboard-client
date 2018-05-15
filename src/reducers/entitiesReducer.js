@@ -29,7 +29,7 @@ export default (state = initialState, action) => {
         }
     }
   }
-
+  
   switch (action.type) {
     case 'REPOS_GET_REQUEST':
       return state
@@ -42,15 +42,16 @@ export default (state = initialState, action) => {
       console.log('CHANGE', action, action.payload)
       return { ...state, repositories: null }
 
-    case 'TOGGLE_ACTIVE':
+    case 'TOGGLE_WEBHOOK_SUCCESS':
+    const post = state.repositories[action.response.split('/')[5]]
       return {
         ...state,
-        repos: state.repos.filter(repo => {
-            if (repo._id === action.id) {
-              repo.hookEnabled = !repo.hookEnabled
-              return repo
-            } else return repo
-          })
+        repositories: { ...state.repositories,
+          [action.response.split('/')[5]] : {
+            ...post,
+            hookEnabled: !post.hookEnabled
+          }
+        }
       }
 
     case SOCKETS_PULLS_SET:

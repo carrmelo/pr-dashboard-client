@@ -1,5 +1,12 @@
 import { CALL_API, Schemas } from '../middleware/api'
 import {
+  PULLS_REQUEST,
+  PULLS_SUCCESS,
+  PULLS_FAILURE,
+  GET_REPOSITORIES,
+  TOGGLE_WEBHOOK_REQUEST,
+  TOGGLE_WEBHOOK_SUCCESS,
+  TOGGLE_WEBHOOK_FAILURE,
   REPOS_GET,
   PULLS_GET,
   REPO_ACTIVATED,
@@ -53,4 +60,12 @@ export const selectColor = (color) => {
 export const setPullsFromSocket = (pulls) => ({
   type: SOCKETS_PULLS_SET,
   payload: pulls
+})
+
+export const toggleRepository = (id, action) => ({
+  type: 'TOGGLE_WEBHOOK',
+  [CALL_API]: {
+    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos/${id}/${action}`,
+    method: 'PATCH'
+  }
 })

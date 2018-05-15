@@ -39,6 +39,8 @@ class RepositoriesList extends Component {
 					<RepositoryItem
 						key={key}
 						repo={repositories[key]}
+						itemId={repositories[key]._id}
+						active={repositories[key].hookEnabled}
 					/>
 				)
 			})
