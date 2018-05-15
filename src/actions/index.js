@@ -52,16 +52,16 @@ export const toggleRepository = (id, toggleActive) => ({
 // payload: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos/${id}/${toggleActive}`,
 export const toggleRepo = (repoID, repoActive) => {
 
-  const axiosConfig = { headers: authHeader() };
+
   
   console.log('FFF', authHeader())
-  console.log('+++', axiosConfig)
+
   // ${id}/${toggleActive}
   // repos/5afae266151ccf00042c4f15/enable
   return dispatch => {
     BASE_PATCH_URL += `${repoID}/${repoActive}`
 
-    axios.patch(BASE_PATCH_URL, axiosConfig)
+    axios.patch(BASE_PATCH_URL, "DATA", {headers: authHeader()})
       .then(response => {
         console.log(response)
             dispatch({ 

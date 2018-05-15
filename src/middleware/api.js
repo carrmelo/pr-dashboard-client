@@ -3,6 +3,9 @@ import { authHeader } from '../helpers/auth-header'
 // Fetch and normalizr of API
 
 const callApi = (endpoint, schema, method) => {
+
+  console.log(endpoint)
+  console.log('+++++', authHeader())
   
   return fetch(endpoint, {
     headers: authHeader(), 
