@@ -23,7 +23,8 @@ class RepositoryItem extends Component {
 	
 	state = {
 		open: false,
-		background: "#0bd8be"
+		background: "#0bd8be", 
+		toggle: true,
 	};
 	
 	onColorButtonClick = (e) => {
@@ -40,9 +41,13 @@ class RepositoryItem extends Component {
 	}
 
 	onToggleSwitch = () => {
-		console.log('STATE', this.props.repo)
-		console.log('ID', this.props.repo._id)
-		console.log('TOGGLE', this.props.toggleRepository())
+		this.state.toggle === true 
+		? this.setState({ toggle: false }, () => {
+			this.props.toggleRepository(this.props.repo._id, this.state.toggle)
+		}) 
+		: this.setState({ toggle: true }, () => {
+			this.props.toggleRepository(this.props.repo._id, this.state.toggle)
+		})
 	}
 
 	render() {
@@ -56,7 +61,10 @@ class RepositoryItem extends Component {
 						<span>{this.props.repo.fullName}</span>
 					</div>
 					<div className="repository__item-content-toggle">
-						<Toggle onClick={this.onToggleSwitch} />
+						<Toggle 
+							defaultToggled={true}
+							onClick={this.onToggleSwitch} 
+						/>
 					</div>
 
 					<div className="repository__item__content__extras">
