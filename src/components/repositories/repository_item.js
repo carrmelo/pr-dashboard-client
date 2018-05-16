@@ -19,16 +19,7 @@ import Popover from 'material-ui/Popover';
 
 import { HuePicker } from 'react-color'
 import Collapsible from 'react-collapsible';
-
-const DownArrow = () => {
-	return (
-		<div className="repository__item__privacy__status">
-			<svg className="repository__item__privacy__icon">
-				<use xlinkHref="./icons/sprite.svg#icon-arrow-down-outline"></use>
-			</svg>
-		</div>
-	)
-}
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 class RepositoryItem extends Component {
 	
@@ -54,18 +45,53 @@ class RepositoryItem extends Component {
 		this.props.repoSwitch(repoID)
 	}
 
-	DownArrowFunc = () => {
+	downArrowFunc = () => {
 		return (
-			<div className="repository__item__privacy__status">
-				<svg className="repository__item__privacy__icon">
+			<div className="repository__extra__info__arrow">
+				<svg className="repository__extra__info__arrow__icon">
 					<use xlinkHref="./icons/sprite.svg#icon-arrow-down-outline"></use>
 				</svg>
 			</div>
 		)
 	}
 
+	renderPrivacy = () => {
+		if (this.props.repo.private) {
+			return (
+				<div className="repository__item__privacy__status">
+					<svg className="repository__item__privacy__icon">
+						<use xlinkHref="./icons/sprite.svg#icon-social-github"></use>
+					</svg>
+				</div>
+			)
+		}
+		return (
+			<div className="repository__item__privacy__status">
+				<svg className="repository__item__privacy__icon">
+					<use xlinkHref="./icons/sprite.svg#icon-lock-closed-outline"></use>
+				</svg>
+			</div>
+		)
+	}
+
+	handleCollapse = () => {
+		return (
+			<FloatingActionButton 
+				disabled={this.props.repo.description ? false : true}
+				mini={true} 
+				backgroundColor="#0bd8be"
+			>
+				<div className="repository__extra__info__arrow">
+					<svg className="repository__extra__info__arrow__icon">
+						<use xlinkHref="./icons/sprite.svg#icon-arrow-down-outline"></use>
+					</svg>
+				</div>
+			</FloatingActionButton>
+
+		)
+	}
+
 	render() {
-		console.log('***', this.props.repo)
 		return (
 			<li 
 				className="repository__item"
@@ -89,6 +115,14 @@ class RepositoryItem extends Component {
 			
 					</div>
 
+					<div className="repository__item__description">
+						<Collapsible trigger={this.handleCollapse()}>
+							<div className="repository__item__description__text">
+								{this.props.repo.description}
+							</div>
+						</Collapsible>
+					</div>
+
 					<div className="repository__item-content-toggle">
 						<Toggle 
 							onClick={() => this.onToggleSwitch(this.props.repo._id) }
@@ -103,14 +137,10 @@ class RepositoryItem extends Component {
 					        </Chip>
 						</div>
 
-						<div className="repository__item__description">
-							<Collapsible trigger={this.DownArrowFunc()}>
 
-								<div className="repository__item__description__text">
-									DESCRIPTION CONTENT
-								</div>
-							</Collapsible>
-						</div>
+						{this.renderPrivacy()}
+
+						
 
 						<div className="repository__item__color__picker">
 					        <button
@@ -155,22 +185,6 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(null, mapDispatchToProps)(RepositoryItem)
 
-/*
 
-<div className="repository__item__privacy__status">
-	<svg className="repository__item__privacy__icon">
-		<use xlinkHref="./icons/sprite.svg#icon-lock-closed-outline"></use>
-	</svg>
-</div>
-
-
-
-<div className="repository__item__privacy__status">
-	<svg className="repository__item__privacy__icon">
-		<use xlinkHref="./icons/sprite.svg#icon-social-github"></use>
-	</svg>
-</div>
-
-*/
 
 
