@@ -59,6 +59,7 @@ svg {
   height: 10rem; }
 
 .header__search {
+  max-width: 767px;
   width: 60.5%;
   display: flex; }
 
@@ -85,7 +86,6 @@ svg {
     background-color: transparent !important; }
 
 .header__config {
-  width: 20%;
   display: flex;
   flex-direction: row-reverse; }
 
