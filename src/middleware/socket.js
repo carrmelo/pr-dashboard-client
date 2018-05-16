@@ -6,9 +6,12 @@ const socket = url => store => {
   let socket = io(url);
 
   socket.on('message', async data => {
+    console.log('Original Data');
     console.log(data.payload);
     if (data.type === 'pull_request') {
       const normalizedPulls = await normalize(data.payload, Schemas.PULLS);
+      console.log('Normalized Data');
+      console.log(normalizedPulls);
       data.payload = normalizedPulls;
     } else if (data.type === 'repos-update') {
       const normalizedRepos = normalize(data.payload, Schemas.REPOS);
