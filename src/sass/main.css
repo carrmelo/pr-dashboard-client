@@ -97,7 +97,6 @@ svg {
   overflow: scroll;
   list-style: none;
   padding-right: 0;
-  box-shadow: 2px 4px 1px -1px rgba(38, 39, 38, 0.52);
   background-color: snow; }
 
 .repository__item {

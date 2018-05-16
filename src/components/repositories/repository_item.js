@@ -48,6 +48,8 @@ class RepositoryItem extends Component {
 	}
 
 	renderPrivacy = () => {
+		console.log(this.props.repo)
+
 		if (this.props.repo.private) {
 			return (
 				<div className="repository__item__privacy__status">
@@ -80,7 +82,6 @@ class RepositoryItem extends Component {
 					</svg>
 				</div>
 			</RaisedButton>
-
 		)
 	}
 
