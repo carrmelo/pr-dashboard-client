@@ -13,20 +13,22 @@ export default (state = initialState, action) => {
         token: action.response.token,
         isAuthenticated: true
       }
+      
+    } 
 
-    } else if (action.type === "GET_USER_INFO_SUCCESS") {
+    if (action.error === 'token expired') return initialState
+    
+    switch (action.type) {
+      case "GET_USER_INFO_SUCCESS":
+        return {
+          ...state,
+          currentUser: action.response
+        }
 
-      return {
-        ...state,
-        currentUser: action.response
-      }
+      case 'LOGOUT_USER':
+        return initialState
 
-    } else if (action.type === 'LOGOUT_USER') {
-
-      return initialState
-
-    } else {
-
-      return state;
+      default:
+        return state;
     }
 }

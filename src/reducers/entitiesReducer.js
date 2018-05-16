@@ -29,6 +29,8 @@ export default (state = initialState, action) => {
         }
     }
   }
+
+  if (action.error === 'token expired') return initialState
   
   switch (action.type) {
     case 'REPOS_GET_REQUEST':

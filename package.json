@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "jwt-decode": "^2.2.0",
     "material-ui": "^0.20.0",
     "materialize-css": "^0.100.2",
     "node-sass-chokidar": "^1.2.2",
