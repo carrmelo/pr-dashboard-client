@@ -1,5 +1,7 @@
 import { normalize, schema } from 'normalizr';
 import { authHeader } from '../helpers/auth-header'
+import { checkJWT } from '../helpers/jwt-checker'
+
 // Fetch and normalizr of API
 
 const callApi = (endpoint, schema, method) => {
@@ -8,7 +10,7 @@ const callApi = (endpoint, schema, method) => {
     headers: authHeader(),
     method: method || 'GET'
   })
-    .then(response => {
+    .then(response => {      
       const contentType = response.headers.get('Content-Type')
       if (contentType && contentType.indexOf('application/json') !== -1) {
         return response.json()
@@ -16,7 +18,11 @@ const callApi = (endpoint, schema, method) => {
           
           if (!response.ok) {
             if (response.status === 401) {
-              localStorage.clear();
+              var current_time = Date.now().valueOf() / 1000;
+                if ( checkJWT().exp < current_time) {
+                  localStorage.clear();
+                  return Promise.reject('token expired')
+                }
             }
             return Promise.reject(response.status)
           }
@@ -35,7 +41,11 @@ const callApi = (endpoint, schema, method) => {
       } else {
         if (!response.ok) {
           if (response.status === 401) {
-            localStorage.clear();
+            var current_time = Date.now().valueOf() / 1000;
+              if ( checkJWT().exp < current_time) {
+                localStorage.clear();
+                return Promise.reject('token expired')
+              }
           }
           return Promise.reject(response.status)
         } else {

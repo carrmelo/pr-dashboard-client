@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
       
     } 
 
-    if (action.error === 401) return initialState
+    if (action.error === 'token expired') return initialState
     
     switch (action.type) {
       case "GET_USER_INFO_SUCCESS":
