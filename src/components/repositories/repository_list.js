@@ -32,11 +32,12 @@ class RepositoriesList extends Component {
 		if(!repositories) return <div>LOADING</div>
 		
 		return Object.keys(repositories)
-			.map(key => {
+			.map((key) => {
 				return (
 					<RepositoryItem 
 						key={key} 
 						repo={repositories[key]}
+						pullnum={Object.keys(repositories).length}
 					/>
 				)
 			})
@@ -58,7 +59,10 @@ class RepositoriesList extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return { repositories: state.entities.repositories }		
+	return { 
+		repositories: state.entities.repositories, 
+		users: state.entities.users 
+	}		
 }
 	
 
