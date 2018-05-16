@@ -12,7 +12,7 @@ html {
   box-sizing: inherit; }
 
 body {
-  background-image: linear-gradient(to right bottom, #59576b, #23222c);
+  background-image: linear-gradient(to right bottom, #2c2f3e, #23222c);
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
@@ -116,7 +116,8 @@ svg {
 .repository__item-content {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 20px; }
+  margin-top: 20px;
+  box-shadow: rgba(0, 0, 0, 0.12) 4px 3px 9px, rgba(0, 0, 0, 0.12) 0px 1px 4px; }
 
 .repository__item-content-text {
   padding-left: 25px;
@@ -196,12 +197,10 @@ svg {
   border-radius: 100px; }
 
 .repository__item__color__picker {
-  margin-top: 6px;
   display: flex;
-  width: 10%;
-  justify-content: center;
-  padding-top: 5.45px;
-  align-items: center; }
+  width: 19%;
+  justify-content: flex-end;
+  padding-top: 9.45px; }
 
 h4.dashboard__repository__title {
   font-size: 3.28rem; }

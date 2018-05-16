@@ -27,7 +27,8 @@
 .repository__item-content {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.12) 4px 3px 9px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
 }
 
 .repository__item-content-text {
@@ -120,12 +121,10 @@
 }
 
 .repository__item__color__picker {
-    margin-top: 6px;
     display: flex;
-    width: 10%;
-    justify-content: center;
-    padding-top: 5.45px;
-    align-items: center;
+    width: 19%;
+    justify-content: flex-end;
+    padding-top: 9.45px;
 }
 
 

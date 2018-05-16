@@ -21,6 +21,8 @@ import Collapsible from 'react-collapsible';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import Paper from 'material-ui/Paper';
+
 class RepositoryItem extends Component {
 	
 	state = {
@@ -83,7 +85,6 @@ class RepositoryItem extends Component {
 	}
 
 	render() {
-
 		return (
 			<li 
 				className="repository__item"
