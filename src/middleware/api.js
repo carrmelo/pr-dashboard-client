@@ -10,14 +10,15 @@ const callApi = (endpoint, schema, method) => {
   })
     .then(response => {
       const contentType = response.headers.get('Content-Type')
-      console.log('Hola', contentType)
-      console.log('Chao', response)
       if (contentType && contentType.indexOf('application/json') !== -1) {
         return response.json()
         .then(json=> {
           
           if (!response.ok) {
-            return Promise.reject(json)
+            if (response.status === 401) {
+              localStorage.clear();
+            }
+            return Promise.reject(response.status)
           }
           if (json.token) {
             return Object.assign({}, json)
@@ -33,7 +34,10 @@ const callApi = (endpoint, schema, method) => {
         })
       } else {
         if (!response.ok) {
-          return Promise.reject(response)
+          if (response.status === 401) {
+            localStorage.clear();
+          }
+          return Promise.reject(response.status)
         } else {
           return response;
         }
@@ -73,7 +77,7 @@ export default store => next => action => {
     return next(action)
   }
 
-  const { schema, types, endpoint, method } = callAPI
+  const { schema, endpoint, method } = callAPI
 
   next({
     ...action,
@@ -87,7 +91,7 @@ export default store => next => action => {
     })),
     error => store.dispatch(actionWith({
       type: action.type + '_FAILURE',
-      error: error.message || 'Something bad happened'
+      error: error || 'Something bad happened'
     }))
   )
 }
