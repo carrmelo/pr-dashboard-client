@@ -20,6 +20,16 @@ import Popover from 'material-ui/Popover';
 import { HuePicker } from 'react-color'
 import Collapsible from 'react-collapsible';
 
+const DownArrow = () => {
+	return (
+		<div className="repository__item__privacy__status">
+			<svg className="repository__item__privacy__icon">
+				<use xlinkHref="./icons/sprite.svg#icon-arrow-down-outline"></use>
+			</svg>
+		</div>
+	)
+}
+
 class RepositoryItem extends Component {
 	
 	state = {
@@ -44,6 +54,16 @@ class RepositoryItem extends Component {
 		this.props.repoSwitch(repoID)
 	}
 
+	DownArrowFunc = () => {
+		return (
+			<div className="repository__item__privacy__status">
+				<svg className="repository__item__privacy__icon">
+					<use xlinkHref="./icons/sprite.svg#icon-arrow-down-outline"></use>
+				</svg>
+			</div>
+		)
+	}
+
 	render() {
 		console.log('***', this.props.repo)
 		return (
@@ -52,15 +72,21 @@ class RepositoryItem extends Component {
 				style={{borderLeft: `6px solid ${this.state.background}`}}
 			>
 				<div className="repository__item-content">
-					<div className="repository__item-content-text">
-						<span>{this.props.repo.fullName}</span>
 
-						<div className="repository__item__privacy__status">
-							<svg className="repository__item__privacy__icon">
-								<use xlinkHref="./icons/sprite.svg#icon-lock-closed-outline"></use>
+					<div className="repository__item-content-text">
+
+						<div className="repository__item__name__icon">
+						<svg 
+							style={{fill: `${this.state.background}`}} 
+							className="repository__item__privacy__icon">
+								<use xlinkHref="./icons/sprite.svg#icon-starburst-outline"></use>
 							</svg>
 						</div>
-
+						
+						<div className="repository__item__name__text">
+							<span>{this.props.repo.fullName}</span>
+						</div>
+			
 					</div>
 
 					<div className="repository__item-content-toggle">
@@ -78,7 +104,8 @@ class RepositoryItem extends Component {
 						</div>
 
 						<div className="repository__item__description">
-							<Collapsible trigger="Description">
+							<Collapsible trigger={this.DownArrowFunc()}>
+
 								<div className="repository__item__description__text">
 									DESCRIPTION CONTENT
 								</div>
@@ -127,5 +154,23 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(null, mapDispatchToProps)(RepositoryItem)
+
+/*
+
+<div className="repository__item__privacy__status">
+	<svg className="repository__item__privacy__icon">
+		<use xlinkHref="./icons/sprite.svg#icon-lock-closed-outline"></use>
+	</svg>
+</div>
+
+
+
+<div className="repository__item__privacy__status">
+	<svg className="repository__item__privacy__icon">
+		<use xlinkHref="./icons/sprite.svg#icon-social-github"></use>
+	</svg>
+</div>
+
+*/
 
 

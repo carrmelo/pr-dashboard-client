@@ -18,7 +18,6 @@
 }
 
 .repository__item {
-    height: 140px;
     padding-top: 0;
     background-color: white;
     margin-bottom: 20px;
@@ -36,6 +35,18 @@
     color: black;
     font-weight: 500;
     width: 90%;
+    display: flex;
+}
+
+.repository__item__name__icon {
+    display: flex;
+    align-items: center;
+}
+
+.repository__item__name__text {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
 }
 
 .repository__item-content-toggle {
@@ -51,7 +62,6 @@ h4.dashboard__repository__title {
 .repository__item__privacy__icon {
     width: 5rem;
     height: 5rem;
-    fill: black; 
 }
 
 
@@ -66,6 +76,7 @@ h4.dashboard__repository__title {
 .repository__item__tech {
     padding-left: 17px;
     width: 90%;
+    margin-left: 10px;
 }
 
 .repository__item__color__picker {
