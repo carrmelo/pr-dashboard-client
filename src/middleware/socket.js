@@ -5,9 +5,9 @@ import io from 'socket.io-client';
 const socket = url => store => {
   let socket = io(url);
 
-  socket.on('message', data => {
+  socket.on('message', async data => {
     if (data.type === 'pull_request') {
-      const normalizedPulls = normalize(data.payload, Schemas.PULLS);
+      const normalizedPulls = await normalize(data.payload, Schemas.PULLS);
       data.payload = normalizedPulls;
     } else if (data.type === 'repos-update') {
       const normalizedRepos = normalize(data.payload, Schemas.REPOS);
