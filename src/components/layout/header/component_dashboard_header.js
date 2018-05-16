@@ -31,9 +31,6 @@ class DashboardHeader extends Component {
 		? <div className="header__config">
 				<button className="header__config-button" onClick={this.handleLogOut}>
 					Sign Out
-					<svg className="header__config-icon">
-						<use xlinkHref="./icons/sprite.svg#icon-cog-outline"></use>
-					</svg>
 				</button>
 			</div>
 		: null
