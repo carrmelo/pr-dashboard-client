@@ -142,6 +142,7 @@ svg {
 
 .repository__item__content__extras {
   width: 100%;
+  display: -ms-flexbox;
   display: flex;
   background-color: #f3f4f6;
   margin: 0;
@@ -150,56 +151,60 @@ svg {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  padding-top: 2px; }
-
-.repository__item__tech {
-  padding-left: 17px;
-  width: 20%;
-  margin-left: 10px; }
+  padding-top: 2px;
+  padding-left: 33px; }
 
 .repository__item__description {
-  width: 20%; }
+  width: 49.5%;
+  align-self: center;
+  margin-top: -5px; }
 
 .repository__item__description__text {
   color: black;
   font-size: 17px;
   line-height: 1.5; }
 
+.repository__item__tech {
+  width: 13%;
+  margin-left: 10px;
+  align-self: center;
+  height: 40px; }
+
 .repository__item__pull__num {
-  width: 85px;
   background-color: #5c6bc070;
-  height: 32px;
+  height: 33px;
   border-radius: 100px;
   display: flex;
   justify-content: center;
   width: 10%;
-  margin: 0 7px; }
+  margin: 0 7px;
+  align-self: center; }
 
 .repository__item__pull__num__value {
   color: white; }
 
 .repository__item__privacy__status {
-  width: 5%; }
+  width: 12%;
+  align-self: center;
+  display: flex; }
 
 .repository__item__privacy__icon {
+  width: 7rem;
+  height: 32px;
   fill: white;
   background-color: #ef5350bf;
-  border-radius: 100px;
-  height: 3rem;
-  width: 3rem; }
+  border-radius: 100px; }
 
 .repository__item__color__picker {
-  display: -ms-flexbox;
+  margin-top: 6px;
   display: flex;
-  width: 39%;
-  justify-content: flex-end; }
+  width: 10%;
+  justify-content: center;
+  padding-top: 5.45px;
+  align-items: center; }
 
 h4.dashboard__repository__title {
   font-size: 3.28rem; }
-
-.repository__item__privacy__icon {
-  width: 5rem;
-  height: 5rem; }
 
 .repository__extra__info__arrow {
   display: flex;
