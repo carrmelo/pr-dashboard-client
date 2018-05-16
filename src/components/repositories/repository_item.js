@@ -18,6 +18,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Popover from 'material-ui/Popover';
 
 import { HuePicker } from 'react-color'
+import Collapsible from 'react-collapsible';
 
 class RepositoryItem extends Component {
 	
@@ -53,7 +54,15 @@ class RepositoryItem extends Component {
 				<div className="repository__item-content">
 					<div className="repository__item-content-text">
 						<span>{this.props.repo.fullName}</span>
+
+						<div className="repository__item__privacy__status">
+							<svg className="repository__item__privacy__icon">
+								<use xlinkHref="./icons/sprite.svg#icon-lock-closed-outline"></use>
+							</svg>
+						</div>
+
 					</div>
+
 					<div className="repository__item-content-toggle">
 						<Toggle 
 							onClick={() => this.onToggleSwitch(this.props.repo._id) }
@@ -68,25 +77,33 @@ class RepositoryItem extends Component {
 					        </Chip>
 						</div>
 
-					<div className="repository__item__color__picker">
-				        <button
-				          onClick={this.onColorButtonClick}
-				          className="repository__item__color__picker__button"
-				          label="Color"
-				        />
-				        <Popover
-				          open={this.state.open}
-				          anchorEl={this.state.anchorEl}
-				          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-				          targetOrigin={{horizontal: 'left', vertical: 'top'}}
-				          onRequestClose={this.handleRequestClose}
-				        >
-						<HuePicker 
-							color={this.state.background}
-							onChangeComplete={this.handleColorChange}
-						/>
-				        </Popover>
-				    </div>
+						<div className="repository__item__description">
+							<Collapsible trigger="Description">
+								<div className="repository__item__description__text">
+									DESCRIPTION CONTENT
+								</div>
+							</Collapsible>
+						</div>
+
+						<div className="repository__item__color__picker">
+					        <button
+					          onClick={this.onColorButtonClick}
+					          className="repository__item__color__picker__button"
+					          label="Color"
+					        />
+					        <Popover
+					          open={this.state.open}
+					          anchorEl={this.state.anchorEl}
+					          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+					          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+					          onRequestClose={this.handleRequestClose}
+					        >
+								<HuePicker 
+									color={this.state.background}
+									onChangeComplete={this.handleColorChange}
+								/>
+					        </Popover>
+					    </div>
 
 					</div>
 				</div>

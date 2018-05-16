@@ -132,6 +132,11 @@ svg {
 h4.dashboard__repository__title {
   font-size: 3.28rem; }
 
+.repository__item__privacy__icon {
+  width: 5rem;
+  height: 5rem;
+  fill: black; }
+
 .repository__item__content__extras {
   width: 100%;
   display: flex;

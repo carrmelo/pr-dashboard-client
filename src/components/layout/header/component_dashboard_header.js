@@ -51,9 +51,7 @@ class DashboardHeader extends Component {
 
 				<div className="header__config">
 					<button className="header__config-button" onClick={this.handleLogOut}>
-						<svg className="header__config-icon">
-							<use xlinkHref="./icons/sprite.svg#icon-cog-outline"></use>
-						</svg>
+						LOG OUT
 					</button>
 				</div>
 			</header>
@@ -66,6 +64,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(null, mapDispatchToProps)(DashboardHeader);
+
+/*
+<svg className="header__config-icon">
+	<use xlinkHref="./icons/sprite.svg#icon-cog-outline"></use>
+</svg>
+*/
 
 
 
