@@ -170,3 +170,16 @@ button.repository__item__color__picker__button {
 
 .sidebar__navigation-pullrequests {
   margin: 40px auto; }
+
+.panel .panel-heading {
+  cursor: pointer; }
+
+.panel .panel-collapse {
+  overflow: hidden;
+  transition: height 0.3s ease-out; }
+
+.panel .panel-body {
+  border: none; }
+
+.panel h2 {
+  margin-top: 5px; }
