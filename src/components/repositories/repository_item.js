@@ -102,7 +102,7 @@ class RepositoryItem extends Component {
 		return (
 			<li 
 				className="repository__item"
-				style={{borderLeft: `6px solid ${this.state.background}`}}
+				style={{borderLeft: `6px solid ${this.props.repo.color}`}}
 			>
 				<div className="repository__item-content">
 

@@ -6,8 +6,6 @@ import { checkJWT } from '../helpers/jwt-checker'
 
 const callApi = (endpoint, schema, method, customHeaders, body) => {
   
-  console.log('***', endpoint, schema, method, body)
-
   let headers = {};
   if(body) {
     headers['Content-Type'] = 'application/json';
@@ -17,8 +15,6 @@ const callApi = (endpoint, schema, method, customHeaders, body) => {
     ...customHeaders,
   }
 
-
-  console.log('+++++', JSON.stringify(body))
   return fetch(endpoint, {
     headers,
     method: method || 'GET', 
@@ -117,7 +113,6 @@ export default store => next => action => {
     }
     : {};
   
-  console.log(body, "´´´´´´´´")
   return callApi(endpoint, schema, method, headers, body).then(
     response => store.dispatch(actionWith({
       type: action.type + '_SUCCESS',

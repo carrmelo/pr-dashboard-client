@@ -1,7 +1,8 @@
 import {
   REPO_ACTIVATED,
   SOCKETS_PULLS_SET, 
-  COLOR_CHANGE
+  COLOR_CHANGE, 
+  COLOR_CHANGE_SUCCESS
 } from '../actions/types'
 
 
@@ -40,9 +41,6 @@ export default (state = initialState, action) => {
       return { ...state, repositories: { ...action.response.entities.repositories }}
     case REPO_ACTIVATED:
 
-      console.log(action.payload)
-      console.log(state.repositories[action.payload])
-      console.log('CHANGE', action, action.payload)
       return { ...state, repositories: null }
 
     case 'TOGGLE_WEBHOOK_SUCCESS':
@@ -89,8 +87,8 @@ export default (state = initialState, action) => {
       }
     }
 
-    case COLOR_CHANGE: 
-      console.log('******HIT', action)
+    case COLOR_CHANGE_SUCCESS: 
+      console.log('STATE', state, 'ACTION', action)
       return state
 
     // Update Repositories from socket

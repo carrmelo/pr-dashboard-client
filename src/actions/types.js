@@ -26,6 +26,7 @@ export const SEARCH_TERM = 'SEARCH_TERM';
 export const COLOR_SELECTED = 'COLOR_SELECTED'
 ///////COLOR MIDDLEWARE PATH -- Use custom middleware to send color to PR list through redux state
 export const COLOR_CHANGE = 'COLOR_CHANGE'
+export const COLOR_CHANGE_SUCCESS = 'COLOR_CHANGE_SUCCESS'
 
 
 

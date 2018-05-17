@@ -79,7 +79,7 @@ export const toggleRepository = (id, action) => ({
 
 export const changeColor = (repoID, colorHex) => {
   const PATCH_COLOR_CHANGE_URL = BASE_API_URL + `/repos/${repoID}/color`
-  console.log('URLLL', PATCH_COLOR_CHANGE_URL)
+
   return {
     type: COLOR_CHANGE, 
     [CALL_API]: {
@@ -93,10 +93,8 @@ export const changeColor = (repoID, colorHex) => {
 }
 
 export const selectColor = (repoID, colorHex) => {
-
   const PATCH_COLOR_URL = BASE_API_URL + `/repos/${repoID}/color` // /repos/${id}/${action}
   const axiosConfig = { headers: authHeader() }
-  console.log(axiosConfig);
 
   return dispatch => {
     axios.patch(PATCH_COLOR_URL, {color: colorHex}, axiosConfig)
