@@ -138,16 +138,18 @@ a:hover {
   width: 60px;
   background: white; }
 
+.header__search-icon:hover {
+  fill: white; }
+
 a .pullrequest__item {
   color: #2c2f3e;
   text-decoration: none; }
   a .pullrequest__item:hover {
     transition: color 0.7s;
     background-color: #efefef; }
-.header__search-icon:hover {
-  fill: white; }
 
-.dashboard__repository__list {
+.dashboard__repository__list,
+.dashboard__pullrequest__list {
   overflow: scroll;
   list-style: none;
   padding-right: 0;
