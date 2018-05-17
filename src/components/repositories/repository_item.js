@@ -127,6 +127,29 @@ class RepositoryItem extends Component {
 			</div>
 	)
 
+	renderCollapsibleDescription = () => {
+		return (
+			<Collapsible trigger={true?this.handleCollapse():''}>
+				<div className="repository__item__description__text">
+					{this.props.repo.description}
+				</div>
+			</Collapsible>);
+	}
+
+	renderDisabledCollapsible = () => {
+		return (
+		<RaisedButton
+			disabled={this.props.repo.description ? false : true}
+			backgroundColor="#0bd8be"
+			style={{minWidth: "65px", backgroundColor: "transparent"}}>
+			<div className="repository__extra__info__arrow">
+				<svg className="repository__extra__info__arrow__icon">
+					<use xlinkHref="./icons/sprite.svg#icon-arrow-down-outline"></use>
+				</svg>
+			</div>
+	</RaisedButton>);
+	}
+
 	render() {
 		return (
 			<li
@@ -150,11 +173,7 @@ class RepositoryItem extends Component {
 
 					<div className="repository__item__content__extras">
 						<div className="repository__item__description">
-							<Collapsible trigger={this.handleCollapse()}>
-								<div className="repository__item__description__text">
-									{this.props.repo.description}
-								</div>
-							</Collapsible>
+							{this.props.repo.description ? this.renderCollapsibleDescription() : this.renderDisabledCollapsible()}
 						</div>
 
 						{this.renderNumPulls()}
