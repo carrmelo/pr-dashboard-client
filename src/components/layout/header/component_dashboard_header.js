@@ -29,8 +29,9 @@ class DashboardHeader extends Component {
 	renderLogOutButton = () => (
 
 		(this.props.isAuth)
-		? <div onClick={this.handleLogOut} className="header__sign_out">
-				<a href="#">LOG OUT</a>
+		?
+			<div onClick={this.handleLogOut} className="header__sign_out">
+				<span>LOG OUT</span>
 			</div>
 		: null
 	)
