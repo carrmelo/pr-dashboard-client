@@ -178,12 +178,22 @@ button.repository__item__color__picker__button {
   position: relative;
   margin: 0 auto; }
 
+.cls-11 {
+  font-size: 150px;
+  font-family: Rokkitt-Regular, Rokkitt;
+  letter-spacing: -0.02em; }
+
+.cls-22 {
+  font-size: 70px;
+  font-family: Rokkitt-Light, Rokkitt;
+  letter-spacing: -0.01em; }
+
 .cls-1 {
   font-size: 250px;
   font-family: FrederickatheGreat-Regular, Fredericka the Great; }
 
 .cls-2 {
-  font-size: 80px;
+  font-size: 40px;
   font-family: FrederickatheGreat-Regular, Fredericka the Great; }
 
 .h-container {
@@ -199,3 +209,7 @@ button.repository__item__color__picker__button {
 
 .github-button {
   width: 280px; }
+
+.welcome-message {
+  display: flex;
+  align-content: center; }

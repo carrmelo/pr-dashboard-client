@@ -15,8 +15,16 @@ class SignIn extends Component {
     return (
       <div className="container">
         <div className="h-container">
-
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 651.82 317.54" width="500">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368.74 227.97" width="500">
+            <title>PuRe</title>
+            <g id="Layer_2" data-name="Layer 2">
+              <g id="Layer_1-2" data-name="Layer 1">
+                <text class="cls-11" transform="translate(1.39 136.55) rotate(-0.6)">PR</text>
+                <text class="cls-22" transform="translate(2.53 195.24)">Dashboard</text>
+              </g>
+            </g>
+          </svg>
+          {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 651.82 317.54" width="500">
             <title>Asset 1</title>
             <g id="Layer_2" data-name="Layer 2">
               <g id="Layer_1-2" data-name="Layer 1">
@@ -24,7 +32,7 @@ class SignIn extends Component {
                 </text>
               </g>
             </g>
-          </svg>
+          </svg> */}
           <div className="v-container">
 
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 651.82 317.54">

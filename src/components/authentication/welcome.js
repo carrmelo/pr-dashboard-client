@@ -32,9 +32,18 @@ class Welcome extends Component {
 
   render() {
     return (
-      <div>
-        Welcome to PR Dashboard, we are redirecting you to your Repositories<br/>
-        if you are able to read this far, maybe something went wrong, we'll let you know
+      <div className="welcome-message">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 360" width="1000">
+          <title>PuRe</title>
+          <g id="Layer_2" data-name="Layer 2">
+            <g id="Layer_1-2" data-name="Layer 1">
+              <text class="cls-2" transform="translate(1.39 136.55) rotate(-0.6)">
+                Welcome to PR Dashboard, we are redirecting you to your Repositories</text>
+              <text class="cls-2" transform="translate(2.53 195.24)">
+                if you are able to read this far, maybe something went wrong, we'll let you know</text>
+            </g>
+          </g>
+        </svg>
       </div>
     )
   }
