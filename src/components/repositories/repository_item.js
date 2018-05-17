@@ -17,6 +17,7 @@ import { bindActionCreators } from 'redux'
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import Badge from 'material-ui/Badge';
 
 import Popover from 'material-ui/Popover';
 
@@ -32,8 +33,14 @@ class RepositoryItem extends Component {
 
 	state = {
 		open: false,
-		background: "#0bd8be"
+		background: "",
 	};
+
+	componentDidMount() {
+		this.setState({
+			background: this.props.repo.color
+		})
+	}
 
 	onColorButtonClick = (e) => {
 	    e.preventDefault();
@@ -46,9 +53,8 @@ class RepositoryItem extends Component {
 
 	//HOW HANDLE WHEN PASSING MANY ARGUMENTS
 	handleColorChange (repoID, colorHex) {
-		this.setState({ background: colorHex })
 
-		//this.props.selectColor(repoID, colorHex)
+		this.setState({ background: colorHex })
 
 		this.props.changeColor(repoID, colorHex)
 	}
@@ -132,11 +138,34 @@ class RepositoryItem extends Component {
 		)}
 	}
 
+	renderCollapsibleDescription = () => {
+		return (
+			<Collapsible trigger={true?this.handleCollapse():''}>
+				<div className="repository__item__description__text">
+					{this.props.repo.description}
+				</div>
+			</Collapsible>);
+	}
+
+	renderDisabledCollapsible = () => {
+		return (
+		<RaisedButton
+			disabled={this.props.repo.description ? false : true}
+			backgroundColor="#0bd8be"
+			style={{minWidth: "65px", backgroundColor: "transparent"}}>
+			<div className="repository__extra__info__arrow">
+				<svg className="repository__extra__info__arrow__icon">
+					<use xlinkHref="./icons/sprite.svg#icon-arrow-down-outline"></use>
+				</svg>
+			</div>
+	</RaisedButton>);
+	}
+
 	render() {
 		return (
 			<li
 				className="repository__item"
-				style={{borderLeft: `6px solid ${this.props.repo.color}`}}
+				style={{borderLeft: `6px solid ${this.state.background}`}}
 			>
 				<div className="repository__item-content">
 
@@ -155,11 +184,7 @@ class RepositoryItem extends Component {
 
 					<div className="repository__item__content__extras">
 						<div className="repository__item__description">
-							<Collapsible trigger={this.handleCollapse()}>
-								<div className="repository__item__description__text">
-									{this.props.repo.description}
-								</div>
-							</Collapsible>
+							{this.props.repo.description ? this.renderCollapsibleDescription() : this.renderDisabledCollapsible()}
 						</div>
 
 						{this.renderNumPulls()}

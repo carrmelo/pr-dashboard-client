@@ -96,9 +96,6 @@ export default (state = initialState, action) => {
       }
     }
 
-    case COLOR_CHANGE_SUCCESS: 
-      return state
-
     // Update Repositories from socket
     case 'repos-update_received':
 

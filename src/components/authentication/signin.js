@@ -19,7 +19,7 @@ class SignIn extends Component {
             <title>PuRe</title>
             <g id="Layer_2" data-name="Layer 2">
               <g id="Layer_1-2" data-name="Layer 1">
-                <text className="cls-11" transform="translate(1.39 136.55) rotate(-0.6)">PR</text>
+                <text className="cls-11" transform="translate(1.39 136.55) rotate(-0.6)">PuRe</text>
                 <text className="cls-22" transform="translate(2.53 195.24)">Dashboard</text>
               </g>
             </g>
