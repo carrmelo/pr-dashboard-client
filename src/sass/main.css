@@ -50,6 +50,12 @@ svg {
   margin: 0 26px;
   color: #ccccd1; }
 
+#header__userinfo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px #ccccd1 solid; }
+
 #header__search-bar {
   flex-grow: 1;
   max-width: 773px; }
