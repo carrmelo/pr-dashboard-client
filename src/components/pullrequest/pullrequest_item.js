@@ -16,7 +16,7 @@ class PullRequestItem extends Component {
             <div className="pullrequest__item-content-text">
               <div className="pullrequest__item__name__text">
                 <span>
-                  {this.props.title} #{this.props.number}
+                  <a href={this.props.webUrl} target="_blank">{this.props.title} #{this.props.number}</a>
                 </span>
               </div>
               <div className="pullrequest__item__owner-picture">
@@ -26,7 +26,7 @@ class PullRequestItem extends Component {
                 />
               </div>
               <div className="pullrequest__item__name__repo">
-                <span>{this.props.repository.fullName}</span>
+                <span><a href={this.props.repository.webUrl} target="_blank">{this.props.repository.fullName}</a></span>
               </div>
             </div>
 

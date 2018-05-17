@@ -126,6 +126,18 @@ li.repository__item:hover {
   align-self: center;
 }
 
+.repository__item__pull__num_0 {
+  background-color: #5c6bc070;
+  opacity: 0;
+  height: 33px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  margin: 0 7px;
+  align-self: center;
+}
+
 .repository__item__pull__num__value {
   color: white;
 }
