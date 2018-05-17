@@ -88,10 +88,10 @@ class RepositoryItem extends Component {
 		)
 	}
 
-	//handleToggle = (id, action) => {
-		//const serverAction = action ? 'disable' : 'enable'
-		//this.props.toggleRepository(id, serverAction)
-	//}
+	handleToggle = (id, action) => {
+		const serverAction = action ? 'disable' : 'enable'
+		this.props.toggleRepository(id, serverAction)
+	}
 	render() {
 		return (
 			<li 
@@ -101,21 +101,19 @@ class RepositoryItem extends Component {
 				<div className="repository__item-content">
 
 					<div className="repository__item-content-text">
-						
 						<div className="repository__item__name__text">
 							<span>{this.props.repo.fullName}</span>
 						</div>
-			
 					</div>
 
 					<div className="repository__item-content-toggle">
-<Toggle 
+						<Toggle 
 							toggled={this.props.active}
-							onToggle={() => this.handleToggle(this.props.itemId, this.props.active)}/>
+							onToggle={() => this.handleToggle(this.props.itemId, this.props.active)}
+						/>
 					</div>
 
 					<div className="repository__item__content__extras">
-
 						<div className="repository__item__description">
 							<Collapsible trigger={this.handleCollapse()}>
 								<div className="repository__item__description__text">
@@ -124,20 +122,20 @@ class RepositoryItem extends Component {
 							</Collapsible>
 						</div>
 
-							<div className="repository__item__pull__num">
-								<span className="repository__item__pull__num__value">
+						<div className="repository__item__pull__num">
+							<span className="repository__item__pull__num__value">
 								{this.props.pullnum}
-								</span>
-							</div>
+							</span>
+						</div>
 
-							<div className="repository__item__tech">
-								<Chip style={styles.chip}>
-						          <Avatar size={32}></Avatar>
-						          {this.props.repo.language}
-						        </Chip>
-							</div>
+						<div className="repository__item__tech">
+							<Chip style={styles.chip}>
+						         <Avatar size={32}></Avatar>
+						         {this.props.repo.language}
+						    </Chip>
+						</div>
 
-							{this.renderPrivacy()}
+						{this.renderPrivacy()}
 
 						<div className="repository__item__color__picker">
 					        <RaisedButton
@@ -158,7 +156,6 @@ class RepositoryItem extends Component {
 								/>
 					        </Popover>
 					    </div>
-
 					</div>
 				</div>
 			</li>

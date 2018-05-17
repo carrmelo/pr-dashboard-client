@@ -10,7 +10,6 @@ import {
 import RepositoryItem from './repository_item'
 
 class RepositoriesList extends Component {
-
 	//UPDATE ON REAL TIME SOCKETS
 	componentDidMount() {
 	// 	socket.on('repos-update', this.props.getRepositories.bind(this));
@@ -24,12 +23,12 @@ class RepositoriesList extends Component {
 
 	componentDidUpdate() {
 		if (!this.props.isAuth) {
-      this.props.history.push('/')
-    }
+	      this.props.history.push('/')
+	    }
 	}
 
 	renderRepositoryItem () {
-		let { repositories } = this.props
+		let { repositories, searchValue } = this.props
 		if(!repositories) return <div>LOADING</div>
 
 		return Object.keys(repositories)
@@ -65,7 +64,7 @@ const mapStateToProps = (state) => {
 	return { 
 		repositories: state.entities.repositories, 
 		searchValue: state.search, 
-    isAuth: state.authentication.isAuthenticated
+    	isAuth: state.authentication.isAuthenticated, 
 	}		
 }
 
