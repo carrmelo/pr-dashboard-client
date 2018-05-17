@@ -16,7 +16,7 @@ class App extends Component {
           <Route exact path="/" component={SignIn} />
           <Route exact path="/welcome" component={Welcome} />
           <div>
-            <div style={{width:"100vw", height:"109px", backgroundColor:"#Fb2d3b", position:"fixed", zIndex:"6"}}></div>
+            <div style={{width:"100vw", height:"109px", backgroundColor:"#2b2d3b", position:"fixed", zIndex:"1"}}></div>
             <DashboardHeader />
             <DashboardContent />
           </div>

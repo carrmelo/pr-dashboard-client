@@ -79,7 +79,8 @@ a:hover {
   padding-top: 15px;
   margin-top: 15px;
   position: fixed;
-  width: 100%; }
+  width: 100%;
+  z-index: 2; }
 
 .header__logo {
   width: 19.5%;
