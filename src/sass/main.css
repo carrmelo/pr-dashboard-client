@@ -171,6 +171,31 @@ button.repository__item__color__picker__button {
 .sidebar__navigation-pullrequests {
   margin: 40px auto; }
 
+.container {
+  min-height: 100vh;
+  max-width: 730px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto; }
+
 .cls-1 {
-  font-size: 150px;
+  font-size: 250px;
   font-family: FrederickatheGreat-Regular, Fredericka the Great; }
+
+.cls-2 {
+  font-size: 80px;
+  font-family: FrederickatheGreat-Regular, Fredericka the Great; }
+
+.h-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.v-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.github-button {
+  width: 280px; }
