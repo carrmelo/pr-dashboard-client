@@ -292,6 +292,9 @@ button.repository__item__color__picker__button {
 .sidebar__navigation-pullrequests {
   margin: 40px auto; }
 
+.sidebar__icon-pullrequests:hover {
+  fill: white; }
+
 .container {
   min-height: 100vh;
   max-width: 730px;
