@@ -17,10 +17,14 @@ import { bindActionCreators } from 'redux'
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
-import RaisedButton from 'material-ui/RaisedButton';
 import Popover from 'material-ui/Popover';
 
 import { HuePicker } from 'react-color'
+import Collapsible from 'react-collapsible';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import RaisedButton from 'material-ui/RaisedButton';
+
+import Paper from 'material-ui/Paper';
 
 class RepositoryItem extends Component {
 	
@@ -46,22 +50,64 @@ class RepositoryItem extends Component {
 		this.props.repoSwitch(repoID)
 	}
 
-	handleToggle = (id, action) => {
-		const serverAction = action ? 'disable' : 'enable'
-		this.props.toggleRepository(id, serverAction)
+	renderPrivacy = () => {
+		console.log(this.props.repo)
+
+		if (this.props.repo.private) {
+			return (
+				<div className="repository__item__privacy__status">
+					<svg className="repository__item__privacy__icon">
+						<use xlinkHref="./icons/sprite.svg#icon-social-github"></use>
+					</svg>
+				</div>
+			)
+		} else {
+			return (
+				<div className="repository__item__privacy__status">
+					<svg className="repository__item__privacy__icon">
+						<use xlinkHref="./icons/sprite.svg#icon-lock-closed-outline"></use>
+					</svg>
+				</div>
+			)	
+		}
 	}
 
-	render() {
+	handleCollapse = () => {
+		return (
+			<RaisedButton 
+				disabled={this.props.repo.description ? false : true}
+				backgroundColor="#0bd8be"
+				style={{minWidth: "65px", backgroundColor: "transparent"}}
+			>
+				<div className="repository__extra__info__arrow">
+					<svg className="repository__extra__info__arrow__icon">
+						<use xlinkHref="./icons/sprite.svg#icon-arrow-down-outline"></use>
+					</svg>
+				</div>
+			</RaisedButton>
+		)
+	}
 
+	//handleToggle = (id, action) => {
+		//const serverAction = action ? 'disable' : 'enable'
+		//this.props.toggleRepository(id, serverAction)
+	//}
+	render() {
 		return (
 			<li 
 				className="repository__item"
 				style={{borderLeft: `6px solid ${this.state.background}`}}
 			>
 				<div className="repository__item-content">
+
 					<div className="repository__item-content-text">
-						<span>{this.props.repo.fullName}</span>
+						
+						<div className="repository__item__name__text">
+							<span>{this.props.repo.fullName}</span>
+						</div>
+			
 					</div>
+
 					<div className="repository__item-content-toggle">
 <Toggle 
 							toggled={this.props.active}
@@ -69,32 +115,49 @@ class RepositoryItem extends Component {
 					</div>
 
 					<div className="repository__item__content__extras">
-						<div className="repository__item__tech">
-							<Chip style={styles.chip}>
-					          <Avatar size={32}></Avatar>
-					          {this.props.repo.language}
-					        </Chip>
+
+						<div className="repository__item__description">
+							<Collapsible trigger={this.handleCollapse()}>
+								<div className="repository__item__description__text">
+									{this.props.repo.description}
+								</div>
+							</Collapsible>
 						</div>
 
-					<div className="repository__item__color__picker">
-				        <button
-				          onClick={this.onColorButtonClick}
-				          className="repository__item__color__picker__button"
-				          label="Color"
-				        />
-				        <Popover
-				          open={this.state.open}
-				          anchorEl={this.state.anchorEl}
-				          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-				          targetOrigin={{horizontal: 'left', vertical: 'top'}}
-				          onRequestClose={this.handleRequestClose}
-				        >
-						<HuePicker 
-							color={this.state.background}
-							onChangeComplete={this.handleColorChange}
-						/>
-				        </Popover>
-				    </div>
+							<div className="repository__item__pull__num">
+								<span className="repository__item__pull__num__value">
+								{this.props.pullnum}
+								</span>
+							</div>
+
+							<div className="repository__item__tech">
+								<Chip style={styles.chip}>
+						          <Avatar size={32}></Avatar>
+						          {this.props.repo.language}
+						        </Chip>
+							</div>
+
+							{this.renderPrivacy()}
+
+						<div className="repository__item__color__picker">
+					        <RaisedButton
+					          onClick={this.onColorButtonClick}
+					          className="repository__item__color__picker__button"
+					          label="Color"
+					        />
+					        <Popover
+					          open={this.state.open}
+					          anchorEl={this.state.anchorEl}
+					          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+					          targetOrigin={{horizontal: 'left', vertical: 'top'}}
+					          onRequestClose={this.handleRequestClose}
+					        >
+								<HuePicker 
+									color={this.state.background}
+									onChangeComplete={this.handleColorChange}
+								/>
+					        </Popover>
+					    </div>
 
 					</div>
 				</div>
@@ -117,6 +180,15 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({ repoSwitch, selectColor, toggleRepository }, dispatch)
 }
 
+const mapStateToProps = (state) => {
+	return {
+		user: state.entities.users
+	}
+}
+
 export default connect(null, mapDispatchToProps)(RepositoryItem)
+
+
+
 
 

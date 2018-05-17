@@ -1,12 +1,13 @@
-// import socket from '../../websockets';
+
+import socket from '../../websockets';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import { getRepositories } from '../../actions'
+import { 
+	getRepositories
+} from '../../actions'
 
 import RepositoryItem from './repository_item'
-
-// import { bindActionCreators } from 'redux'
 
 class RepositoriesList extends Component {
 
@@ -28,12 +29,11 @@ class RepositoriesList extends Component {
 	}
 
 	renderRepositoryItem () {
-
 		let { repositories } = this.props
-
 		if(!repositories) return <div>LOADING</div>
 
 		return Object.keys(repositories)
+			.filter(item => item.toUpperCase().includes(searchValue.toUpperCase()) )
 			.map(key => {
 				return (
 					<RepositoryItem
@@ -52,8 +52,8 @@ class RepositoriesList extends Component {
 				<h4 className="dashboard__repository__title">
 					Repositories
 				</h4>
-				<ul className="dashboard__repository__list">
-					{this.renderRepositoryItem()}
+				<ul>
+					{this.renderRepositoryItem(this.props.searchValue)}
 				</ul>
 			</div>
 
@@ -62,11 +62,11 @@ class RepositoriesList extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return {
-		repositories: state.entities.repositories,
-		isAuth: state.authentication.isAuthenticated
-	 }
-
+	return { 
+		repositories: state.entities.repositories, 
+		searchValue: state.search, 
+    isAuth: state.authentication.isAuthenticated
+	}		
 }
 
 
@@ -76,3 +76,4 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepositoriesList)
+

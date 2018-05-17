@@ -12,7 +12,8 @@ import {
   REPO_ACTIVATED,
   SELECTED_PULLREQUESTS,
   COLOR_SELECTED,
-  SOCKETS_PULLS_SET
+  SOCKETS_PULLS_SET, 
+  SEARCH_TERM
 } from './types'
 
 export const getRepositories = () => ({
@@ -49,6 +50,13 @@ export const getSelectedPullRequests = () => {
 //   type: 'TOGGLE_ACTIVE',
 //   id
 // })
+
+export const searchTerm = (term) => {
+  return {
+    type: SEARCH_TERM, 
+    payload: term
+  }
+}
 
 export const selectColor = (color) => {
   return {
