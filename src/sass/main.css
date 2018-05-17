@@ -39,7 +39,8 @@ svg {
   min-width: 820px;
   color: #ff0000ba;
   background-color: white;
-  margin-top: 0; }
+  margin-top: 0;
+  margin-left: 251px; }
 
 a:hover {
   color: #53b3e2; }
@@ -279,7 +280,9 @@ button.repository__item__color__picker__button {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex: 0 0 18.55vw; }
+  flex: 0 0 18.55vw;
+  position: fixed;
+  margin-left: 100px; }
 
 .sidebar__icon-repositories, .sidebar__icon-pullrequests {
   width: 5rem;
