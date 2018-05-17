@@ -15,14 +15,10 @@ const callApi = (endpoint, schema, method) => {
       if (contentType && contentType.indexOf('application/json') !== -1) {
         return response.json()
         .then(json=> {
-          
           if (!response.ok) {
-            if (response.status === 401) {
-              var current_time = Date.now().valueOf() / 1000;
-                if ( checkJWT().exp < current_time) {
-                  localStorage.clear();
-                  return Promise.reject('token expired')
-                }
+            if (response.status === 401 && checkJWT()) {
+              localStorage.clear();
+              return Promise.reject('token expired')
             }
             return Promise.reject(response.status)
           }
@@ -40,12 +36,9 @@ const callApi = (endpoint, schema, method) => {
         })
       } else {
         if (!response.ok) {
-          if (response.status === 401) {
-            var current_time = Date.now().valueOf() / 1000;
-              if ( checkJWT().exp < current_time) {
-                localStorage.clear();
-                return Promise.reject('token expired')
-              }
+          if (response.status === 401 && checkJWT()) {
+            localStorage.clear();
+            return Promise.reject('token expired')
           }
           return Promise.reject(response.status)
         } else {
