@@ -9,10 +9,13 @@
     flex-direction: column;
     justify-content: flex-start;
     flex: 0 0 18.55vw;
+    position:fixed;
+    margin-left: 100px;
+    margin-top: 139px;
 }
 
 .sidebar__icon-repositories, .sidebar__icon-pullrequests {
-	width: 5rem; 
+	width: 5rem;
 	height: 5rem;
 }
 
@@ -25,8 +28,15 @@
     margin: 40px auto;
 }
 
-// .sidebar__navigation-repositories__button, 
+// .sidebar__navigation-repositories__button,
 // .sidebar__navigation-pullrequests__button {
-    
+
 // }
 
+.sidebar__icon-pullrequests:hover {
+    fill:white;
+}
+
+.sidebar__icon-repositories:hover {
+    fill:white;
+}

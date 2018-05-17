@@ -53,8 +53,9 @@ class RepositoryItem extends Component {
 		this.props.changeColor(repoID, colorHex)
 	}
 
-	onToggleSwitch (repoID) {
-		this.props.repoSwitch(repoID)
+	handleToggle = (id, action) => {
+		const serverAction = action ? 'disable' : 'enable'
+		this.props.toggleRepository(id, serverAction)
 	}
 
 	renderPrivacy = () => {

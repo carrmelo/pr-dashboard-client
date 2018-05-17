@@ -11,16 +11,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <Route path='/'> */}
         <Switch>
           <Route exact path="/" component={SignIn} />
           <Route exact path="/welcome" component={Welcome} />
           <div>
+            <div style={{width:"100vw", height:"109px", backgroundColor:"#2b2d3b", position:"fixed", zIndex:"1"}}></div>
             <DashboardHeader />
             <DashboardContent />
           </div>
         </Switch>
-        {/* </Route> */}
       </div>
     );
   }

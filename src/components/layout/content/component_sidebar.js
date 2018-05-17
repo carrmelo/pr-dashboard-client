@@ -11,7 +11,7 @@ class Sidebar extends Component {
 				<li className="sidebar__navigation-repositories">
 					<Link to="/repos">
 						<svg className="sidebar__icon-repositories">
-							<use xlinkHref="./icons/sprite.svg#icon-th-large-outline"></use>
+							<use xlinkHref="./icons/sprite.svg#icon-th-large-outline"><title></title></use>
 						</svg>
 					</Link>
 				</li>
@@ -19,7 +19,7 @@ class Sidebar extends Component {
 				<li className="sidebar__navigation-pullrequests">
 					<Link to="/pulls">
 						<svg className="sidebar__icon-pullrequests">
-							<use xlinkHref="./icons/sprite.svg#icon-flow-switch"></use>
+							<use xlinkHref="./icons/sprite.svg#icon-flow-switch"><title></title></use>
 						</svg>
 					</Link>
 				</li>
