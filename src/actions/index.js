@@ -13,14 +13,17 @@ import {
   SELECTED_PULLREQUESTS,
   COLOR_SELECTED,
   SOCKETS_PULLS_SET, 
-  SEARCH_TERM,
+
+  SEARCH_TERM, 
+  COLOR_CHANGE,
   CHECK_PULL
 } from './types'
 
-import axios from 'axios';
-import { authHeader } from '../helpers/auth-header';
+import axios from 'axios'
+import { authHeader } from '../helpers/auth-header'
 
-const BASE_API_URL = `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}`;
+const BASE_API_URL = `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}`
+
 
 export const getRepositories = () => ({
   type: REPOS_GET,
@@ -64,13 +67,6 @@ export const searchTerm = (term) => {
   }
 }
 
-export const selectColor = (color) => {
-  return {
-    type: COLOR_SELECTED,
-    payload: color
-  }
-}
-
 export const setPullsFromSocket = (pulls) => ({
   type: SOCKETS_PULLS_SET,
   payload: pulls
@@ -84,6 +80,7 @@ export const toggleRepository = (id, action) => ({
   }
 })
 
+
 export const checkPullrequest = (pullID) => {
   const PATCH_CHECK_PULL_URL = BASE_API_URL + `/pullrequests/${pullID}/seen`;
   return ({
@@ -94,3 +91,33 @@ export const checkPullrequest = (pullID) => {
     },
   });
 };
+
+export const changeColor = (repoID, colorHex) => {
+  const PATCH_COLOR_CHANGE_URL = BASE_API_URL + `/repos/${repoID}/color`
+
+  return {
+    type: COLOR_CHANGE, 
+    [CALL_API]: {
+      endpoint: PATCH_COLOR_CHANGE_URL, 
+      method: 'PATCH', 
+      body: {
+        "color": `${colorHex}`     
+      }
+    }
+  }
+}
+
+export const selectColor = (repoID, colorHex) => {
+  const PATCH_COLOR_URL = BASE_API_URL + `/repos/${repoID}/color` // /repos/${id}/${action}
+  const axiosConfig = { headers: authHeader() }
+
+  return dispatch => {
+    axios.patch(PATCH_COLOR_URL, {color: colorHex}, axiosConfig)
+      .then((response) => {
+          dispatch({
+            type: COLOR_SELECTED, 
+            payload: 'COLOR'
+          })
+      })
+  }
+}

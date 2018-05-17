@@ -9,8 +9,6 @@ export const TOGGLE_WEBHOOK_FAILURE = 'TOGGLE_WEBHOOK_FAILURE'
 export const REPO_ACTIVATED = 'REPO_ACTIVATED'
 export const SELECTED_PULLREQUESTS = 'SELECTED_PULLREQUESTS'
 
-export const COLOR_SELECTED = 'COLOR_SELECTED'
-
 export const SOCKETS_PULLS_SET = 'PULLS_SET'
 
 export const USER_INFO_REQUEST = 'USER_INFO_REQUEST';
@@ -22,7 +20,18 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export const LOGOUT_USER = 'LOGOUT_USER';
-
 export const SEARCH_TERM = 'SEARCH_TERM';
 export const CHECK_PULL = 'CHECK_PULL';
+
+////COLOR THUNK PATH -- Learn auth header through thunks
+export const COLOR_SELECTED = 'COLOR_SELECTED'
+///////COLOR MIDDLEWARE PATH -- Use custom middleware to send color to PR list through redux state
+export const COLOR_CHANGE = 'COLOR_CHANGE'
+export const COLOR_CHANGE_SUCCESS = 'COLOR_CHANGE_SUCCESS'
+
+
+
+
+
+
 
