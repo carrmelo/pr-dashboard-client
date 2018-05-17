@@ -62,7 +62,7 @@ const userSchema = new schema.Entity('user', {}, { idAttribute: '_id' });
 const repoSchema = new schema.Entity('repositories', {}, { idAttribute: '_id' });
 const pullSchema = new schema.Entity(
   'pull_requests',
-  { repositories: repoSchema, user: userSchema },
+  { repositories: repoSchema },
   { idAttribute: '_id' }
 );
 
