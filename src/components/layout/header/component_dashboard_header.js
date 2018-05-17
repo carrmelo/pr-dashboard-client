@@ -19,27 +19,26 @@ class DashboardHeader extends Component {
 		}, () => {
 			this.props.searchTerm(this.state.value)
 		})
-	} 	
-  
+	}
+
 	handleLogOut = () => {
 		this.props.authActions.logoutUser();
 		localStorage.clear();
 	}
 
 	renderLogOutButton = () => (
-		(this.props.isAuth && this.props.user[0])
-		? <div className="header__config">
-				<button className="header__config-button" onClick={this.handleLogOut}>
-					Sign Out
-				</button>
+
+		(this.props.isAuth)
+		? <div onClick={this.handleLogOut} className="header__sign_out">
+				<a href="#">Sign Out</a>
 			</div>
 		: null
 	)
 
 	renderName = (user) => (
-			<div style={{display:"flex"}}>
+			<div id="header__userinfo">
 				<img src={user[0].picture} height="50" width="50" style={{borderRadius: "50%", border: "2px #ccccd1 solid"}} />
-				<div className="header__config" style={{width:"200px", justifyContent:"flex-end", paddingLeft:"10px", alignSelf:"center"}}>
+				<div style={{paddingLeft:"10px", alignSelf:"center"}}>
 					{user[0].loginName}
 				</div>
 			</div>
@@ -63,28 +62,33 @@ class DashboardHeader extends Component {
 					</svg>
 				</div>
 
-				<div className="header__search">
-					<form action="#" className="header__search-form">
-						<input
-							type="text" className="header__search-input" placeholder=""
-							onChange={this.onInputChange}
-							value={this.state.value}
-						/>
-						<button className="header__search-button">
-							<svg className="header__search-icon">
-								<use xlinkHref="./icons/sprite.svg#icon-zoom-outline"></use>
-							</svg>
-						</button>
-					</form>
+				<div id="header__search-userinfo-sign">
+					<div temporaryClassName="header__search" style={{flexGrow:1}}>
+						<form action="#" className="header__search-form">
+							<input
+								type="text" className="header__search-input" placeholder=""
+								onChange={this.onInputChange}
+								value={this.state.value}
+							/>
+							<button className="header__search-button">
+								<svg className="header__search-icon">
+									<use xlinkHref="./icons/sprite.svg#icon-zoom-outline"></use>
+								</svg>
+							</button>
+						</form>
+					</div>
+
+					{this.props.isAuth
+					? this.props.user[0]
+					? this.renderName(this.props.user)
+					: <div>Loading</div>
+					: this.renderSignIn()}
+
+					{this.renderLogOutButton()}
+
 				</div>
 
-				{this.props.isAuth
-				? this.props.user[0]
-				? this.renderName(this.props.user)
-				: <div>Loading</div>
-				: this.renderSignIn()}
 
-				{this.renderLogOutButton()}
 			</header>
 		)
 	}
@@ -96,7 +100,7 @@ const mapStateToProps = ({ authentication }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	authActions: bindActionCreators(authActions, dispatch), 
+	authActions: bindActionCreators(authActions, dispatch),
 	searchTerm: bindActionCreators(searchTerm, dispatch)
 });
 

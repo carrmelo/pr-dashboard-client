@@ -41,6 +41,15 @@ svg {
   background-color: white;
   margin-top: 0; }
 
+#header__search-userinfo-sign {
+  display: flex;
+  width: 100%; }
+
+#header__userinfo {
+  display: flex;
+  margin: 0 26px;
+  color: #ccccd1; }
+
 .dashboard__header {
   height: 6.4rem;
   display: flex;
@@ -64,7 +73,6 @@ svg {
   display: flex; }
 
 .header__search-form {
-  width: 80%;
   display: flex; }
 
 .header__search-icon {
@@ -85,9 +93,12 @@ svg {
   .header__search-button:focus {
     background-color: transparent !important; }
 
-.header__config {
+.header__sign_out {
   display: flex;
-  flex-direction: row-reverse; }
+  flex-direction: row-reverse;
+  align-self: center;
+  cursor: pointer;
+  margin-right: 30px; }
 
 .header__config-button {
   width: 60px;
