@@ -1,7 +1,5 @@
-export const STATE_KEY = 'currentUser';
-
 const initialState = {
-  currentUser: {},
+  currentUser: [],
   token: '',
   isAuthenticated: false,
   error: ''
@@ -15,20 +13,22 @@ export default (state = initialState, action) => {
         token: action.response.token,
         isAuthenticated: true
       }
-
-    } else if (action.type === "GET_USER_INFO_SUCCESS") {
       
-      return {
-        ...state,
-        currentUser: action.response.entities.user
-      }
+    } 
 
-    } else if (action.type === 'LOGOUT_USER') {
+    if (action.error === 'token expired') return initialState
+    
+    switch (action.type) {
+      case "GET_USER_INFO_SUCCESS":
+        return {
+          ...state,
+          currentUser: action.response
+        }
 
-      return initialState
+      case 'LOGOUT_USER':
+        return initialState
 
-    } else {
-
-      return state;
+      default:
+        return state;
     }
 }

@@ -59,6 +59,7 @@ svg {
   height: 10rem; }
 
 .header__search {
+  max-width: 767px;
   width: 60.5%;
   display: flex; }
 
@@ -85,7 +86,6 @@ svg {
     background-color: transparent !important; }
 
 .header__config {
-  width: 20%;
   display: flex;
   flex-direction: row-reverse; }
 
@@ -247,3 +247,46 @@ button.repository__item__color__picker__button {
 
 .sidebar__navigation-pullrequests {
   margin: 40px auto; }
+
+.container {
+  min-height: 100vh;
+  max-width: 730px;
+  width: 100%;
+  position: relative;
+  margin: 0 auto; }
+
+.cls-11 {
+  font-size: 150px;
+  font-family: Rokkitt-Regular, Rokkitt;
+  letter-spacing: -0.02em; }
+
+.cls-22 {
+  font-size: 70px;
+  font-family: Rokkitt-Light, Rokkitt;
+  letter-spacing: -0.01em; }
+
+.cls-1 {
+  font-size: 80px;
+  font-family: Rokkitt-Light, Rokkitt; }
+
+.cls-2 {
+  font-size: 40px;
+  font-family: FrederickatheGreat-Regular, Fredericka the Great; }
+
+.h-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.v-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.github-button {
+  width: 280px; }
+
+.welcome-message {
+  display: flex;
+  align-content: center; }

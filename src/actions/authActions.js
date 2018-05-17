@@ -1,4 +1,4 @@
-import { CALL_API, Schemas } from '../middleware/api'
+import { CALL_API } from '../middleware/api'
 
 // import {
 //   LOGIN_REQUEST,
@@ -14,7 +14,6 @@ export const getUserInfo = () => ({
   type: 'GET_USER_INFO',
   [CALL_API]: {
     endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/user/me`,
-    schema: Schemas.USER  
   }
 })
 

@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 import api from './middleware/api';
+import socket from './middleware/socket';
 import reducer from './reducers/index'
 import { loadState, saveState } from './helpers/localStorage'
 import throttle from 'lodash/throttle'
@@ -17,20 +18,24 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-// const persistedState = loadState();
+const persistedState = loadState();
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = createStore(
   reducer,
-  // persistedState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(logger, api)
+  persistedState,
+  composeEnhancers(applyMiddleware(logger, api, socket(process.env.REACT_APP_SERVER_URL)))
 )
 
 // Listen to the changes on the state
 // and saves them, no more than one time per second
 store.subscribe(throttle(() => {
-  if (store.getState().authentication.isAuthenticated)
-    saveState(store.getState().authentication);
+  const { authentication } = store.getState();
+  if (authentication.isAuthenticated)
+    saveState({
+      authentication
+    });
 }, 1000));
 
 ReactDOM.render(
@@ -43,4 +48,3 @@ ReactDOM.render(
   </Provider>,
 	document.getElementById('root'));
 registerServiceWorker();
-

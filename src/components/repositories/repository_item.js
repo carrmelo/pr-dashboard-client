@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import { toggleRepository } from '../../actions'
+
 import Toggle from 'material-ui/Toggle';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
@@ -9,7 +13,6 @@ import {
 } from '../../actions'
 
 import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -85,6 +88,10 @@ class RepositoryItem extends Component {
 		)
 	}
 
+	//handleToggle = (id, action) => {
+		//const serverAction = action ? 'disable' : 'enable'
+		//this.props.toggleRepository(id, serverAction)
+	//}
 	render() {
 		return (
 			<li 
@@ -102,9 +109,9 @@ class RepositoryItem extends Component {
 					</div>
 
 					<div className="repository__item-content-toggle">
-						<Toggle 
-							onClick={() => this.onToggleSwitch(this.props.repo._id) }
-						/>
+<Toggle 
+							toggled={this.props.active}
+							onToggle={() => this.handleToggle(this.props.itemId, this.props.active)}/>
 					</div>
 
 					<div className="repository__item__content__extras">
@@ -170,7 +177,7 @@ const styles = {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ repoSwitch, selectColor }, dispatch)
+	return bindActionCreators({ repoSwitch, selectColor, toggleRepository }, dispatch)
 }
 
 const mapStateToProps = (state) => {

@@ -1,23 +1,20 @@
-import socket from '../../websockets';
-import { normalize } from 'normalizr';
-import { Schemas } from '../../middleware/api'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getPullRequests, setPullsFromSocket } from '../../actions';
+import { getPullRequests } from '../../actions';
 
 import PullRequestItem from './pullrequest_item';
 
 class PullRequestList extends Component {
 
   componentDidMount () {
-    socket.on('pr-update', this.updateFromSocket.bind(this));
     this.props.getPullRequests();
   };
 
-  updateFromSocket (pulls) {
-    const normalizedPulls = normalize(pulls, Schemas.PULLS)
-    this.props.setPullsFromSocket(normalizedPulls);
+  componentDidUpdate () {
+    if (!this.props.isAuth) {
+      this.props.history.push('/')
+    }
   }
 
   renderPullRequestItem (pulls) {
@@ -50,18 +47,18 @@ class PullRequestList extends Component {
         </div>
       )
     } else {
-      return <p>Loading</p>
+      return <p>Seems like there's nothing to show yet</p>
     }
   }
 }
 
-const mapStateToProps = ({ entities }) => ({
+const mapStateToProps = ({ entities, authentication }) => ({
+  isAuth: authentication.isAuthenticated,
   pulls: entities.pull_requests
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getPullRequests: () => dispatch(getPullRequests()),
-  setPullsFromSocket: (pulls) => dispatch(setPullsFromSocket(pulls))
+  getPullRequests: () => dispatch(getPullRequests())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PullRequestList);

@@ -1,4 +1,3 @@
-
 import {
   REPO_ACTIVATED,
   SOCKETS_PULLS_SET
@@ -12,7 +11,7 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-  
+
   if (action.response && action.response.entities && action.type !== "USER_INFO_SUCCESS") {
     return {
       ...state,
@@ -30,28 +29,31 @@ export default (state = initialState, action) => {
         }
     }
   }
-    
+
+  if (action.error === 'token expired') return initialState
+  
   switch (action.type) {
-    case 'REPOS_GET_REQUEST': 
+    case 'REPOS_GET_REQUEST':
       return state
     case 'REPOS_GET_SUCCESS':
       return { ...state, repositories: { ...action.response.entities.repositories }}
-    case REPO_ACTIVATED: 
-      
+    case REPO_ACTIVATED:
+
       console.log(action.payload)
       console.log(state.repositories[action.payload])
       console.log('CHANGE', action, action.payload)
       return { ...state, repositories: null }
 
-    case 'TOGGLE_ACTIVE':
+    case 'TOGGLE_WEBHOOK_SUCCESS':
+    const post = state.repositories[action.response.id]
       return {
         ...state,
-        repos: state.repos.filter(repo => {
-            if (repo._id === action.id) {
-              repo.hookEnabled = !repo.hookEnabled
-              return repo
-            } else return repo
-          })
+        repositories: { ...state.repositories,
+          [action.response.id] : {
+            ...post,
+            hookEnabled: !post.hookEnabled
+          }
+        }
       }
 
     case SOCKETS_PULLS_SET:
@@ -73,6 +75,28 @@ export default (state = initialState, action) => {
 
     case 'LOGOUT_USER':
       return initialState
+
+    // Update Pull Requests from socket
+    case 'pull_request_received':
+    return {
+      ...state,
+      pull_requests: {
+        ...action.data.entities.pull_requests
+      },
+      users: {
+        ...action.data.entities.user
+      }
+    }
+
+    // Update Repositories from socket
+    case 'repos-update_received':
+
+    return {
+      ...state,
+      repositories: {
+        ...action.data.entities.repositories
+      }
+  }
 
   default: return state;
   }

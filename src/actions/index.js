@@ -1,9 +1,16 @@
 import { CALL_API, Schemas } from '../middleware/api'
 import {
+  PULLS_REQUEST,
+  PULLS_SUCCESS,
+  PULLS_FAILURE,
+  GET_REPOSITORIES,
+  TOGGLE_WEBHOOK_REQUEST,
+  TOGGLE_WEBHOOK_SUCCESS,
+  TOGGLE_WEBHOOK_FAILURE,
   REPOS_GET,
   PULLS_GET,
-  REPO_ACTIVATED, 
-  SELECTED_PULLREQUESTS, 
+  REPO_ACTIVATED,
+  SELECTED_PULLREQUESTS,
   COLOR_SELECTED,
   SOCKETS_PULLS_SET, 
   SEARCH_TERM
@@ -12,7 +19,7 @@ import {
 export const getRepositories = () => ({
   type: REPOS_GET,
   [CALL_API]: {
-    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos`, 
+    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos`,
     schema: Schemas.REPOS
   }
 })
@@ -27,14 +34,14 @@ export const getPullRequests = () => ({
 
 export const repoSwitch = (repoID) => {
   return {
-    type: REPO_ACTIVATED, 
+    type: REPO_ACTIVATED,
     payload: repoID
   }
 }
 
 export const getSelectedPullRequests = () => {
   return {
-    type: SELECTED_PULLREQUESTS, 
+    type: SELECTED_PULLREQUESTS,
     payload: 'FOLLOWED ONES'
   }
 }
@@ -53,7 +60,7 @@ export const searchTerm = (term) => {
 
 export const selectColor = (color) => {
   return {
-    type: COLOR_SELECTED, 
+    type: COLOR_SELECTED,
     payload: color
   }
 }
@@ -63,3 +70,10 @@ export const setPullsFromSocket = (pulls) => ({
   payload: pulls
 })
 
+export const toggleRepository = (id, action) => ({
+  type: 'TOGGLE_WEBHOOK',
+  [CALL_API]: {
+    endpoint: `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/repos/${id}/${action}`,
+    method: 'PATCH'
+  }
+})

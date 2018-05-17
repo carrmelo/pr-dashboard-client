@@ -9,6 +9,7 @@ class PullRequestItem extends Component {
         <div>Created at {this.props.created_at}</div>
         <div>STATUS {this.props.state}</div>
         <div>{this.props.comment}</div>
+        <div>{this.props.comments} comments</div>
         {/* <div className="links-container">
           <a href={this.props.commits_url}>COMMITS</a>
           <a href={this.props.issue_url}>ISSUES</a>
