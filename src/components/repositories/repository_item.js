@@ -110,22 +110,27 @@ class RepositoryItem extends Component {
 	: <div className="repository__item__tech">
 		</div>
 	)
-	renderNumPulls = () => (
-		(this.props.pullnum > 0)
-		? (this.props.pullnum > 1)
-		? <div className="repository__item__pull__num">
+	renderNumPulls = () => {
+		if (this.props.pullnum > 1) {
+			return (
+			<div className="repository__item__pull__num">
 				<span className="repository__item__pull__num__value">
 					{this.props.pullnum} Pulls
 				</span>
 			</div>
-		: <div className="repository__item__pull__num">
+		)} else if (this.props.pullnum === 1) {
+			return (
+			<div className="repository__item__pull__num">
 				<span className="repository__item__pull__num__value">
 					{this.props.pullnum} Pull
 				</span>
 			</div>
-		: <div className="repository__item__pull__num_0">
+		)} else if (!this.props.pullnum) {
+			return (
+			<div className="repository__item__pull__num_0">
 			</div>
-	)
+		)}
+	}
 
 	render() {
 		return (

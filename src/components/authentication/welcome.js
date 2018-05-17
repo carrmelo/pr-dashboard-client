@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Loader from 'react-loader';
 
 import { loginUser, getUserInfo } from '../../actions/authActions';
+import { getPullRequests } from '../../actions/';
 
 class Welcome extends Component {
 
@@ -19,6 +20,7 @@ class Welcome extends Component {
 
   componentDidUpdate () {
     if (this.props.isAuth) {
+      this.props.getPullRequests()
       this.props.getUserInfo()
       setTimeout(() => this.props.history.push('/repos'), 300)
     }
@@ -40,7 +42,8 @@ const mapStateToProps = ({ authentication }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	loginUser: (code) => dispatch(loginUser(code)),
-	getUserInfo: (code) => dispatch(getUserInfo(code))
+  getUserInfo: (code) => dispatch(getUserInfo(code)),
+  getPullRequests: () => dispatch(getPullRequests())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
