@@ -30,7 +30,7 @@ class DashboardHeader extends Component {
 
 		(this.props.isAuth)
 		? <div onClick={this.handleLogOut} className="header__sign_out">
-				<a href="#">Sign Out</a>
+				<a href="#">LOG OUT</a>
 			</div>
 		: null
 	)
