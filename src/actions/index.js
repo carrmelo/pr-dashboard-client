@@ -79,12 +79,13 @@ export const selectColor = (repoID, colorHex) => {
 
   const PATCH_COLOR_URL = BASE_API_URL + `/repos/${repoID}/${colorHex}` // /repos/${id}/${action}
 
-  console.log('HERE***', PATCH_COLOR_URL)
   return dispatch => {
-    dispatch({
-      type: COLOR_SELECTED, 
-      payload: 'COLOR'
-    })
+    axios.patch(PATCH_COLOR_URL)
+      .then(response => console.log('PATCH', response))
+      dispatch({
+        type: COLOR_SELECTED, 
+        payload: 'COLOR'
+      })
   }
 }
 
