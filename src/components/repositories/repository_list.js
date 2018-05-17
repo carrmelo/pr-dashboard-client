@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Loader from 'react-loader';
 
-import { 
+import {
 	getRepositories
 } from '../../actions'
 
@@ -28,7 +28,7 @@ class RepositoriesList extends Component {
 		if(!repositories) return <div>LOADING</div>
 
 		return Object.keys(repositories)
-			.filter(item => item.toUpperCase().includes(this.props.searchValue.toUpperCase()) )
+			.filter(item => repositories[item].fullName.toUpperCase().includes(searchValue.toUpperCase()) )
 			.map(key => {
 				return (
 					<RepositoryItem
