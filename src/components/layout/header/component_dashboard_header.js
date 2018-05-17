@@ -22,7 +22,7 @@ class DashboardHeader extends Component {
 	}
 
 	renderLogOutButton = () => (
-		(this.props.isAuth)
+		(this.props.isAuth && this.props.user[0])
 		? <div className="header__config">
 				<button className="header__config-button" onClick={this.handleLogOut}>
 					Sign Out
@@ -76,8 +76,10 @@ class DashboardHeader extends Component {
 					</form>
 				</div>
 
-				{(this.props.isAuth && this.props.user[0])
+				{this.props.isAuth
+				? this.props.user[0]
 				? this.renderName(this.props.user)
+				: <div>Loading</div>
 				: this.renderSignIn()}
 
 				{this.renderLogOutButton()}
