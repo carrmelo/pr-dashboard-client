@@ -21,6 +21,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const SEARCH_TERM = 'SEARCH_TERM';
+export const CHECK_PULL = 'CHECK_PULL';
 
 ////COLOR THUNK PATH -- Learn auth header through thunks
 export const COLOR_SELECTED = 'COLOR_SELECTED'

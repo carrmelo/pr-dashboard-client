@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Loader from 'react-loader';
 
-import { 
+import {
 	getRepositories
 } from '../../actions'
 
@@ -24,18 +24,24 @@ class RepositoriesList extends Component {
 	}
 
 	renderRepositoryItem () {
+		let sumPulls = 0
 		let { repositories, searchValue } = this.props
 		if(!repositories) return <div>LOADING</div>
 
 		return Object.keys(repositories)
-			.filter(item => item.toUpperCase().includes(this.props.searchValue.toUpperCase()) )
-			.map(key => {
+			.filter(item => repositories[item].fullName.toUpperCase().includes(searchValue.toUpperCase()) )
+			.map(repoKey => {		
+				const pulls = this.props.pulls
+				Object.keys(pulls).map(pullKey => {
+					(pulls[pullKey].repository === repoKey) ? sumPulls++ : null
+				})
 				return (
 					<RepositoryItem
-						key={key}
-						repo={repositories[key]}
-						itemId={repositories[key]._id}
-						active={repositories[key].hookEnabled}
+						key={repoKey}
+						repo={repositories[repoKey]}
+						itemId={repositories[repoKey]._id}
+						active={repositories[repoKey].hookEnabled}
+						pullnum={sumPulls}
 					/>
 				)
 			})
@@ -61,11 +67,12 @@ class RepositoriesList extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return { 
+	return {
+		pulls: state.entities.pull_requests,
 		loaded: state.entities.loadedEntities,
 		repositories: state.entities.repositories, 
 		searchValue: state.search, 
-    	isAuth: state.authentication.isAuthenticated, 
+    isAuth: state.authentication.isAuthenticated, 
 	}		
 }
 

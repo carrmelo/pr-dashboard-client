@@ -7,9 +7,9 @@ import Toggle from 'material-ui/Toggle';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 
-import { 
-	repoSwitch, 
-	selectColor, 
+import {
+	repoSwitch,
+	selectColor,
 	changeColor
 } from '../../actions'
 
@@ -30,7 +30,7 @@ import Paper from 'material-ui/Paper';
 import { authHeader } from '../../helpers/auth-header'
 
 class RepositoryItem extends Component {
-	
+
 	state = {
 		open: false,
 		background: "",
@@ -41,7 +41,7 @@ class RepositoryItem extends Component {
 			background: this.props.repo.color
 		})
 	}
-	
+
 	onColorButtonClick = (e) => {
 	    e.preventDefault();
 		this.setState({ open: true, anchorEl: e.currentTarget });
@@ -50,7 +50,7 @@ class RepositoryItem extends Component {
 	handleRequestClose = () => {
 		this.setState({ open: false });
 	};
-	
+
 	//HOW HANDLE WHEN PASSING MANY ARGUMENTS
 	handleColorChange (repoID, colorHex) {
 
@@ -65,7 +65,7 @@ class RepositoryItem extends Component {
 	}
 
 	renderPrivacy = () => {
-		if (this.props.repo.private) {
+		if (!this.props.repo.private) {
 			return (
 				<div className="repository__item__privacy__status">
 					<svg className="repository__item__privacy__icon">
@@ -80,13 +80,13 @@ class RepositoryItem extends Component {
 						<use xlinkHref="./icons/sprite.svg#icon-lock-closed-outline"></use>
 					</svg>
 				</div>
-			)	
+			)
 		}
 	}
 
 	handleCollapse = () => {
 		return (
-			<RaisedButton 
+			<RaisedButton
 				disabled={this.props.repo.description ? false : true}
 				backgroundColor="#0bd8be"
 				style={{minWidth: "65px", backgroundColor: "transparent"}}
@@ -105,9 +105,60 @@ class RepositoryItem extends Component {
 		this.props.toggleRepository(id, serverAction)
 	}
 
+	renderLanguage = () => (
+		(this.props.repo.language)
+	? <div className="repository__item__tech">
+			<Chip style={styles.chip}>
+				<Avatar size={32}></Avatar>
+				{this.props.repo.language}
+			</Chip>
+		</div>
+	: <div className="repository__item__tech">
+		</div>
+	)
+	renderNumPulls = () => (
+		(this.props.pullnum > 0)
+		? (this.props.pullnum > 1)
+		? <div className="repository__item__pull__num">
+				<span className="repository__item__pull__num__value">
+					{this.props.pullnum} Pulls
+				</span>
+			</div>
+		: <div className="repository__item__pull__num">
+				<span className="repository__item__pull__num__value">
+					{this.props.pullnum} Pull
+				</span>
+			</div>
+		: <div className="repository__item__pull__num_0">
+			</div>
+	)
+
+	renderCollapsibleDescription = () => {
+		return (
+			<Collapsible trigger={true?this.handleCollapse():''}>
+				<div className="repository__item__description__text">
+					{this.props.repo.description}
+				</div>
+			</Collapsible>);
+	}
+
+	renderDisabledCollapsible = () => {
+		return (
+		<RaisedButton
+			disabled={this.props.repo.description ? false : true}
+			backgroundColor="#0bd8be"
+			style={{minWidth: "65px", backgroundColor: "transparent"}}>
+			<div className="repository__extra__info__arrow">
+				<svg className="repository__extra__info__arrow__icon">
+					<use xlinkHref="./icons/sprite.svg#icon-arrow-down-outline"></use>
+				</svg>
+			</div>
+	</RaisedButton>);
+	}
+
 	render() {
 		return (
-			<li 
+			<li
 				className="repository__item"
 				style={{borderLeft: `6px solid ${this.state.background}`}}
 			>
@@ -115,12 +166,12 @@ class RepositoryItem extends Component {
 
 					<div className="repository__item-content-text">
 						<div className="repository__item__name__text">
-							<span>{this.props.repo.fullName}</span>
+							<span><a href={this.props.repo.webUrl} target="_blank">{this.props.repo.fullName}</a></span>
 						</div>
 					</div>
 
 					<div className="repository__item-content-toggle">
-						<Toggle 
+						<Toggle
 							toggled={this.props.active}
 							onToggle={() => this.handleToggle(this.props.itemId, this.props.active)}
 						/>
@@ -128,25 +179,12 @@ class RepositoryItem extends Component {
 
 					<div className="repository__item__content__extras">
 						<div className="repository__item__description">
-							<Collapsible trigger={this.handleCollapse()}>
-								<div className="repository__item__description__text">
-									{this.props.repo.description}
-								</div>
-							</Collapsible>
+							{this.props.repo.description ? this.renderCollapsibleDescription() : this.renderDisabledCollapsible()}
 						</div>
 
-						<div className="repository__item__pull__num">
-							<span className="repository__item__pull__num__value">
-								{this.props.pullnum}
-							</span>
-						</div>
+						{this.renderNumPulls()}
 
-						<div className="repository__item__tech">
-							<Chip style={styles.chip}>
-						         <Avatar size={32}></Avatar>
-						         {this.props.repo.language}
-						    </Chip>
-						</div>
+						{this.renderLanguage()}
 
 						{this.renderPrivacy()}
 
@@ -186,7 +224,7 @@ const styles = {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ 
+	return bindActionCreators({
 		repoSwitch, selectColor, toggleRepository, changeColor }, dispatch)
 }
 
