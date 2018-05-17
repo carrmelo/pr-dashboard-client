@@ -39,7 +39,7 @@ class SignIn extends Component {
               <title>Asset 1</title>
               <g id="Layer_2" data-name="Layer 2">
                 <g id="Layer_1-2" data-name="Layer 1">
-                  <text class="cls-2" transform="translate(7.14 247.8)">follow the repo
+                  <text class="cls-1" transform="translate(7.14 247.8)">follow the repo
                   </text>
                 </g>
               </g>
