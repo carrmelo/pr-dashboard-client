@@ -7,5 +7,4 @@ export function authHeader() {
   } else {
     return {}
   }
-
 }

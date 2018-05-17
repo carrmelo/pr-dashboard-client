@@ -9,7 +9,8 @@ import Avatar from 'material-ui/Avatar';
 
 import { 
 	repoSwitch, 
-	selectColor
+	selectColor, 
+	changeColor
 } from '../../actions'
 
 import { bindActionCreators } from 'redux'
@@ -25,6 +26,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import Paper from 'material-ui/Paper';
+import { authHeader } from '../../helpers/auth-header'
 
 class RepositoryItem extends Component {
 	
@@ -41,9 +43,14 @@ class RepositoryItem extends Component {
 	handleRequestClose = () => {
 		this.setState({ open: false });
 	};
+	
+	//HOW HANDLE WHEN PASSING MANY ARGUMENTS
+	handleColorChange (repoID, colorHex) {
+		this.setState({ background: colorHex })
 
-	handleColorChange = (e) => {
-		this.setState({ background: e.hex })
+		//this.props.selectColor(repoID, colorHex)
+		
+		this.props.changeColor(repoID, colorHex)
 	}
 
 	handleToggle = (id, action) => {
@@ -52,8 +59,6 @@ class RepositoryItem extends Component {
 	}
 
 	renderPrivacy = () => {
-		console.log(this.props.repo)
-
 		if (this.props.repo.private) {
 			return (
 				<div className="repository__item__privacy__status">
@@ -89,31 +94,33 @@ class RepositoryItem extends Component {
 		)
 	}
 
+	handleToggle = (id, action) => {
+		const serverAction = action ? 'disable' : 'enable'
+		this.props.toggleRepository(id, serverAction)
+	}
 
 	render() {
 		return (
 			<li 
 				className="repository__item"
-				style={{borderLeft: `6px solid ${this.state.background}`}}
+				style={{borderLeft: `6px solid ${this.props.repo.color}`}}
 			>
 				<div className="repository__item-content">
 
 					<div className="repository__item-content-text">
-						
 						<div className="repository__item__name__text">
 							<span>{this.props.repo.fullName}</span>
 						</div>
-			
 					</div>
 
 					<div className="repository__item-content-toggle">
-<Toggle 
+						<Toggle 
 							toggled={this.props.active}
-							onToggle={() => this.handleToggle(this.props.itemId, this.props.active)}/>
+							onToggle={() => this.handleToggle(this.props.itemId, this.props.active)}
+						/>
 					</div>
 
 					<div className="repository__item__content__extras">
-
 						<div className="repository__item__description">
 							<Collapsible trigger={this.handleCollapse()}>
 								<div className="repository__item__description__text">
@@ -122,20 +129,20 @@ class RepositoryItem extends Component {
 							</Collapsible>
 						</div>
 
-							<div className="repository__item__pull__num">
-								<span className="repository__item__pull__num__value">
+						<div className="repository__item__pull__num">
+							<span className="repository__item__pull__num__value">
 								{this.props.pullnum}
-								</span>
-							</div>
+							</span>
+						</div>
 
-							<div className="repository__item__tech">
-								<Chip style={styles.chip}>
-						          <Avatar size={32}></Avatar>
-						          {this.props.repo.language}
-						        </Chip>
-							</div>
+						<div className="repository__item__tech">
+							<Chip style={styles.chip}>
+						         <Avatar size={32}></Avatar>
+						         {this.props.repo.language}
+						    </Chip>
+						</div>
 
-							{this.renderPrivacy()}
+						{this.renderPrivacy()}
 
 						<div className="repository__item__color__picker">
 					        <RaisedButton
@@ -150,13 +157,11 @@ class RepositoryItem extends Component {
 					          targetOrigin={{horizontal: 'left', vertical: 'top'}}
 					          onRequestClose={this.handleRequestClose}
 					        >
-								<HuePicker 
-									color={this.state.background}
-									onChangeComplete={this.handleColorChange}
+								<HuePicker color={this.state.background}
+									onChangeComplete={(e) => this.handleColorChange(this.props.repo._id, e.hex)}
 								/>
 					        </Popover>
 					    </div>
-
 					</div>
 				</div>
 			</li>
@@ -175,7 +180,8 @@ const styles = {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ repoSwitch, selectColor, toggleRepository }, dispatch)
+	return bindActionCreators({ 
+		repoSwitch, selectColor, toggleRepository, changeColor }, dispatch)
 }
 
 const mapStateToProps = (state) => {

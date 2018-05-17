@@ -148,7 +148,8 @@ a .pullrequest__item {
     transition: color 0.7s;
     background-color: #efefef; }
 
-.dashboard__repository__list {
+.dashboard__repository__list,
+.dashboard__pullrequest__list {
   overflow: scroll;
   list-style: none;
   padding-right: 0;
