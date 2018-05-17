@@ -7,9 +7,9 @@ import Toggle from 'material-ui/Toggle';
 import Chip from 'material-ui/Chip';
 import Avatar from 'material-ui/Avatar';
 
-import { 
-	repoSwitch, 
-	selectColor, 
+import {
+	repoSwitch,
+	selectColor,
 	changeColor
 } from '../../actions'
 
@@ -29,12 +29,12 @@ import Paper from 'material-ui/Paper';
 import { authHeader } from '../../helpers/auth-header'
 
 class RepositoryItem extends Component {
-	
+
 	state = {
 		open: false,
 		background: "#0bd8be"
 	};
-	
+
 	onColorButtonClick = (e) => {
 	    e.preventDefault();
 		this.setState({ open: true, anchorEl: e.currentTarget });
@@ -43,13 +43,13 @@ class RepositoryItem extends Component {
 	handleRequestClose = () => {
 		this.setState({ open: false });
 	};
-	
+
 	//HOW HANDLE WHEN PASSING MANY ARGUMENTS
 	handleColorChange (repoID, colorHex) {
 		this.setState({ background: colorHex })
 
 		//this.props.selectColor(repoID, colorHex)
-		
+
 		this.props.changeColor(repoID, colorHex)
 	}
 
@@ -74,13 +74,13 @@ class RepositoryItem extends Component {
 						<use xlinkHref="./icons/sprite.svg#icon-lock-closed-outline"></use>
 					</svg>
 				</div>
-			)	
+			)
 		}
 	}
 
 	handleCollapse = () => {
 		return (
-			<RaisedButton 
+			<RaisedButton
 				disabled={this.props.repo.description ? false : true}
 				backgroundColor="#0bd8be"
 				style={{minWidth: "65px", backgroundColor: "transparent"}}
@@ -101,7 +101,7 @@ class RepositoryItem extends Component {
 
 	render() {
 		return (
-			<li 
+			<li
 				className="repository__item"
 				style={{borderLeft: `6px solid ${this.props.repo.color}`}}
 			>
@@ -109,12 +109,12 @@ class RepositoryItem extends Component {
 
 					<div className="repository__item-content-text">
 						<div className="repository__item__name__text">
-							<span>{this.props.repo.fullName}</span>
+							<span><a href={this.props.repo.webUrl} target="_blank">{this.props.repo.fullName}</a></span>
 						</div>
 					</div>
 
 					<div className="repository__item-content-toggle">
-						<Toggle 
+						<Toggle
 							toggled={this.props.active}
 							onToggle={() => this.handleToggle(this.props.itemId, this.props.active)}
 						/>
@@ -180,7 +180,7 @@ const styles = {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ 
+	return bindActionCreators({
 		repoSwitch, selectColor, toggleRepository, changeColor }, dispatch)
 }
 
