@@ -102,8 +102,8 @@ svg {
   font-size: 3rem !important;
   border-bottom: 2px solid #9e9e9e !important; }
   .header__search-input:focus {
-    border-bottom: 2px solid #0bd8be !important;
-    box-shadow: 0 1px 0 0 #0bd8be !important; }
+    border-bottom: 2px solid #f1f1f1 !important;
+    box-shadow: 0 1px 0 0 #f1f1f1 !important; }
 
 .header__search-button {
   width: 50px;
@@ -125,6 +125,9 @@ svg {
 .header__config-button {
   width: 60px;
   background: white; }
+
+.header__search-icon:hover {
+  fill: white; }
 
 .dashboard__repository__list {
   overflow: scroll;
