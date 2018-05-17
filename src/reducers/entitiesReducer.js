@@ -1,13 +1,8 @@
-import {
-  REPO_ACTIVATED,
-  SOCKETS_PULLS_SET
-} from '../actions/types'
-
-
 const initialState = {
   repositories: {},
   pull_requests: {},
   users: {},
+  loadedEntities: false
 }
 
 export default (state = initialState, action) => {
@@ -26,7 +21,8 @@ export default (state = initialState, action) => {
         users: {
           ...state.users,
           ...action.response.entities.user
-        }
+        },
+        loadedEntities: true
     }
   }
 
@@ -34,21 +30,27 @@ export default (state = initialState, action) => {
   
   switch (action.type) {
     case 'REPOS_GET_REQUEST':
-      return state
-    case 'REPOS_GET_SUCCESS':
-      return { ...state, repositories: { ...action.response.entities.repositories }}
-    case REPO_ACTIVATED:
+    case 'PULLS_GET_REQUEST':
+      return { 
+        ...state, 
+        loadedEntities: false
+      }
 
-      console.log(action.payload)
-      console.log(state.repositories[action.payload])
-      console.log('CHANGE', action, action.payload)
-      return { ...state, repositories: null }
+    case 'REPOS_GET_SUCCESS':
+      return {
+        ...state,
+        repositories: {
+          ...action.response.entities.repositories
+        },
+        loadedEntities: true
+      }
 
     case 'TOGGLE_WEBHOOK_SUCCESS':
     const post = state.repositories[action.response.id]
       return {
         ...state,
-        repositories: { ...state.repositories,
+        repositories: {
+          ...state.repositories,
           [action.response.id] : {
             ...post,
             hookEnabled: !post.hookEnabled
@@ -56,22 +58,22 @@ export default (state = initialState, action) => {
         }
       }
 
-    case SOCKETS_PULLS_SET:
-      return {
-        ...state,
-          repositories: {
-            ...state.repositories,
-            ...action.pulls.entities.repository
-          },
-          pull_requests: {
-            ...state.pull_requests,
-            ...action.pulls.entities.pull_requests
-          },
-          users: {
-            ...state.users,
-            ...action.pulls.entities.user
-          }
-      }
+    // case SOCKETS_PULLS_SET:
+    //   return {
+    //     ...state,
+    //       repositories: {
+    //         ...state.repositories,
+    //         ...action.pulls.entities.repository
+    //       },
+    //       pull_requests: {
+    //         ...state.pull_requests,
+    //         ...action.pulls.entities.pull_requests
+    //       },
+    //       users: {
+    //         ...state.users,
+    //         ...action.pulls.entities.user
+    //       }
+    //   }
 
     case 'LOGOUT_USER':
       return initialState

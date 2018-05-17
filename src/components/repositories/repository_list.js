@@ -3,6 +3,8 @@ import socket from '../../websockets';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
+import Loader from 'react-loader';
+
 import { 
 	getRepositories
 } from '../../actions'
@@ -11,14 +13,7 @@ import RepositoryItem from './repository_item'
 
 class RepositoriesList extends Component {
 
-	//UPDATE ON REAL TIME SOCKETS
 	componentDidMount() {
-	// 	socket.on('repos-update', this.props.getRepositories.bind(this));
-	// 	axios.get(`${config.baseServerUrl}/repos`)
-	// 		.then(res => {
-	// 			console.log('***', res)
-	// 			this.props.getRepositories(res.data)
-	// 		})
 		this.props.getRepositories()
 	}
 
@@ -47,14 +42,18 @@ class RepositoriesList extends Component {
 	}
 
 	render() {
+
 		return (
+			
 			<div className="dashboard__repository__card">
 				<h4 className="dashboard__repository__title">
 					Repositories
 				</h4>
-				<ul>
-					{this.renderRepositoryItem(this.props.searchValue)}
-				</ul>
+				<Loader loaded={this.props.loaded}>
+					<ul>
+						{this.renderRepositoryItem(this.props.searchValue)}
+					</ul>
+				</Loader>
 			</div>
 
 		)
@@ -63,6 +62,7 @@ class RepositoriesList extends Component {
 
 const mapStateToProps = (state) => {
 	return { 
+		loaded: state.entities.loadedEntities,
 		repositories: state.entities.repositories, 
 		searchValue: state.search, 
     isAuth: state.authentication.isAuthenticated
