@@ -52,9 +52,7 @@ class DashboardHeader extends Component {
 
 	render() {
 		return (
-			<header
-				style={{backgroundColor: 'inherit', boxShadow: 'inherit'}}
-				className="dashboard__header" >
+			<header className="dashboard__header" >
 
 				<div className="header__logo">
 					<svg className="header__logo-icon">
