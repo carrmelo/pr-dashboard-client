@@ -17,6 +17,7 @@ import {
 } from './types'
 
 import axios from 'axios'
+import { authHeader } from '../helpers/auth-header'
 
 const BASE_API_URL = `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}`
 
@@ -78,10 +79,20 @@ export const toggleRepository = (id, action) => ({
 export const selectColor = (repoID, colorHex) => {
 
   const PATCH_COLOR_URL = BASE_API_URL + `/repos/${repoID}/${colorHex}` // /repos/${id}/${action}
+  
+  const axiosConfig = { headers: authHeader() }
+
+  
+  console.log('****', axiosConfig)
+
 
   return dispatch => {
-    axios.patch(PATCH_COLOR_URL)
-      .then(response => console.log('PATCH', response))
+    axios.patch(PATCH_COLOR_URL, axiosConfig)
+      .then((response) => {
+          
+          console.log('RESPONSE', response)
+
+      })
       dispatch({
         type: COLOR_SELECTED, 
         payload: 'COLOR'

@@ -25,6 +25,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import Paper from 'material-ui/Paper';
+import { authHeader } from '../../helpers/auth-header'
 
 class RepositoryItem extends Component {
 	
