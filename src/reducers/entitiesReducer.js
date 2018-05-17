@@ -1,9 +1,9 @@
-
 import {
   REPO_ACTIVATED,
   SOCKETS_PULLS_SET, 
   COLOR_CHANGE, 
-  COLOR_CHANGE_SUCCESS
+  COLOR_CHANGE_SUCCESS,
+  CHECK_PULL
 } from '../actions/types'
 
 const initialState = {
@@ -112,6 +112,19 @@ export default (state = initialState, action) => {
         ...action.data.entities.repositories
       }
   }
+
+    case 'CHECK_PULL_SUCCESS':
+      const seenBoolean = state.pull_requests[action.response.id]
+      return {
+        ...state,
+        pull_requests: {
+          ...state.pull_requests,
+          [action.response.id]: {
+            ...seenBoolean,
+            seen: true
+          }
+        }
+      };
 
   default: return state;
   }

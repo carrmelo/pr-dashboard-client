@@ -13,14 +13,17 @@ import {
   SELECTED_PULLREQUESTS,
   COLOR_SELECTED,
   SOCKETS_PULLS_SET, 
+
   SEARCH_TERM, 
-  COLOR_CHANGE
+  COLOR_CHANGE,
+  CHECK_PULL
 } from './types'
 
 import axios from 'axios'
 import { authHeader } from '../helpers/auth-header'
 
 const BASE_API_URL = `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}`
+
 
 export const getRepositories = () => ({
   type: REPOS_GET,
@@ -77,6 +80,18 @@ export const toggleRepository = (id, action) => ({
   }
 })
 
+
+export const checkPullrequest = (pullID) => {
+  const PATCH_CHECK_PULL_URL = BASE_API_URL + `/pullrequests/${pullID}/seen`;
+  return ({
+    type: 'CHECK_PULL',
+    [CALL_API]: {
+      endpoint: PATCH_CHECK_PULL_URL,
+      method: 'PATCH',
+    },
+  });
+};
+
 export const changeColor = (repoID, colorHex) => {
   const PATCH_COLOR_CHANGE_URL = BASE_API_URL + `/repos/${repoID}/color`
 
@@ -106,16 +121,3 @@ export const selectColor = (repoID, colorHex) => {
       })
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
