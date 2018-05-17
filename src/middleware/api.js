@@ -25,20 +25,6 @@ const callApi = (endpoint, schema, method, customHeaders, body) => {
       if (response.ok && contentType && contentType.includes('application/json')) {
         return response.json()
         .then(json=> {
-
-          if (!response.ok) {
-            if (response.status === 401) {
-              var current_time = Date.now().valueOf() / 1000;
-                if (checkJWT().exp < current_time) {
-                  localStorage.clear();
-                  return Promise.reject('token expired')
-                }
-            }
-            return Promise.reject(response.status)
-          }
-          if (json.token) {
-            return Object.assign({}, json)
-          }
           
           if (!schema) {
             return json

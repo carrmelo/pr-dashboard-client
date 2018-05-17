@@ -57,11 +57,6 @@ export const getSelectedPullRequests = () => {
   }
 }
 
-// export const toggleRepository = (id) => ({
-//   type: 'TOGGLE_ACTIVE',
-//   id
-// })
-
 export const searchTerm = (term) => {
   return {
     type: SEARCH_TERM, 
@@ -98,7 +93,7 @@ export const changeColor = (repoID, colorHex) => {
   const PATCH_COLOR_CHANGE_URL = BASE_API_URL + `/repos/${repoID}/color`
 
   return {
-    type: COLOR_CHANGE, 
+    type: COLOR_CHANGE,
     [CALL_API]: {
       endpoint: PATCH_COLOR_CHANGE_URL, 
       method: 'PATCH', 
