@@ -59,7 +59,7 @@ class RepositoryItem extends Component {
 	}
 
 	renderPrivacy = () => {
-		if (this.props.repo.private) {
+		if (!this.props.repo.private) {
 			return (
 				<div className="repository__item__privacy__status">
 					<svg className="repository__item__privacy__icon">
@@ -99,6 +99,34 @@ class RepositoryItem extends Component {
 		this.props.toggleRepository(id, serverAction)
 	}
 
+	renderLanguage = () => (
+		(this.props.repo.language)
+	? <div className="repository__item__tech">
+			<Chip style={styles.chip}>
+				<Avatar size={32}></Avatar>
+				{this.props.repo.language}
+			</Chip>
+		</div>
+	: <div className="repository__item__tech">
+		</div>
+	)
+	renderNumPulls = () => (
+		(this.props.pullnum > 0)
+		? (this.props.pullnum > 1)
+		? <div className="repository__item__pull__num">
+				<span className="repository__item__pull__num__value">
+					{this.props.pullnum} Pulls
+				</span>
+			</div>
+		: <div className="repository__item__pull__num">
+				<span className="repository__item__pull__num__value">
+					{this.props.pullnum} Pull
+				</span>
+			</div>
+		: <div className="repository__item__pull__num_0">
+			</div>
+	)
+
 	render() {
 		return (
 			<li 
@@ -129,18 +157,9 @@ class RepositoryItem extends Component {
 							</Collapsible>
 						</div>
 
-						<div className="repository__item__pull__num">
-							<span className="repository__item__pull__num__value">
-								{this.props.pullnum}
-							</span>
-						</div>
+						{this.renderNumPulls()}
 
-						<div className="repository__item__tech">
-							<Chip style={styles.chip}>
-						         <Avatar size={32}></Avatar>
-						         {this.props.repo.language}
-						    </Chip>
-						</div>
+						{this.renderLanguage()}
 
 						{this.renderPrivacy()}
 

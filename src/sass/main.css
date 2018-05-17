@@ -138,14 +138,15 @@ a:hover {
   width: 60px;
   background: white; }
 
+.header__search-icon:hover {
+  fill: white; }
+
 a .pullrequest__item {
   color: #2c2f3e;
   text-decoration: none; }
   a .pullrequest__item:hover {
     transition: color 0.7s;
     background-color: #efefef; }
-.header__search-icon:hover {
-  fill: white; }
 
 .dashboard__repository__list {
   overflow: scroll;
@@ -235,6 +236,17 @@ a .pullrequest__item {
 
 .repository__item__pull__num {
   background-color: #5c6bc070;
+  height: 33px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  width: 10%;
+  margin: 0 7px;
+  align-self: center; }
+
+.repository__item__pull__num_0 {
+  background-color: #5c6bc070;
+  opacity: 0;
   height: 33px;
   border-radius: 100px;
   display: flex;
