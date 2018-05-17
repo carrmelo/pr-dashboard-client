@@ -63,7 +63,7 @@ class DashboardHeader extends Component {
 				</div>
 
 				<div id="header__search-userinfo-sign">
-					<div style={{flexGrow:1}}>
+					<div id="header__search-bar">
 						<form action="#" className="header__search-form">
 							<input
 								type="text" className="header__search-input" placeholder=""

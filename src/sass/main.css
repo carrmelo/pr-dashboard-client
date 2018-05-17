@@ -50,6 +50,10 @@ svg {
   margin: 0 26px;
   color: #ccccd1; }
 
+#header__search-bar {
+  flex-grow: 1;
+  max-width: 773px; }
+
 .dashboard__header {
   height: 6.4rem;
   display: flex;
