@@ -15,14 +15,6 @@ class Welcome extends Component {
     }
   }
 
-  // static getDerivedStateFromProps (nextProps, prevState) {
-  //   if (nextProps.isAuth) {
-  //     nextProps.getUserInfo()
-  //     nextProps.history.push('/repos')
-  //   }
-  //   return { ...nextProps }
-  // }
-
   componentDidUpdate () {
     if (this.props.isAuth) {
       this.props.getUserInfo()
@@ -37,9 +29,9 @@ class Welcome extends Component {
           <title>PuRe</title>
           <g id="Layer_2" data-name="Layer 2">
             <g id="Layer_1-2" data-name="Layer 1">
-              <text class="cls-2" transform="translate(1.39 136.55) rotate(-0.6)">
+              <text className="cls-2" transform="translate(1.39 136.55) rotate(-0.6)">
                 Welcome to PR Dashboard, we are redirecting you to your Repositories</text>
-              <text class="cls-2" transform="translate(2.53 195.24)">
+              <text className="cls-2" transform="translate(2.53 195.24)">
                 if you are able to read this far, maybe something went wrong, we'll let you know</text>
             </g>
           </g>
