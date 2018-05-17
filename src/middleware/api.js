@@ -12,13 +12,10 @@ const callApi = (endpoint, schema, method) => {
   })
     .then(response => {      
       const contentType = response.headers.get('Content-Type')
-      if (response.ok && contentType && contentType.indexOf('application/json') !== -1) {
+      if (response.ok && contentType && contentType.includes('application/json')) {
         return response.json()
         .then(json=> {
-          
-          if (json.token) {
-            return Object.assign({}, json)
-          }
+
           if (!schema) {
             return json
           }
@@ -48,7 +45,7 @@ const repoSchema = new schema.Entity('repositories', {}, { idAttribute: '_id' })
 const repoinpullSchema = new schema.Entity('repository', {}, { idAttribute: '_id' });
 const pullSchema = new schema.Entity(
   'pull_requests',
-  { repositories: repoinpullSchema, user: userSchema },
+  { repositories: repoinpullSchema },
   { idAttribute: '_id' }
 );
 
