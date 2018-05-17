@@ -445,3 +445,9 @@ li.sidebar__navigation-pullrequests {
 .welcome-message {
   display: flex;
   align-content: center; }
+
+a {
+  color: black; }
+
+a:hover {
+  color: black; }
