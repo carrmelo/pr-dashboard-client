@@ -33,7 +33,7 @@ class RepositoriesList extends Component {
 				let sumPulls = 0;
 				const pulls = this.props.pulls
 				Object.keys(pulls).map(pullKey => {
-					(pulls[pullKey].repository === repoKey) ? sumPulls++ : null
+					(pulls[pullKey].repository._id === repoKey) ? sumPulls++ : null
 				})
 				return (
 					<RepositoryItem
