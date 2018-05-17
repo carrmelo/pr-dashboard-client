@@ -13,7 +13,8 @@ import {
   SELECTED_PULLREQUESTS,
   COLOR_SELECTED,
   SOCKETS_PULLS_SET, 
-  SEARCH_TERM
+  SEARCH_TERM, 
+  COLOR_CHANGE
 } from './types'
 
 import axios from 'axios'
@@ -76,29 +77,41 @@ export const toggleRepository = (id, action) => ({
   }
 })
 
+// [CALL_API]: {
+//       endpoint: 
+//       method: 'PATCH'
+//     }
+
+export const changeColor = (repoID, colorHex) => {
+  const PATCH_COLOR_CHANGE_URL = BASE_API_URL + `/repos/${repoID}/${colorHex}`
+  return {
+    type: COLOR_CHANGE, 
+    [CALL_API]: {
+      endpoint: PATCH_COLOR_CHANGE_URL, 
+      method: 'PATCH'
+    }
+  }
+}
+
 export const selectColor = (repoID, colorHex) => {
 
   const PATCH_COLOR_URL = BASE_API_URL + `/repos/${repoID}/${colorHex}` // /repos/${id}/${action}
-  
   const axiosConfig = { headers: authHeader() }
-
-  
-  console.log('****', axiosConfig)
-
 
   return dispatch => {
     axios.patch(PATCH_COLOR_URL, axiosConfig)
       .then((response) => {
-          
-          console.log('RESPONSE', response)
-
-      })
-      dispatch({
-        type: COLOR_SELECTED, 
-        payload: 'COLOR'
+          dispatch({
+            type: COLOR_SELECTED, 
+            payload: 'COLOR'
+          })
       })
   }
 }
+
+
+
+
 
 
 

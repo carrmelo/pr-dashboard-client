@@ -9,7 +9,8 @@ import Avatar from 'material-ui/Avatar';
 
 import { 
 	repoSwitch, 
-	selectColor
+	selectColor, 
+	changeColor
 } from '../../actions'
 
 import { bindActionCreators } from 'redux'
@@ -47,8 +48,9 @@ class RepositoryItem extends Component {
 	handleColorChange (repoID, colorHex) {
 		this.setState({ background: colorHex })
 
-		console.log('ID', repoID, 'COLOR', colorHex)
-		this.props.selectColor(repoID, colorHex)
+		// this.props.selectColor(repoID, colorHex)
+		
+		this.props.changeColor(repoID, colorHex)
 	}
 
 	onToggleSwitch (repoID) {
@@ -178,7 +180,7 @@ const styles = {
 
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({ 
-		repoSwitch, selectColor, toggleRepository }, dispatch)
+		repoSwitch, selectColor, toggleRepository, changeColor }, dispatch)
 }
 
 const mapStateToProps = (state) => {

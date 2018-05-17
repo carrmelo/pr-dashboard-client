@@ -1,6 +1,7 @@
 import {
   REPO_ACTIVATED,
-  SOCKETS_PULLS_SET
+  SOCKETS_PULLS_SET, 
+  COLOR_CHANGE
 } from '../actions/types'
 
 
@@ -87,6 +88,10 @@ export default (state = initialState, action) => {
         ...action.data.entities.user
       }
     }
+
+    case COLOR_CHANGE: 
+      console.log('******HIT', action)
+      return state
 
     // Update Repositories from socket
     case 'repos-update_received':

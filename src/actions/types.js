@@ -20,7 +20,16 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export const LOGOUT_USER = 'LOGOUT_USER';
-
 export const SEARCH_TERM = 'SEARCH_TERM';
+
+////COLOR THUNK PATH -- Learn auth header through thunks
 export const COLOR_SELECTED = 'COLOR_SELECTED'
+///////COLOR MIDDLEWARE PATH -- Use custom middleware to send color to PR list through redux state
+export const COLOR_CHANGE = 'COLOR_CHANGE'
+
+
+
+
+
+
 
