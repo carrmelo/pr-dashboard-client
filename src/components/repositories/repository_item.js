@@ -17,6 +17,7 @@ import { bindActionCreators } from 'redux'
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import Badge from 'material-ui/Badge';
 
 import Popover from 'material-ui/Popover';
 
@@ -32,8 +33,14 @@ class RepositoryItem extends Component {
 
 	state = {
 		open: false,
-		background: "#0bd8be"
+		background: "",
 	};
+
+	componentDidMount() {
+		this.setState({
+			background: this.props.repo.color
+		})
+	}
 
 	onColorButtonClick = (e) => {
 	    e.preventDefault();
@@ -46,9 +53,8 @@ class RepositoryItem extends Component {
 
 	//HOW HANDLE WHEN PASSING MANY ARGUMENTS
 	handleColorChange (repoID, colorHex) {
-		this.setState({ background: colorHex })
 
-		//this.props.selectColor(repoID, colorHex)
+		this.setState({ background: colorHex })
 
 		this.props.changeColor(repoID, colorHex)
 	}
@@ -154,7 +160,7 @@ class RepositoryItem extends Component {
 		return (
 			<li
 				className="repository__item"
-				style={{borderLeft: `6px solid ${this.props.repo.color}`}}
+				style={{borderLeft: `6px solid ${this.state.background}`}}
 			>
 				<div className="repository__item-content">
 

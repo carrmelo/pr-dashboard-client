@@ -1,8 +1,4 @@
 
-
-
-
-
 .dashboard__sidebar {
    	margin-top: 30px;
     display: flex;
@@ -28,11 +24,6 @@
     margin: 40px auto;
 }
 
-// .sidebar__navigation-repositories__button,
-// .sidebar__navigation-pullrequests__button {
-
-// }
-
 .sidebar__icon-pullrequests:hover {
     fill:white;
 }
@@ -40,3 +31,22 @@
 .sidebar__icon-repositories:hover {
     fill:white;
 }
+
+li.sidebar__navigation-repositories {
+    display: flex;
+    width: 100%;
+}
+
+li.sidebar__navigation-pullrequests {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
