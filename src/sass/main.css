@@ -112,10 +112,14 @@ svg {
   margin-bottom: 20px;
   height: 100%; }
 
+li.repository__item:hover {
+  background-color: white; }
+
 .repository__item-content {
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
+  border-right: 1px solid #00000033;
   box-shadow: rgba(0, 0, 0, 0.12) 4px 3px 9px, rgba(0, 0, 0, 0.12) 0px 1px 4px; }
 
 .repository__item-content-text {
@@ -160,8 +164,9 @@ svg {
   margin-top: -5px; }
 
 .repository__item__description__text {
-  color: black;
+  color: #2c2f3ed6;
   font-size: 17px;
+  padding: 10px 0;
   line-height: 1.5; }
 
 .repository__item__tech {
