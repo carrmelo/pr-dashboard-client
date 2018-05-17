@@ -383,6 +383,15 @@ button.repository__item__color__picker__button {
 .sidebar__icon-repositories:hover {
   fill: white; }
 
+li.sidebar__navigation-repositories {
+  display: flex;
+  width: 100%; }
+
+li.sidebar__navigation-pullrequests {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%; }
+
 .container-landing {
   min-height: 100vh;
   max-width: 730px;

@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { newPullsNotification } from '../../../actions'
 
+import Badge from 'material-ui/Badge';
 
 class Sidebar extends Component {
 
@@ -24,12 +25,19 @@ class Sidebar extends Component {
 				</li>
 
 				<li className="sidebar__navigation-pullrequests">
-					<span>{this.props.pullsnotification}</span>
-					<Link to="/pulls">
-						<svg className="sidebar__icon-pullrequests">
-							<use xlinkHref="./icons/sprite.svg#icon-flow-switch"><title></title></use>
-						</svg>
-					</Link>
+					<div className="sidebar__notification__icon">
+						<Badge
+						   badgeContent={this.props.pullsnotification}
+						   primary={true}
+						/>
+					</div>
+					<div className="sidebar__pullrequests__button">
+						<Link to="/pulls">
+							<svg className="sidebar__icon-pullrequests">
+								<use xlinkHref="./icons/sprite.svg#icon-flow-switch"><title></title></use>
+							</svg>
+						</Link>
+					</div>
 				</li>
 			</ul>
 		)
