@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Loader from 'react-loader';
+
 import { loginUser, getUserInfo } from '../../actions/authActions';
 
 class Welcome extends Component {
@@ -18,7 +20,7 @@ class Welcome extends Component {
   componentDidUpdate () {
     if (this.props.isAuth) {
       this.props.getUserInfo()
-      this.props.history.push('/repos')
+      setTimeout(() => this.props.history.push('/repos'), 300)
     }
   }
 
@@ -36,6 +38,7 @@ class Welcome extends Component {
             </g>
           </g>
         </svg>
+        <Loader loaded={this.props.isAuth} color="#FFF" />
       </div>
     )
   }
@@ -43,7 +46,7 @@ class Welcome extends Component {
 
 const mapStateToProps = ({ authentication }) => ({
   isAuth: authentication.isAuthenticated,
-  user: authentication.currentUser
+  user: authentication.currentUser,
 })
 
 const mapDispatchToProps = (dispatch) => ({

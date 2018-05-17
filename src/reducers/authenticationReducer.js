@@ -12,38 +12,26 @@ export default (state = initialState, action) => {
       return {
         ...state,
         token: action.response.token,
-        isAuthenticated: true,
-        fetchingAuth: false
+        isAuthenticated: true
       }
     } 
 
     if (action.error === 'token expired') return initialState
     
     switch (action.type) {
-      case 'GET_USER_INFO_REQUEST':
-        return {
-          ...state,
-          // fetchingAuth: true
-        }
-
+      
       case 'GET_USER_INFO_SUCCESS':
-        return {
-          ...state,
-          currentUser: action.response,
-          // fetchingAuth: false,
-        }
-
+      return {
+        ...state,
+        currentUser: action.response
+      }
+      
+      case 'GET_USER_INFO_REQUEST':
       case 'GET_USER_INFO_FAILURE':
+      case 'LOGIN_USER_REQUEST':
       case 'LOGIN_USER_FAILURE':
         return {
-          ...state,
-          fetchingAuth: false
-        }
-
-      case 'LOGIN_USER_REQUEST':
-        return {
-          ...state,
-          fetchingAuth: true,
+          ...state
         }
 
       case 'LOGOUT_USER':
