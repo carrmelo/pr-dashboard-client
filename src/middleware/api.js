@@ -4,11 +4,21 @@ import { checkJWT } from '../helpers/jwt-checker'
 
 // Fetch and normalizr of API
 
-const callApi = (endpoint, schema, method) => {
+const callApi = (endpoint, schema, method, customHeaders, body) => {
+  
+  let headers = {};
+  if(body) {
+    headers['Content-Type'] = 'application/json';
+  }
+  headers = {
+    ...headers,
+    ...customHeaders,
+  }
 
   return fetch(endpoint, {
-    headers: authHeader(),
-    method: method || 'GET'
+    headers,
+    method: method || 'GET', 
+    body: JSON.stringify(body)
   })
     .then(response => {      
       const contentType = response.headers.get('Content-Type')
@@ -16,6 +26,20 @@ const callApi = (endpoint, schema, method) => {
         return response.json()
         .then(json=> {
 
+          if (!response.ok) {
+            if (response.status === 401) {
+              var current_time = Date.now().valueOf() / 1000;
+                if (checkJWT().exp < current_time) {
+                  localStorage.clear();
+                  return Promise.reject('token expired')
+                }
+            }
+            return Promise.reject(response.status)
+          }
+          if (json.token) {
+            return Object.assign({}, json)
+          }
+          
           if (!schema) {
             return json
           }
@@ -70,14 +94,23 @@ export default store => next => action => {
     return next(action)
   }
 
-  const { schema, endpoint, method } = callAPI
+  const { schema, endpoint, method, body } = callAPI
 
   next({
     ...action,
     type: action.type + '_REQUEST'
   })
 
-  return callApi(endpoint, schema, method).then(
+  const state = store.getState();
+  const token = state.authentication.token;
+
+  const headers = token 
+    ? {
+      'Authorization': `JWT ${token}`
+    }
+    : {};
+  
+  return callApi(endpoint, schema, method, headers, body).then(
     response => store.dispatch(actionWith({
       type: action.type + '_SUCCESS',
       response
