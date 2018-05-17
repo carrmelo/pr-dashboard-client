@@ -117,7 +117,10 @@ svg {
   flex-direction: row-reverse;
   align-self: center;
   cursor: pointer;
-  margin-right: 30px; }
+  margin-right: 30px;
+  border: 2px #039be5 solid;
+  padding: 2px 10px;
+  border-radius: 30px; }
 
 .header__config-button {
   width: 60px;
