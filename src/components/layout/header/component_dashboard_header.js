@@ -50,6 +50,21 @@ class DashboardHeader extends Component {
 		</div>
 	)
 
+	renderSearchBar = () => (
+		<form action="#" className="header__search-form">
+		<input
+			type="text" className="header__search-input" placeholder=""
+			onChange={this.onInputChange}
+			value={this.state.value}
+		/>
+		<button className="header__search-button">
+			<svg className="header__search-icon">
+				<use xlinkHref="./icons/sprite.svg#icon-zoom-outline"><title></title></use>
+			</svg>
+		</button>
+	</form>
+	)
+
 	render() {
 		return (
 			<header className="dashboard__header" >
@@ -62,18 +77,9 @@ class DashboardHeader extends Component {
 
 				<div id="header__search-userinfo-sign">
 					<div id="header__search-bar">
-						<form action="#" className="header__search-form">
-							<input
-								type="text" className="header__search-input" placeholder=""
-								onChange={this.onInputChange}
-								value={this.state.value}
-							/>
-							<button className="header__search-button">
-								<svg className="header__search-icon">
-									<use xlinkHref="./icons/sprite.svg#icon-zoom-outline"><title></title></use>
-								</svg>
-							</button>
-						</form>
+						{(this.props.isAuth && this.props.user[0])
+						? this.renderSearchBar()
+						: ''}
 					</div>
 
 					{this.props.isAuth
