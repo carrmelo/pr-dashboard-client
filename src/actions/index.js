@@ -77,18 +77,17 @@ export const toggleRepository = (id, action) => ({
   }
 })
 
-// [CALL_API]: {
-//       endpoint: 
-//       method: 'PATCH'
-//     }
-
 export const changeColor = (repoID, colorHex) => {
-  const PATCH_COLOR_CHANGE_URL = BASE_API_URL + `/repos/${repoID}/${colorHex}`
+  const PATCH_COLOR_CHANGE_URL = BASE_API_URL + `/repos/${repoID}/color`
+  console.log('URLLL', PATCH_COLOR_CHANGE_URL)
   return {
     type: COLOR_CHANGE, 
     [CALL_API]: {
       endpoint: PATCH_COLOR_CHANGE_URL, 
-      method: 'PATCH'
+      method: 'PATCH', 
+      body: {
+        "color": `${colorHex}`     
+      }
     }
   }
 }

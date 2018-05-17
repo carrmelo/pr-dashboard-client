@@ -4,11 +4,15 @@ import { checkJWT } from '../helpers/jwt-checker'
 
 // Fetch and normalizr of API
 
-const callApi = (endpoint, schema, method) => {
+const callApi = (endpoint, schema, method, body) => {
+  
+  console.log('***', endpoint, schema, method, body)
 
+  console.log('+++++', JSON.stringify(body))
   return fetch(endpoint, {
     headers: authHeader(),
-    method: method || 'GET'
+    method: method || 'GET', 
+    body: body
   })
     .then(response => {      
       const contentType = response.headers.get('Content-Type')
@@ -19,7 +23,7 @@ const callApi = (endpoint, schema, method) => {
           if (!response.ok) {
             if (response.status === 401) {
               var current_time = Date.now().valueOf() / 1000;
-                if ( checkJWT().exp < current_time) {
+                if (checkJWT().exp < current_time) {
                   localStorage.clear();
                   return Promise.reject('token expired')
                 }
@@ -87,14 +91,15 @@ export default store => next => action => {
     return next(action)
   }
 
-  const { schema, endpoint, method } = callAPI
+  const { schema, endpoint, method, body } = callAPI
 
   next({
     ...action,
     type: action.type + '_REQUEST'
   })
-
-  return callApi(endpoint, schema, method).then(
+  
+  console.log(body, "´´´´´´´´")
+  return callApi(endpoint, schema, method, body).then(
     response => store.dispatch(actionWith({
       type: action.type + '_SUCCESS',
       response
