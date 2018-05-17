@@ -46,8 +46,9 @@ class RepositoryItem extends Component {
 		this.setState({ background: e.hex })
 	}
 
-	onToggleSwitch (repoID) {
-		this.props.repoSwitch(repoID)
+	handleToggle = (id, action) => {
+		const serverAction = action ? 'disable' : 'enable'
+		this.props.toggleRepository(id, serverAction)
 	}
 
 	renderPrivacy = () => {
@@ -88,10 +89,7 @@ class RepositoryItem extends Component {
 		)
 	}
 
-	//handleToggle = (id, action) => {
-		//const serverAction = action ? 'disable' : 'enable'
-		//this.props.toggleRepository(id, serverAction)
-	//}
+
 	render() {
 		return (
 			<li 

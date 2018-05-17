@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Loader from 'react-loader';
+
 import { getPullRequests } from '../../actions';
 
 import PullRequestItem from './pullrequest_item';
@@ -16,15 +18,12 @@ class PullRequestList extends Component {
     }
   }
 
-  renderPullRequestItem(pulls) {
-    if (!pulls) return <div>Loading</div>;
-
-    return Object.keys(pulls)
-      .map(key => {
-        return (
-          <div key={pulls[key]._id}>
-            <PullRequestItem
-              repository={pulls[key].repository}
+  renderPullRequestItem (pulls) {
+    return (Object.keys(this.props.pulls).length > 0)
+    ? Object.keys(pulls).map(key => (
+      <div key={pulls[key]._id}>
+        <PullRequestItem
+          repository={pulls[key].repository}
               webUrl={pulls[key].webUrl}
               closed_at={pulls[key].closed_at}
               merged_at={pulls[key].merged_at}
@@ -37,27 +36,25 @@ class PullRequestList extends Component {
               seen={pulls[key].seen}
               comment={pulls[key].comment}
               comments={pulls[key].comments}
-            />
-          </div>
-        );
-      });
-  }
+        />
+      </div>
+    ))
+    : <p>Seems like there's nothing to show yet</p>
+  } 
 
-  render() {
-    if (Object.keys(this.props.pulls).length) {
-      return (
-        <div className="dashboard__pullrequest__card">
-          <h4 className="dashboard__pullrequest__title">Pullrequests</h4>
-          <ul>{this.renderPullRequestItem(this.props.pulls)}</ul>
+  render () {
+    return (
+      <Loader loaded={this.props.loaded}>
+        <div>
+          {this.renderPullRequestItem(this.props.pulls)}
         </div>
-      );
-    } else {
-      return <p>Seems like there's nothing to show yet</p>;
-    }
+      </Loader>
+    )
   }
 }
 
 const mapStateToProps = ({ entities, authentication }) => ({
+  loaded: entities.loadedEntities,
   isAuth: authentication.isAuthenticated,
   pulls: entities.pull_requests,
 });

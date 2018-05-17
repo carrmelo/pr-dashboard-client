@@ -6,6 +6,7 @@ export function checkJWT() {
   const token = user.authentication.token
   const data = jwtDecode(token)
 
-  return data
+  const current_time = Date.now().valueOf() / 1000;
+    return (data.exp < current_time) ? true : false
 
 }

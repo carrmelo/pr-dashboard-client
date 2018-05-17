@@ -12,23 +12,10 @@ const callApi = (endpoint, schema, method) => {
   })
     .then(response => {      
       const contentType = response.headers.get('Content-Type')
-      if (contentType && contentType.indexOf('application/json') !== -1) {
+      if (response.ok && contentType && contentType.includes('application/json')) {
         return response.json()
         .then(json=> {
-          
-          if (!response.ok) {
-            if (response.status === 401) {
-              var current_time = Date.now().valueOf() / 1000;
-                if ( checkJWT().exp < current_time) {
-                  localStorage.clear();
-                  return Promise.reject('token expired')
-                }
-            }
-            return Promise.reject(response.status)
-          }
-          if (json.token) {
-            return Object.assign({}, json)
-          }
+
           if (!schema) {
             return json
           }
@@ -38,19 +25,14 @@ const callApi = (endpoint, schema, method) => {
             
           )
         })
-      } else {
-        if (!response.ok) {
-          if (response.status === 401) {
-            var current_time = Date.now().valueOf() / 1000;
-              if ( checkJWT().exp < current_time) {
-                localStorage.clear();
-                return Promise.reject('token expired')
-              }
-          }
-          return Promise.reject(response.status)
-        } else {
-          return response;
+      } else if (!response.ok) {
+        if (response.status === 401 && checkJWT()) {
+          localStorage.clear();
+          return Promise.reject('token expired')
         }
+        return Promise.reject(response.status)
+      } else {
+        return response;
       }
     })
 
@@ -60,9 +42,10 @@ const callApi = (endpoint, schema, method) => {
 
 const userSchema = new schema.Entity('user', {}, { idAttribute: '_id' });
 const repoSchema = new schema.Entity('repositories', {}, { idAttribute: '_id' });
+const repoinpullSchema = new schema.Entity('repository', {}, { idAttribute: '_id' });
 const pullSchema = new schema.Entity(
   'pull_requests',
-  { repositories: repoSchema },
+  { repositories: repoinpullSchema },
   { idAttribute: '_id' }
 );
 
