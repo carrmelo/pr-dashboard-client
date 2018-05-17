@@ -12,7 +12,7 @@
 }
 
 .sidebar__icon-repositories, .sidebar__icon-pullrequests {
-	width: 5rem; 
+	width: 5rem;
 	height: 5rem;
 }
 
@@ -25,8 +25,15 @@
     margin: 40px auto;
 }
 
-// .sidebar__navigation-repositories__button, 
+// .sidebar__navigation-repositories__button,
 // .sidebar__navigation-pullrequests__button {
-    
+
 // }
 
+.sidebar__icon-pullrequests:hover {
+    fill:white;
+}
+
+.sidebar__icon-repositories:hover {
+    fill:white;
+}
