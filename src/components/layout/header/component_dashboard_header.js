@@ -38,7 +38,7 @@ class DashboardHeader extends Component {
 	renderName = (user) => (
 			<div id="header__userinfo">
 				<img src={user[0].picture} id="header__userinfo-img" />
-				<div style={{paddingLeft:"10px", alignSelf:"center"}}>
+				<div>
 					{user[0].loginName}
 				</div>
 			</div>
