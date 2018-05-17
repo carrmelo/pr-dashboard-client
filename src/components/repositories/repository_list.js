@@ -1,13 +1,15 @@
+
+
 import socket from '../../websockets';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios'
 
-import { getRepositories } from '../../actions'
+import { 
+	getRepositories
+} from '../../actions'
 
 import RepositoryItem from './repository_item'
-
-// import { bindActionCreators } from 'redux'
 
 class RepositoriesList extends Component {
 	
@@ -25,19 +27,18 @@ class RepositoriesList extends Component {
 		this.props.getRepositories()
 	}
 
-	renderRepositoryItem () {
+	renderRepositoryItem (searchValue) {
 		
 		let { repositories } = this.props
-
 		if(!repositories) return <div>LOADING</div>
 		
 		return Object.keys(repositories)
-			.map((key) => {
+			.filter(item => item.toUpperCase().includes(searchValue.toUpperCase()) )
+			.map(key => {
 				return (
 					<RepositoryItem 
 						key={key} 
 						repo={repositories[key]}
-						pullnum={Object.keys(repositories).length}
 					/>
 				)
 			})
@@ -49,8 +50,8 @@ class RepositoriesList extends Component {
 				<h4 className="dashboard__repository__title">
 					Repositories
 				</h4>
-				<ul className="dashboard__repository__list">
-					{this.renderRepositoryItem()}
+				<ul>
+					{this.renderRepositoryItem(this.props.searchValue)}
 				</ul>
 			</div>
 			
@@ -61,16 +62,38 @@ class RepositoriesList extends Component {
 const mapStateToProps = (state) => {
 	return { 
 		repositories: state.entities.repositories, 
-		users: state.entities.users 
+		searchValue: state.search 
 	}		
 }
 	
-
 const mapDispatchToProps = (dispatch) => ({
 	getRepositories: (repos, header) => dispatch(getRepositories(repos, header))
 	// return bindActionCreators({ getRepositories }, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RepositoriesList)
+
+
+
+// <div className="dashboard__repository__card">
+// 	<h4 className="dashboard__repository__title">
+// 		Repositories
+// 	</h4>
+// 	<ul className="dashboard__repository__list">
+// 		{this.renderRepositoryItem()}
+// 	</ul>
+// </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
