@@ -75,9 +75,9 @@ export const toggleRepository = (id, action) => ({
   }
 })
 
-export const selectColor = () => {
+export const selectColor = (repoID, colorHex) => {
 
-  const PATCH_COLOR_URL = BASE_API_URL + `/repos/123/enable` // /repos/${id}/${action}
+  const PATCH_COLOR_URL = BASE_API_URL + `/repos/${repoID}/${colorHex}` // /repos/${id}/${action}
 
   console.log('HERE***', PATCH_COLOR_URL)
   return dispatch => {
