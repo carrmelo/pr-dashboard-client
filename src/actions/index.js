@@ -14,7 +14,9 @@ import {
   COLOR_SELECTED,
   SOCKETS_PULLS_SET, 
   SEARCH_TERM, 
-  COLOR_CHANGE
+  COLOR_CHANGE, 
+  NEW_PULLS_NOTIFICATION, 
+  PULLS_NOTIFICATION_PATH_SUCCESS
 } from './types'
 
 import axios from 'axios'
@@ -105,6 +107,22 @@ export const selectColor = (repoID, colorHex) => {
           })
       })
   }
+}
+
+export const newPullsNotification = () => {
+
+    const PULLS_NOTIFICATION_PATH = BASE_API_URL + `/pullrequests/count/`
+    const axiosConfig = { headers: authHeader() }
+
+    return dispatch => {
+      axios.get(PULLS_NOTIFICATION_PATH, axiosConfig)
+        .then(response => {
+          dispatch({
+            type: PULLS_NOTIFICATION_PATH_SUCCESS, 
+            payload: response.data.count
+          })
+        })
+    }
 }
 
 

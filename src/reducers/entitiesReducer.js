@@ -3,7 +3,7 @@ import {
   REPO_ACTIVATED,
   SOCKETS_PULLS_SET, 
   COLOR_CHANGE, 
-  COLOR_CHANGE_SUCCESS
+  COLOR_CHANGE_SUCCESS, 
 } from '../actions/types'
 
 const initialState = {
@@ -99,9 +99,9 @@ export default (state = initialState, action) => {
       }
     }
 
-    case COLOR_CHANGE_SUCCESS: 
-      console.log('STATE', state, 'ACTION', action)
-      return state
+    // case COLOR_CHANGE_SUCCESS: 
+    //   console.log('STATE', state, 'ACTION', action)
+    //   return state
 
     // Update Repositories from socket
     case 'repos-update_received':
