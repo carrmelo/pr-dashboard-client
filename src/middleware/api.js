@@ -55,7 +55,7 @@ const repoSchema = new schema.Entity('repositories', {}, { idAttribute: '_id' })
 const repoinpullSchema = new schema.Entity('repository', {}, { idAttribute: '_id' });
 const pullSchema = new schema.Entity(
   'pull_requests',
-  { repository: repoinpullSchema },
+  { },
   { idAttribute: '_id' }
 );
 
