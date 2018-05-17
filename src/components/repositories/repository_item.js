@@ -48,7 +48,7 @@ class RepositoryItem extends Component {
 	handleColorChange (repoID, colorHex) {
 		this.setState({ background: colorHex })
 
-		// this.props.selectColor(repoID, colorHex)
+		//this.props.selectColor(repoID, colorHex)
 		
 		this.props.changeColor(repoID, colorHex)
 	}

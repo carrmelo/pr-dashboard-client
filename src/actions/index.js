@@ -94,11 +94,12 @@ export const changeColor = (repoID, colorHex) => {
 
 export const selectColor = (repoID, colorHex) => {
 
-  const PATCH_COLOR_URL = BASE_API_URL + `/repos/${repoID}/${colorHex}` // /repos/${id}/${action}
+  const PATCH_COLOR_URL = BASE_API_URL + `/repos/${repoID}/color` // /repos/${id}/${action}
   const axiosConfig = { headers: authHeader() }
+  console.log(axiosConfig);
 
   return dispatch => {
-    axios.patch(PATCH_COLOR_URL, axiosConfig)
+    axios.patch(PATCH_COLOR_URL, {color: colorHex}, axiosConfig)
       .then((response) => {
           dispatch({
             type: COLOR_SELECTED, 

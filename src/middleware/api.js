@@ -4,15 +4,25 @@ import { checkJWT } from '../helpers/jwt-checker'
 
 // Fetch and normalizr of API
 
-const callApi = (endpoint, schema, method, body) => {
+const callApi = (endpoint, schema, method, customHeaders, body) => {
   
   console.log('***', endpoint, schema, method, body)
 
+  let headers = {};
+  if(body) {
+    headers['Content-Type'] = 'application/json';
+  }
+  headers = {
+    ...headers,
+    ...customHeaders,
+  }
+
+
   console.log('+++++', JSON.stringify(body))
   return fetch(endpoint, {
-    headers: authHeader(),
+    headers,
     method: method || 'GET', 
-    body: body
+    body: JSON.stringify(body)
   })
     .then(response => {      
       const contentType = response.headers.get('Content-Type')
@@ -97,9 +107,18 @@ export default store => next => action => {
     ...action,
     type: action.type + '_REQUEST'
   })
+
+  const state = store.getState();
+  const token = state.authentication.token;
+
+  const headers = token 
+    ? {
+      'Authorization': `JWT ${token}`
+    }
+    : {};
   
   console.log(body, "´´´´´´´´")
-  return callApi(endpoint, schema, method, body).then(
+  return callApi(endpoint, schema, method, headers, body).then(
     response => store.dispatch(actionWith({
       type: action.type + '_SUCCESS',
       response
