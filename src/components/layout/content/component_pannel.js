@@ -1,20 +1,33 @@
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { Loader } from 'react-loader';
+
 import RepoList from '../../repositories/repository_list';
-//TEMPORARY CHANGE TO EXTENDED TO TEST TOGGLE WIRING
-// import PullRequestList from '../../pullrequest/pullrequest_list_extended'
 import PullRequestList from '../../pullrequest/pullrequest_list';
 import { PrivateRoute } from '../../authentication/private_route';
 
+
+
 class Pannel extends Component {
+	
 	render() {
+	console.log(this.props.loaded);
+		
 		return (
 			<div className="card-panel dashboard__panel">
-				<PrivateRoute exact path="/repos" component={RepoList} />
-				<PrivateRoute exact path="/pulls" component={PullRequestList} />
+				<Loader loaded={this.props.loaded}>
+					<PrivateRoute exact path="/repos" component={RepoList} />
+					<PrivateRoute exact path="/pulls" component={PullRequestList} />
+				</Loader>
 			</div>
 		)
 	}
 }
 
-export default Pannel
+const mapStateToProps = ({ entities }) => ({
+	loaded: entities.loadedEntities
+})
+
+export default connect(mapStateToProps)(Pannel)

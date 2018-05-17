@@ -2,7 +2,7 @@ const initialState = {
   repositories: {},
   pull_requests: {},
   users: {},
-  fetchingEntities: false
+  loadedEntities: false
 }
 
 export default (state = initialState, action) => {
@@ -22,7 +22,7 @@ export default (state = initialState, action) => {
           ...state.users,
           ...action.response.entities.user
         },
-        fetchingEntities: false
+        loadedEntities: true
     }
   }
 
@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
     case 'PULLS_GET_REQUEST':
       return { 
         ...state, 
-        fetchingEntities: true
+        loadedEntities: false
       }
 
     case 'REPOS_GET_SUCCESS':
@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
         repositories: {
           ...action.response.entities.repositories
         },
-        fetchingEntities: false
+        loadedEntities: true
       }
 
     case 'TOGGLE_WEBHOOK_SUCCESS':
