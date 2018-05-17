@@ -72,7 +72,7 @@ class DashboardHeader extends Component {
 							/>
 							<button className="header__search-button">
 								<svg className="header__search-icon">
-									<use xlinkHref="./icons/sprite.svg#icon-zoom-outline"></use>
+									<use xlinkHref="./icons/sprite.svg#icon-zoom-outline"><title></title></use>
 								</svg>
 							</button>
 						</form>
