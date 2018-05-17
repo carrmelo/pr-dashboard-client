@@ -15,6 +15,7 @@ import throttle from 'lodash/throttle'
 
 import './sass/main.css'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import reduxthunk from 'redux-thunk'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
@@ -25,7 +26,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
   persistedState,
-  composeEnhancers(applyMiddleware(logger, api, socket(process.env.REACT_APP_SERVER_URL)))
+  composeEnhancers(applyMiddleware(reduxthunk, logger, api, socket(process.env.REACT_APP_SERVER_URL)))
 )
 
 // Listen to the changes on the state
