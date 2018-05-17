@@ -18,7 +18,7 @@
   letter-spacing:-0.01em;
 }
 
-.cls-1 { 
+.cls-1 {
   font-size: 80px;
   font-family: Rokkitt-Light, Rokkitt, serif;
 }
@@ -46,4 +46,13 @@
 .welcome-message {
   display: flex;
   align-content: center;
+}
+
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: black;
 }
