@@ -1,31 +1,64 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 class PullRequestItem extends Component {
-
   render() {
     return (
-      <div>
-        <h3><a href={this.props.pullWebUrl}>{this.props.title}</a></h3>
-        <div>Created at {this.props.created_at}</div>
-        <div>STATUS {this.props.state}</div>
-        <div>{this.props.comment}</div>
-        <div>{this.props.comments} comments</div>
-        {/* <div className="links-container">
-          <a href={this.props.commits_url}>COMMITS</a>
-          <a href={this.props.issue_url}>ISSUES</a>
-          <a href={this.props.comments_url}>COMMENTS</a>
-        </div>  */}
-        {this.props.merged_at
-        ? <div>MERGED AT {this.props.closed_at}</div>
-        : <div>Pending to merge</div>}
-        {this.props.closed_at
-        ? <div>CLOSED AT {this.props.closed_at}</div>
-        : <div>Pending to close</div>}
-        <div>UPDATED AT {this.props.updated_at}</div>
-        <div>Last action: {this.props.action}</div>
-      </div>
-    )
+      <a href={this.props.webUrl} target="_blank">
+        <li
+          className={
+            'pullrequest__item ' +
+            (this.props.seen ? '' : 'pullrequest__item__breathing')
+          }
+          style={{ borderLeft: `6px solid ${this.props.repository.color}` }}
+        >
+          <div className="pullrequest__item-content">
+            <div className="pullrequest__item-content-text">
+              <div className="pullrequest__item__name__text">
+                <span>
+                  {this.props.title} #{this.props.number}
+                </span>
+              </div>
+              <div className="pullrequest__item__owner-picture">
+                <img
+                  src={this.props.user.picture}
+                  alt={this.props.user.loginName}
+                />
+              </div>
+              <div className="pullrequest__item__name__repo">
+                <span>{this.props.repository.fullName}</span>
+              </div>
+            </div>
+
+            <div className="pullrequest__item__owner" />
+
+            <div
+              className="pullrequest__item__content__extras"
+              style={this.props.seen ? {} : { backgroundColor: 'transparent' }}
+            >
+              <div className="pullrequest__item__content__extras-created">
+                <small>
+                  Created: {moment(this.props.created_at, 'YYYYMMDD').fromNow()}
+                </small>
+              </div>
+              <hr />
+              <div className="pullrequest__item__content__extras-updated">
+                <small>
+                  Updated: {moment(this.props.updated_at, 'YYYYMMDD').fromNow()}
+                </small>
+              </div>
+              <div className="pullrequest__item__content__extras-state">
+                <small>State: {this.props.state}</small>
+              </div>
+              <div className="pullrequest__item__content__extras-state">
+                <small>Comments: {this.props.comments}</small>
+              </div>
+            </div>
+          </div>
+        </li>
+      </a>
+    );
   }
 }
 
-export default PullRequestItem
+export default PullRequestItem;

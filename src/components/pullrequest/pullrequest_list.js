@@ -8,14 +8,13 @@ import { getPullRequests } from '../../actions';
 import PullRequestItem from './pullrequest_item';
 
 class PullRequestList extends Component {
-
-  componentDidMount () {
+  componentDidMount() {
     this.props.getPullRequests();
-  };
+  }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     if (!this.props.isAuth) {
-      this.props.history.push('/')
+      this.props.history.push('/');
     }
   }
 
@@ -24,17 +23,19 @@ class PullRequestList extends Component {
     ? Object.keys(pulls).map(key => (
       <div key={pulls[key]._id}>
         <PullRequestItem
-          repo={pulls[key].repository.name}
-          closed_at={pulls[key].closed_at}
-          merged_at={pulls[key].merged_at}
-          created_at={pulls[key].created_at}
-          updated_at={pulls[key].updated_at}
-          action={pulls[key].action}
-          title={pulls[key].title}
-          number={pulls[key].number}
-          state={pulls[key].state}
-          comment={pulls[key].comment}
-          comments={pulls[key].comments}
+          repository={pulls[key].repository}
+              webUrl={pulls[key].webUrl}
+              closed_at={pulls[key].closed_at}
+              merged_at={pulls[key].merged_at}
+              created_at={pulls[key].created_at}
+              updated_at={pulls[key].updated_at}
+              user={pulls[key].user}
+              title={pulls[key].title}
+              number={pulls[key].number}
+              state={pulls[key].state}
+              seen={pulls[key].seen}
+              comment={pulls[key].comment}
+              comments={pulls[key].comments}
         />
       </div>
     ))
@@ -55,11 +56,11 @@ class PullRequestList extends Component {
 const mapStateToProps = ({ entities, authentication }) => ({
   loaded: entities.loadedEntities,
   isAuth: authentication.isAuthenticated,
-  pulls: entities.pull_requests
-})
+  pulls: entities.pull_requests,
+});
 
-const mapDispatchToProps = (dispatch) => ({
-  getPullRequests: () => dispatch(getPullRequests())
-})
+const mapDispatchToProps = dispatch => ({
+  getPullRequests: () => dispatch(getPullRequests()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PullRequestList);
