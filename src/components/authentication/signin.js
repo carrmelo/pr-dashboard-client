@@ -13,7 +13,7 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-landing">
         <div className="h-container">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368.74 227.97" width="500">
             <title>PuRe</title>

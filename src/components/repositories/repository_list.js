@@ -13,14 +13,7 @@ import RepositoryItem from './repository_item'
 
 class RepositoriesList extends Component {
 
-	//UPDATE ON REAL TIME SOCKETS
 	componentDidMount() {
-	// 	socket.on('repos-update', this.props.getRepositories.bind(this));
-	// 	axios.get(`${config.baseServerUrl}/repos`)
-	// 		.then(res => {
-	// 			console.log('***', res)
-	// 			this.props.getRepositories(res.data)
-	// 		})
 		this.props.getRepositories()
 	}
 

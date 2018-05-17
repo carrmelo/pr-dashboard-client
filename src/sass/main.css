@@ -248,35 +248,34 @@ button.repository__item__color__picker__button {
 .sidebar__navigation-pullrequests {
   margin: 40px auto; }
 
-.container {
+.container-landing {
   min-height: 100vh;
   max-width: 730px;
   width: 100%;
   position: relative;
-  margin: 0 auto; }
+  margin: 0 auto;
+  display: flex; }
 
 .cls-11 {
   font-size: 150px;
-  font-family: Rokkitt-Regular, Rokkitt;
+  font-family: Rokkitt-Regular, Rokkitt, serif;
   letter-spacing: -0.02em; }
 
 .cls-22 {
   font-size: 70px;
-  font-family: Rokkitt-Light, Rokkitt;
+  font-family: Rokkitt-Light, Rokkitt, serif;
   letter-spacing: -0.01em; }
 
 .cls-1 {
   font-size: 80px;
-  font-family: Rokkitt-Light, Rokkitt; }
-
-.cls-2 {
-  font-size: 40px;
-  font-family: FrederickatheGreat-Regular, Fredericka the Great; }
+  font-family: Rokkitt-Light, Rokkitt, serif; }
 
 .h-container {
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  position: relative;
+  bottom: 40px; }
 
 .v-container {
   display: flex;
