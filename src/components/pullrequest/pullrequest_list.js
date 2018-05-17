@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Loader from 'react-loader';
 
-import { getPullRequests } from '../../actions';
+import { getPullRequests, checkPullrequest } from '../../actions';
 
 import PullRequestItem from './pullrequest_item';
 
@@ -18,10 +18,15 @@ class PullRequestList extends Component {
     }
   }
 
+  checkPull(pullId) {
+    console.log(pullId);
+    this.props.checkPullrequest(pullId);
+  }
+
   renderPullRequestItem(pulls) {
     return Object.keys(this.props.pulls).length > 0 ? (
       Object.keys(pulls).map(key => (
-        <div key={pulls[key]._id}>
+        <div onClick={() => this.checkPull(pulls[key]._id)} key={pulls[key]._id}>
           <PullRequestItem
             repository={pulls[key].repository}
             webUrl={pulls[key].webUrl}
@@ -63,6 +68,7 @@ const mapStateToProps = ({ entities, authentication }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  checkPullrequest: (pullId) => dispatch(checkPullrequest(pullId)),
   getPullRequests: () => dispatch(getPullRequests()),
 });
 

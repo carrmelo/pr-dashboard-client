@@ -13,8 +13,14 @@ import {
   SELECTED_PULLREQUESTS,
   COLOR_SELECTED,
   SOCKETS_PULLS_SET, 
-  SEARCH_TERM
+  SEARCH_TERM,
+  CHECK_PULL
 } from './types'
+
+import axios from 'axios';
+import { authHeader } from '../helpers/auth-header';
+
+const BASE_API_URL = `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}`;
 
 export const getRepositories = () => ({
   type: REPOS_GET,
@@ -77,3 +83,14 @@ export const toggleRepository = (id, action) => ({
     method: 'PATCH'
   }
 })
+
+export const checkPullrequest = (pullID) => {
+  const PATCH_CHECK_PULL_URL = BASE_API_URL + `/pullrequests/${pullID}/seen`;
+  return ({
+    type: 'CHECK_PULL',
+    [CALL_API]: {
+      endpoint: PATCH_CHECK_PULL_URL,
+      method: 'PATCH',
+    },
+  });
+};

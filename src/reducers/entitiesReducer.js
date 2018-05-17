@@ -1,3 +1,5 @@
+import { CHECK_PULL } from '../actions/types';
+
 const initialState = {
   repositories: {},
   pull_requests: {},
@@ -99,6 +101,19 @@ export default (state = initialState, action) => {
         ...action.data.entities.repositories
       }
   }
+
+    case 'CHECK_PULL_SUCCESS':
+      const seenBoolean = state.pull_requests[action.response.id]
+      return {
+        ...state,
+        pull_requests: {
+          ...state.pull_requests,
+          [action.response.id]: {
+            ...seenBoolean,
+            seen: true
+          }
+        }
+      };
 
   default: return state;
   }
