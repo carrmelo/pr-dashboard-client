@@ -16,6 +16,10 @@ import {
   SEARCH_TERM
 } from './types'
 
+import axios from 'axios'
+
+const BASE_API_URL = `${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}`
+
 export const getRepositories = () => ({
   type: REPOS_GET,
   [CALL_API]: {
@@ -58,13 +62,6 @@ export const searchTerm = (term) => {
   }
 }
 
-export const selectColor = (color) => {
-  return {
-    type: COLOR_SELECTED,
-    payload: color
-  }
-}
-
 export const setPullsFromSocket = (pulls) => ({
   type: SOCKETS_PULLS_SET,
   payload: pulls
@@ -77,3 +74,25 @@ export const toggleRepository = (id, action) => ({
     method: 'PATCH'
   }
 })
+
+export const selectColor = () => {
+
+  const PATCH_COLOR_URL = BASE_API_URL + `/repos/123/enable` // /repos/${id}/${action}
+
+  console.log('HERE***', PATCH_COLOR_URL)
+  return dispatch => {
+    dispatch({
+      type: COLOR_SELECTED, 
+      payload: 'COLOR'
+    })
+  }
+}
+
+
+
+
+
+
+
+
+

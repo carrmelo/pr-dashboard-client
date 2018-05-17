@@ -41,9 +41,13 @@ class RepositoryItem extends Component {
 	handleRequestClose = () => {
 		this.setState({ open: false });
 	};
+	
+	//HOW HANDLE WHEN PASSING MANY ARGUMENTS
+	handleColorChange (repoID, colorHex) {
+		this.setState({ background: colorHex })
 
-	handleColorChange = (e) => {
-		this.setState({ background: e.hex })
+		console.log('ID', repoID, 'COLOR', colorHex)
+		this.props.selectColor(repoID, colorHex)
 	}
 
 	onToggleSwitch (repoID) {
@@ -51,8 +55,6 @@ class RepositoryItem extends Component {
 	}
 
 	renderPrivacy = () => {
-		console.log(this.props.repo)
-
 		if (this.props.repo.private) {
 			return (
 				<div className="repository__item__privacy__status">
@@ -92,6 +94,7 @@ class RepositoryItem extends Component {
 		const serverAction = action ? 'disable' : 'enable'
 		this.props.toggleRepository(id, serverAction)
 	}
+
 	render() {
 		return (
 			<li 
@@ -150,9 +153,8 @@ class RepositoryItem extends Component {
 					          targetOrigin={{horizontal: 'left', vertical: 'top'}}
 					          onRequestClose={this.handleRequestClose}
 					        >
-								<HuePicker 
-									color={this.state.background}
-									onChangeComplete={this.handleColorChange}
+								<HuePicker color={this.state.background}
+									onChangeComplete={(e) => this.handleColorChange(this.props.repo._id, e.hex)}
 								/>
 					        </Popover>
 					    </div>
@@ -174,7 +176,8 @@ const styles = {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({ repoSwitch, selectColor, toggleRepository }, dispatch)
+	return bindActionCreators({ 
+		repoSwitch, selectColor, toggleRepository }, dispatch)
 }
 
 const mapStateToProps = (state) => {
