@@ -45,8 +45,8 @@ class DashboardHeader extends Component {
 	)
 
 	renderSignIn = () => (
-	  <div style={{alignSelf:"center"}}> Please,
-			<a href={`${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/auth/github`}> sign in </a>
+	  <div id="header__sign-in"> Please,
+			<a href={`${process.env.REACT_APP_SERVER_URL}${process.env.REACT_APP_API_VERSION}/auth/github`}> Sign In </a>
 		</div>
 	)
 

@@ -61,6 +61,10 @@ svg {
   flex-grow: 1;
   max-width: 773px; }
 
+#header__sign-in {
+  align-self: center;
+  margin-right: 30px; }
+
 .dashboard__header {
   height: 6.4rem;
   display: flex;
