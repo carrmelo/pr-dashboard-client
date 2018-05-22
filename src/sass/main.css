@@ -141,10 +141,12 @@ a:hover {
 .header__search-icon:hover {
   fill: white; }
 
-a .pullrequest__item {
+.repository__item,
+.pullrequest__item {
   color: #2c2f3e;
   text-decoration: none; }
-  a .pullrequest__item:hover {
+  .repository__item:hover,
+  .pullrequest__item:hover {
     transition: color 0.7s;
     background-color: #efefef; }
 
@@ -168,7 +170,7 @@ a .pullrequest__item {
   height: 100%; }
 
 .repository__item-content,
-.repository__item-content {
+.pullrequest__item-content {
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
@@ -426,6 +428,9 @@ li.sidebar__navigation-pullrequests {
   font-size: 80px;
   font-family: Rokkitt-Light, Rokkitt, serif; }
 
+.cls-2 {
+  font-family: Rokkitt-Light, Rokkitt, serif; }
+
 .h-container {
   display: flex;
   align-items: center;
@@ -451,3 +456,6 @@ a {
 
 a:hover {
   color: black; }
+
+.go-back {
+  color: #b3b3b3; }

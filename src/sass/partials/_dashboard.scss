@@ -1,4 +1,5 @@
-a .pullrequest__item {
+.repository__item,
+.pullrequest__item {
   color: #2c2f3e;
   text-decoration: none;
   &:hover {
@@ -35,7 +36,7 @@ li.repository__item:hover {
 }
 
 .repository__item-content,
-.repository__item-content {
+.pullrequest__item-content {
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;

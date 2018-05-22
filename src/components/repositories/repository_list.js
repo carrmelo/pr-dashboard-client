@@ -1,5 +1,3 @@
-
-import socket from '../../websockets';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
@@ -33,7 +31,7 @@ class RepositoriesList extends Component {
 				let sumPulls = 0;
 				const pulls = this.props.pulls
 				Object.keys(pulls).map(pullKey => {
-					(pulls[pullKey].repository._id === repoKey) ? sumPulls++ : null
+					return (pulls[pullKey].repository._id === repoKey) ? sumPulls++ : null
 				})
 				return (
 					<RepositoryItem
