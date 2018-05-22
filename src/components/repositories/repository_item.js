@@ -15,19 +15,11 @@ import {
 
 import { bindActionCreators } from 'redux'
 
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import Badge from 'material-ui/Badge';
-
 import Popover from 'material-ui/Popover';
 
 import { HuePicker } from 'react-color'
 import Collapsible from 'react-collapsible';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import RaisedButton from 'material-ui/RaisedButton';
-
-import Paper from 'material-ui/Paper';
-import { authHeader } from '../../helpers/auth-header'
 
 class RepositoryItem extends Component {
 
@@ -233,15 +225,4 @@ const mapDispatchToProps = (dispatch) => {
 		repoSwitch, selectColor, toggleRepository, changeColor }, dispatch)
 }
 
-const mapStateToProps = (state) => {
-	return {
-		user: state.entities.users
-	}
-}
-
 export default connect(null, mapDispatchToProps)(RepositoryItem)
-
-
-
-
-

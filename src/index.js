@@ -5,7 +5,6 @@ import registerServiceWorker from './registerServiceWorker';
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger';
 
 import api from './middleware/api';
 import socket from './middleware/socket';
@@ -26,7 +25,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   reducer,
   persistedState,
-  composeEnhancers(applyMiddleware(reduxthunk, logger, api, socket(process.env.REACT_APP_SERVER_URL)))
+  composeEnhancers(applyMiddleware(reduxthunk, api, socket(process.env.REACT_APP_SERVER_URL)))
 )
 
 // Listen to the changes on the state

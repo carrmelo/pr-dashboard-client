@@ -23,6 +23,10 @@
   font-family: Rokkitt-Light, Rokkitt, serif;
 }
 
+.cls-2 {
+  font-family: Rokkitt-Light, Rokkitt, serif;
+}
+
 .h-container {
   display: flex;
   align-items: center;
@@ -38,7 +42,6 @@
   justify-content: center;
 }
 
-
 .github-button {
   width: 280px;
 }
@@ -48,11 +51,14 @@
   align-content: center;
 }
 
-
 a {
   color: black;
 }
 
 a:hover {
   color: black;
+}
+
+.go-back {
+  color: rgb(179, 179, 179);
 }

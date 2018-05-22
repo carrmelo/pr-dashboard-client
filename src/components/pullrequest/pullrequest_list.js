@@ -19,7 +19,6 @@ class PullRequestList extends Component {
   }
 
   checkPull(pullId) {
-    console.log(pullId);
     this.props.checkPullrequest(pullId);
   }
 

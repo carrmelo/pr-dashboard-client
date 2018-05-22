@@ -1,11 +1,3 @@
-import {
-  REPO_ACTIVATED,
-  SOCKETS_PULLS_SET, 
-  COLOR_CHANGE, 
-  COLOR_CHANGE_SUCCESS,
-  CHECK_PULL
-} from '../actions/types'
-
 const initialState = {
   repositories: {},
   pull_requests: {},
@@ -14,25 +6,6 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-
-  // if (action.response && action.response.entities && action.type !== "USER_INFO_SUCCESS") {
-  //   return {
-  //     ...state,
-  //       repositories: {
-  //         ...state.repositories,
-  //         ...action.response.entities.repositories
-  //       },
-  //       pull_requests: {
-  //         ...state.pull_requests,
-  //         ...action.response.entities.pull_requests
-  //       },
-  //       users: {
-  //         ...state.users,
-  //         ...action.response.entities.user
-  //       },
-  //       loadedEntities: true
-  //   }
-  // }
 
   if (action.error === 'token expired') return initialState
   

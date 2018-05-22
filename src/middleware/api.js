@@ -1,5 +1,4 @@
 import { normalize, schema } from 'normalizr';
-import { authHeader } from '../helpers/auth-header'
 import { checkJWT } from '../helpers/jwt-checker'
 
 // Fetch and normalizr of API
@@ -52,12 +51,7 @@ const callApi = (endpoint, schema, method, customHeaders, body) => {
 
 const userSchema = new schema.Entity('user', {}, { idAttribute: '_id' });
 const repoSchema = new schema.Entity('repositories', {}, { idAttribute: '_id' });
-const repoinpullSchema = new schema.Entity('repository', {}, { idAttribute: '_id' });
-const pullSchema = new schema.Entity(
-  'pull_requests',
-  { },
-  { idAttribute: '_id' }
-);
+const pullSchema = new schema.Entity('pull_requests', {}, { idAttribute: '_id' });
 
 export const Schemas = {
   REPOS: [ repoSchema ],

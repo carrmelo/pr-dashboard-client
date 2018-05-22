@@ -1,4 +1,3 @@
-
 import {
 	PULLS_NOTIFICATION_PATH_SUCCESS
 } from '../actions/types'
@@ -6,9 +5,9 @@ import {
 const INITIAL_STATE = null
 
 export default (state = INITIAL_STATE, action) => {
-	switch(action.type){
+	switch(action.type){		
 		case PULLS_NOTIFICATION_PATH_SUCCESS: 
-	      return action.payload
+	      	return action.payload
 		default: 
 			return state
 	}

@@ -13,6 +13,15 @@ class Sidebar extends Component {
 		this.props.newPullsNotification()
 	}
 
+	renderBadge = () => (
+		this.props.pullsnotification
+		?	<Badge
+				badgeContent={this.props.pullsnotification}
+				primary={true}
+			/>
+		: null
+	)
+
 	render() {
 		return (
 			<ul className="dashboard__sidebar">
@@ -26,10 +35,7 @@ class Sidebar extends Component {
 
 				<li className="sidebar__navigation-pullrequests">
 					<div className="sidebar__notification__icon">
-						<Badge
-						   badgeContent={this.props.pullsnotification}
-						   primary={true}
-						/>
+						{this.renderBadge()}
 					</div>
 					<div className="sidebar__pullrequests__button">
 						<Link to="/pulls">
@@ -50,5 +56,4 @@ const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({ newPullsNotification }, dispatch)
 }
 
-//why null in mapStateToProps makes it not to work
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

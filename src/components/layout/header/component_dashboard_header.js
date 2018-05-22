@@ -1,10 +1,7 @@
-
 import React, { Component } from 'react'
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
-import FlatButton from 'material-ui/FlatButton';
 
 import { searchTerm } from '../../../actions'
 import * as authActions from '../../../actions/authActions';
@@ -27,7 +24,6 @@ class DashboardHeader extends Component {
 	}
 
 	renderLogOutButton = () => (
-
 		(this.props.isAuth)
 		?
 			<div onClick={this.handleLogOut} className="header__sign_out">
@@ -38,7 +34,10 @@ class DashboardHeader extends Component {
 
 	renderName = (user) => (
 			<div id="header__userinfo">
-				<img src={user[0].picture} id="header__userinfo-img" />
+				<img
+					src={user[0].picture}
+					id="header__userinfo-img"
+					alt="{user[0].displayName}"/>
 				<div>
 					{user[0].loginName}
 				</div>
@@ -83,10 +82,8 @@ class DashboardHeader extends Component {
 						: ''}
 					</div>
 
-					{this.props.isAuth
-					? this.props.user[0]
+					{(this.props.isAuth && this.props.user[0])
 					? this.renderName(this.props.user)
-					: <div>Loading</div>
 					: this.renderSignIn()}
 
 					{this.renderLogOutButton()}
